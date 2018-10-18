@@ -25,7 +25,7 @@ public class Environnement {
      * @pre
      * @post
      */
-    public Environnement update(){
+    public Environnement update() {
         return new Environnement();
     }
 
