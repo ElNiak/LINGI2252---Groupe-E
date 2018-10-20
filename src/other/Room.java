@@ -19,23 +19,26 @@ public class Room {
     private double wind;
     private double pollution;
     private double dbel;
+    private boolean movement;
     private Environnement environnement;
 
-    public Room(String name,double hauteur, double longueur, double largeur, double temp, double hum, double db, double wind, double light, double pollution) {
+
+    public Room(String name, double hauteur, double longueur, double largeur, Environnement environnement, List<Sensor> sensors, List<Device> devices){
         this.name = name;
-        this.temp = temp;
-        this.hum = hum;
-        this.light = light;
-        this.wind = wind;
-        this.pollution = pollution;
-        this.dbel = db;
-        this.devices = new ArrayList<>();
-        this.sensors = new ArrayList<>();
         this.hauteur = hauteur;
         this.longueur = longueur;
         this.largeur = largeur;
+        this.environnement = environnement;
         neightbor = new Room[4];
-        environnement = new Environnement();
+        this.devices = devices;
+        this.sensors = sensors;
+        this.temp = environnement.getTemp();
+        this.hum = environnement.getHum();
+        this.light = environnement.getLight();
+        this.wind = environnement.getWind();
+        this.pollution = environnement.getPollution();
+        this.dbel = environnement.getDbel();
+        this.movement = environnement.isMovement();
     }
 
     public Environnement getEnvironnement(){

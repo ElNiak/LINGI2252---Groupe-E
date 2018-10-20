@@ -2,16 +2,33 @@ package other;
 
 public class Environnement {
 
-    private double temp;
+    private double temp; // en degré celcius
     private double hum;
     private double light;
-    private double wind;
+    private double wind; // en km/h
     private double pollution;
-    private double dbel;
+    private double dbel; // en décibel
     private boolean movement;
     private Room room;
 
     public Environnement() {
+        this.temp = 18.0;
+        this.hum = 10.0;
+        this.light = 10.0;
+        this.wind = 30.0;
+        this.pollution = 10.0;
+        this.dbel = 10.0;
+        this.movement = false;
+    }
+
+    public Environnement(Room room) {
+        this.temp = 18.0;
+        this.hum = 10.0;
+        this.light = 10.0;
+        this.wind = 30.0;
+        this.pollution = 10.0;
+        this.dbel = 10.0;
+        this.movement = false;
     }
 
     public Environnement(double temp, double hum, double light, double wind, double pollution, double db, boolean movement, Room room) {
