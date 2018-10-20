@@ -213,4 +213,36 @@ public class House {
         garden_sensors.add(new PollutionSensor(350, 700, 350, garden));
 
     }
+
+    public Room[] getGround_floor() {
+        return ground_floor;
+    }
+
+    public void setGround_floor(Room[] ground_floor) {
+        this.ground_floor = ground_floor;
+    }
+
+    public Room[] getFirst_floor() {
+        return first_floor;
+    }
+
+    public void setFirst_floor(Room[] first_floor) {
+        this.first_floor = first_floor;
+    }
+
+    public Room getGarden() {
+        return garden;
+    }
+
+    public void setGarden(Room garden) {
+        this.garden = garden;
+    }
+
+    public Environnement[] getEnvironnements() {
+        return environnements;
+    }
+
+    public void setEnvironnements(Environnement[] environnements) {
+        this.environnements = environnements;
+    }
 }
