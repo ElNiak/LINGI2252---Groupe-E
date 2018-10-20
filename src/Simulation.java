@@ -22,13 +22,17 @@ public class Simulation {
         Room[] first_floor = house.getFirst_floor();
         Room[] ground_floor = house.getGround_floor();
 
-        ground_floor[1].manage(Constants.MOVEMENT);
+        System.out.println("****** " + ground_floor[1].getName() + " ******");
         List<Device> list = ground_floor[1].getDevices();
+        list.get(6).start();
         list.get(7).start();
         list.get(10).start();
 
-        System.out.println("\n\"When he come back the system detect that and then switch on everything.\"\n");
-        list.get(7).start();
-        list.get(10).start();
+        System.out.println("\"He needs to go to the toilet\"");
+        System.out.println("Jean leaves the room");
+        ground_floor[1].getSensors().get(1).detect();
+
+        System.out.println("He comes back in the room");
+        ground_floor[1].getSensors().get(1).detect();
     }
 }

@@ -80,16 +80,6 @@ public class Room {
                         }
                     }
                 }
-                else {
-                    for (Device i : devices) {
-                        if (i instanceof Light) {
-                            i.start();
-                        }
-                        if (i instanceof ShutterWindow) {
-                            i.start();
-                        }
-                    }
-                }
                 break;
             case Constants.WIND:
                 if(wind < environnement.getWind()){
@@ -139,7 +129,17 @@ public class Room {
                     }
                 }
                 break;
-            //case Constants.MOVEMENT:
+            case Constants.MOVEMENT:
+                if(movement != environnement.isMovement()){
+                    for (Device i : devices){
+                        if (i instanceof Light){
+                            i.start();
+                        }
+                        if (i instanceof Tv){
+                            i.start();
+                        }
+                    }
+                }
         }
     }
 
