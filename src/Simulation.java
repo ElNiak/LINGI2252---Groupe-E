@@ -28,11 +28,11 @@ public class Simulation {
         list.get(7).start();
         list.get(10).start();
 
-        System.out.println("\"He needs to go to the toilet\"");
-        System.out.println("Jean leaves the room");
+        System.out.println("\n\"He needs to go to the toilet\n");
+        System.out.println("Jean leaves the room\"\n");
         ground_floor[1].getSensors().get(1).detect();
 
-        System.out.println("He comes back in the room");
+        System.out.println("\n\"He comes back in the room\"\n");
         ground_floor[1].getSensors().get(1).detect();
     }
 }
