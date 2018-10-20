@@ -163,4 +163,120 @@ public class Room {
                 ", environnement=" + environnement +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<Sensor> sensors) {
+        this.sensors = sensors;
+    }
+
+    public double getHauteur() {
+        return hauteur;
+    }
+
+    public void setHauteur(double hauteur) {
+        this.hauteur = hauteur;
+    }
+
+    public double getLongueur() {
+        return longueur;
+    }
+
+    public void setLongueur(double longueur) {
+        this.longueur = longueur;
+    }
+
+    public double getLargeur() {
+        return largeur;
+    }
+
+    public void setLargeur(double largeur) {
+        this.largeur = largeur;
+    }
+
+    public Room[] getNeightbor() {
+        return neightbor;
+    }
+
+    public void setNeightbor(Room[] neightbor) {
+        this.neightbor = neightbor;
+    }
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
+    }
+
+    public double getHum() {
+        return hum;
+    }
+
+    public void setHum(double hum) {
+        this.hum = hum;
+    }
+
+    public double getLight() {
+        return light;
+    }
+
+    public void setLight(double light) {
+        this.light = light;
+    }
+
+    public double getWind() {
+        return wind;
+    }
+
+    public void setWind(double wind) {
+        this.wind = wind;
+    }
+
+    public double getPollution() {
+        return pollution;
+    }
+
+    public void setPollution(double pollution) {
+        this.pollution = pollution;
+    }
+
+    public double getDbel() {
+        return dbel;
+    }
+
+    public void setDbel(double dbel) {
+        this.dbel = dbel;
+    }
+
+    public boolean isMovement() {
+        return movement;
+    }
+
+    public void setMovement(boolean movement) {
+        this.movement = movement;
+    }
+
+    public void setEnvironnement(Environnement environnement) {
+        this.environnement = environnement;
+    }
 }

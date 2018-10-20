@@ -1,4 +1,11 @@
+import device.Device;
+import other.Constants;
 import other.House;
+import other.Room;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Simulation {
     public static void main(String[] args){
@@ -7,10 +14,21 @@ public class Simulation {
 
     public static void scenario(){
         System.out.println("\n\"Jean is watching TV during the night when suddenly he needs to go to the toilet,\n" +
-                " during this time, themovement sensor detect that he leaves the room and then switch off the\n " +
+                " during this time, the movement sensor detect that he leaves the room and then switch off the\n " +
                 "TV and the lamp.\"\n");
 
         House house = new House();
 
+        Room[] first_floor = house.getFirst_floor();
+        Room[] ground_floor = house.getGround_floor();
+
+        ground_floor[1].manage(Constants.MOVEMENT);
+        List<Device> list = ground_floor[1].getDevices();
+        list.get(7).start();
+        list.get(10).start();
+
+        System.out.println("\n\"When he come back the system detect that and then switch on everything.\"\n");
+        list.get(7).start();
+        list.get(10).start();
     }
 }
