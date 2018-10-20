@@ -7,18 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class House {
-    Room[] ground_floor;
-    Room[] first_floor;
-    Room garden;
-    Environnement[] environnements;
+    private Room[] ground_floor;
+    private Room[] first_floor;
+    private Room garden;
+    private Environnement[] environnements;
 
     public House(){
+        environnements = new Environnement[9];
+        ground_floor = new Room[5];
+        first_floor = new Room[5];
         create_house();
     }
 
     private void create_house(){
-        environnements = new Environnement[9];
-
         /*
          * GROUND FLOOR
          */
