@@ -1,8 +1,7 @@
 package other;
 
-import device.Device;
-import sensor.Camera;
-import sensor.Sensor;
+import device.*;
+import sensor.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,11 @@ public class House {
         Room entry = new Room("Entry", 300, 700, 700, entry_env, entry_sensors, entry_devices);
         entry_env.setRoom(entry);
         entry_sensors.add(new Camera(350, 700, 300, entry));
+        entry_sensors.add(new LightSensor(350, 700, 350, entry));
+        entry_sensors.add(new PollutionSensor(350, 700, 450, entry));
+        entry_sensors.add(new MovementSensor(350, 700, 450, entry));
+
+        entry_devices.add(new Light(350, 700, 350, entry));
 
         //living room
         Environnement living_room_env = new Environnement();
@@ -37,6 +41,21 @@ public class House {
         List<Device> living_room_devices = new ArrayList<Device>();
         Room living_room = new Room("Living Room", 300, 700, 700, living_room_env, living_room_sensors, living_room_devices);
         living_room_env.setRoom(living_room);
+        living_room_sensors.add(new LightSensor(350, 700, 350, living_room));
+        living_room_sensors.add(new MovementSensor(350, 700, 350, living_room));
+        living_room_sensors.add(new TemperatureSensor(350, 700, 350, living_room));
+        living_room_sensors.add(new HumiditySensor(350, 700, 350, living_room));
+
+        living_room_devices.add(new ShutterWindow(350, 700, 350, living_room));
+        living_room_devices.add(new ShutterWindow(350, 700, 350, living_room));
+        living_room_devices.add(new ShutterWindow(350, 700, 350, living_room));
+        living_room_devices.add(new Windows(350, 700, 350, living_room));
+        living_room_devices.add(new Windows(350, 700, 350, living_room));
+        living_room_devices.add(new Windows(350, 700, 350, living_room));
+        living_room_devices.add(new Light(350, 700, 350, living_room));
+        living_room_devices.add(new Light(350, 700, 350, living_room));
+        living_room_devices.add(new Ventillation(350, 700, 350, living_room));
+        living_room_devices.add(new Hifi(350, 700, 350, living_room));
 
         //kitchen
         Environnement kitchen_env = new Environnement();
@@ -44,6 +63,17 @@ public class House {
         List<Device> kitchen_devices = new ArrayList<Device>();
         Room kitchen = new Room("Kitchen", 300, 700, 700, kitchen_env, kitchen_sensors, kitchen_devices);
         kitchen_env.setRoom(kitchen);
+        kitchen_sensors.add(new LightSensor(350, 700, 350, kitchen));
+        kitchen_sensors.add(new MovementSensor(350, 700, 350, kitchen));
+        kitchen_sensors.add(new TemperatureSensor(350, 700, 350, kitchen));
+        kitchen_sensors.add(new HumiditySensor(350, 700, 350, kitchen));
+
+        kitchen_devices.add(new ShutterWindow(350, 700, 350, kitchen));
+        kitchen_devices.add(new Windows(350, 700, 350, kitchen));
+        kitchen_devices.add(new Light(350, 700, 350, kitchen));
+        kitchen_devices.add(new Humidifier(350, 700, 350, kitchen));
+        kitchen_devices.add(new Ventillation(350, 700, 350, kitchen));
+
 
         //dinning room
         Environnement dinning_room_env = new Environnement();
@@ -51,6 +81,18 @@ public class House {
         List<Device> dinning_room_devices = new ArrayList<Device>();
         Room dinning_room = new Room("Dinning Room", 300, 700, 700, dinning_room_env, dinning_room_sensors, dinning_room_devices);
         dinning_room_env.setRoom(dinning_room);
+        dinning_room_sensors.add(new LightSensor(350, 700, 350, dinning_room));
+        dinning_room_sensors.add(new MovementSensor(350, 700, 350, dinning_room));
+        dinning_room_sensors.add(new TemperatureSensor(350, 700, 350, dinning_room));
+        dinning_room_sensors.add(new HumiditySensor(350, 700, 350, dinning_room));
+
+        dinning_room_devices.add(new ShutterWindow(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new Windows(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new ShutterWindow(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new Windows(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new Light(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new Humidifier(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new Ventillation(350, 700, 350, dinning_room));
 
 
         /*
