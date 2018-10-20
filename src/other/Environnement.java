@@ -47,7 +47,7 @@ public class Environnement {
      * @post /
      */
     public void update(String type, double val) {
-        switch(type){
+        switch (type) {
             case Constants.TEMP:
                 this.temp = val;
                 break;
@@ -67,10 +67,9 @@ public class Environnement {
                 this.dbel = val;
                 break;
             case Constants.MOVEMENT:
-                if(val == 1.0){
+                if (val == 1.0) {
                     this.movement = true;
-                }
-                else{
+                } else {
                     this.movement = false;
                 }
         }
@@ -149,7 +148,9 @@ public class Environnement {
                 ", light=" + light +
                 ", wind=" + wind +
                 ", pollution=" + pollution +
-                ", db=" + dbel +
+                ", dbel=" + dbel +
+                ", movement=" + movement +
+                ", room=" + room +
                 '}';
     }
 }

@@ -4,6 +4,7 @@ import device.*;
 import sensor.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class House {
@@ -17,6 +18,16 @@ public class House {
         ground_floor = new Room[5];
         first_floor = new Room[5];
         create_house();
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "ground_floor=" + Arrays.toString(ground_floor) +
+                ", first_floor=" + Arrays.toString(first_floor) +
+                ", garden=" + garden +
+                ", environnements=" + Arrays.toString(environnements) +
+                '}';
     }
 
     private void create_house(){

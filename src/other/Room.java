@@ -4,6 +4,7 @@ import device.*;
 import sensor.Sensor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Room {
@@ -140,5 +141,26 @@ public class Room {
                 break;
             //case Constants.MOVEMENT:
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "name='" + name + '\'' +
+                ", devices=" + devices +
+                ", sensors=" + sensors +
+                ", hauteur=" + hauteur +
+                ", longueur=" + longueur +
+                ", largeur=" + largeur +
+                ", neightbor=" + Arrays.toString(neightbor) +
+                ", temp=" + temp +
+                ", hum=" + hum +
+                ", light=" + light +
+                ", wind=" + wind +
+                ", pollution=" + pollution +
+                ", dbel=" + dbel +
+                ", movement=" + movement +
+                ", environnement=" + environnement +
+                '}';
     }
 }
