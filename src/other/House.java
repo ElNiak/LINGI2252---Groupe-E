@@ -56,6 +56,9 @@ public class House {
         living_room_devices.add(new Light(350, 700, 350, living_room));
         living_room_devices.add(new Ventillation(350, 700, 350, living_room));
         living_room_devices.add(new Hifi(350, 700, 350, living_room));
+        living_room_devices.add(new Tv(350, 700, 350, living_room));
+        living_room_devices.add(new Heating(350, 700, 350, living_room));
+
 
         //kitchen
         Environnement kitchen_env = new Environnement();
