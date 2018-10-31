@@ -3,17 +3,10 @@ package sensor;
 import other.Constants;
 import other.Room;
 
-public class PollutionSensor implements Sensor {
-    private double x,y,z; //cm
-    private double prev, curr;
-    private double lambda = 0.1;
-    private Room room;
+public class PollutionSensor extends Sensor {
 
     public PollutionSensor(double x, double y, double z, Room room) {
-        this.x = x; this.y = y; this.z = z;
-        prev = 0.0;
-        curr = 0.0;
-        this.room = room;
+        super(x,y,z,room);
     }
 
     @Override
