@@ -2,16 +2,14 @@ package device;
 
 import other.Room;
 
-public class Windows implements Device {
+public class Windows extends Device {
 
     private boolean state;
     private double x,y,z; //cm
     private Room room;
 
     public Windows(double x, double y, double z, Room room) {
-        this.state = false; // false = off
-        this.x = x; this.y = y; this.z = z;
-        this.room = room;
+        super(x,y,z,room);
     }
 
     @Override
