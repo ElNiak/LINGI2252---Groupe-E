@@ -1,0 +1,584 @@
+{
+  "house":
+  {
+    "number_of_floor": 2,
+    "first_floor":
+    {
+      "number_of_rooms": 4,
+      "name": "Ground Floor",
+      "rooms":[
+        {
+          "name": "Entry",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "Camera",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "PollutionSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        },
+        {
+          "name": "LivingRoom",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Humidifier",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Ventilation",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Hifi",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Tv",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Heating",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        },
+        {
+          "name": "Kitchen",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Humidifier",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Ventilation",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        },
+        {
+          "name": "DinningRoom",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Humidifier",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Ventilation",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        }
+      ]
+    },
+    "second_floor":
+    {
+      "number_of_rooms": 4,
+      "name": "First Floor",
+      "rooms":[
+        {
+          "name": "BedRoom",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "AirConditioning",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Heating",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        },
+        {
+          "name": "BathRoom",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Ventilation",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Heating",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        },
+        {
+          "name": "GameRoom",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Heating",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "AirConditioning",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        },
+        {
+          "name": "LaundryRoom",
+          "length": "700",
+          "width": "700",
+          "height": "300",
+          "sensors":[
+            {
+              "name": "MovementSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[
+            {
+              "name": "ShutterWindow",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Window",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "Light",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ]
+        }
+      ]
+    },
+    "Garden":
+    {
+      "number_of_rooms": 1,
+      "name": "Garden",
+      "rooms":[
+        {
+          "name": "Garden",
+          "length": "1500",
+          "width": "1500",
+          "height": "100000",
+          "sensors":[
+            {
+              "name": "LightSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "SoundSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            },
+            {
+              "name": "PollutionSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300"
+            }
+          ],
+          "devices":[]
+        }
+      ]
+    }
+  }
+}
