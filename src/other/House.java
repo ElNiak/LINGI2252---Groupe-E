@@ -3,9 +3,17 @@ package other;
 import device.*;
 import sensor.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.json.simple.parser.JSONParser;
 
 public class House {
     private Room[] ground_floor;
@@ -20,6 +28,10 @@ public class House {
         create_house();
     }
 
+    public House(String json){
+       decode_json(json);
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -28,6 +40,21 @@ public class House {
                 ", garden=" + garden +
                 ", environnements=" + Arrays.toString(environnements) +
                 '}';
+    }
+
+    public void decode_json(String json){
+        JSONParser parser = new JSONParser();
+        try{
+            Object o1 = new JSONParser().parse(new FileReader(json));
+            JSONObject jo = (JSONObject) o1;
+
+            JSONObject jo2 = (JSONObject) jo.get("house");
+            JSONObject first_floor = (JSONObject) jo.get("first_floor");
+            JSONObject second_floor = (JSONObject) jo.get("second_floor");
+        }
+        catch (ParseException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void create_house(){
