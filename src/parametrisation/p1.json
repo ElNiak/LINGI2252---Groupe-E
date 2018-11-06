@@ -4,7 +4,6 @@
     "number_of_floor": 2,
     "first_floor":
     {
-      "number_of_rooms": 4,
       "name": "Ground Floor",
       "rooms":[
         {
@@ -309,7 +308,6 @@
     },
     "second_floor":
     {
-      "number_of_rooms": 4,
       "name": "First Floor",
       "rooms":[
         {
@@ -536,7 +534,6 @@
     },
     "Garden":
     {
-      "number_of_rooms": 1,
       "name": "Garden",
       "rooms":[
         {

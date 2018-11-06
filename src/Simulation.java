@@ -20,23 +20,23 @@ public class Simulation {
                 " during this time, the movement sensor detect that he leaves the room and then switch off the\n " +
                 "TV and the lamp.\"\n");
 
-        House house = new House();
+        House house = new House(System.getProperty("user.dir") + "/src/parametrisation/p1.json");
 
-        Room[] first_floor = house.getFirst_floor();
-        Room[] ground_floor = house.getGround_floor();
+        List<Room> first_floor = house.getFirst_floor();
+        List<Room> ground_floor = house.getGround_floor();
 
-        System.out.println("****** " + ground_floor[1].getName() + " ******");
-        List<Device> list = ground_floor[1].getDevices();
+        System.out.println("****** " + ground_floor.get(1).getName() + " ******");
+        List<Device> list = ground_floor.get(1).getDevices();
         list.get(6).start();
         list.get(7).start();
-        list.get(10).start();
+        list.get(11).start();
 
         System.out.println("\n\"He needs to go to the toilet\n");
         System.out.println("Jean leaves the room\"\n");
-        ground_floor[1].getSensors().get(1).detect();
+        ground_floor.get(1).getSensors().get(3).detect();
 
         System.out.println("\n\"He comes back in the room\"\n");
-        ground_floor[1].getSensors().get(1).detect();
+        ground_floor.get(1).getSensors().get(3).detect();
     }
 
     public static void scenario2(){
