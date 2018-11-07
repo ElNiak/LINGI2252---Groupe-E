@@ -45,69 +45,131 @@ public class Room {
         return this.environnement;
     }
 
+
+    /**
+     * Possible case
+     * @param type
+     */
     public void manage(String type){
         switch(type){
-            case Constants.TEMP:
-               if(temp < environnement.getTemp()) {
+            case Constants.TEMP: //For the temperature
+               if(temp < environnement.getTemp()) { //Trop chaud
                    for (Device i : devices) {
-                       if (i instanceof AirConditioning) {
-                           i.manage_device();
+                       if (i instanceof AirConditioning) { //Start la clim
+                           if (!i.isState())
+                               i.manage_device();
+                       }
+                       if (i instanceof Heating) { //Stop radia si allumer
+                           if (i.isState())
+                               i.manage_device();
                        }
                    }
                }
-               else {
+               else { //Trop froid
                    for (Device i : devices) {
                        if (i instanceof Heating) {
-                           i.manage_device();
+                           if (!i.isState())
+                               i.manage_device(); //Start le radiateur
+                       }
+                       if (i instanceof AirConditioning) { //Stop la clim
+                           if (i.isState())
+                               i.manage_device();
                        }
                    }
                }
                 break;
             case Constants.HUM:
-                if(hum < environnement.getHum()){
-
+                if(hum < environnement.getHum()){ //Trop humide
+                    for (Device i : devices) {
+                        if (i instanceof Windows) { //Ouvre les fenetre et store
+                            if (!i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof ShutterWindow) {
+                            if (!i.isState())
+                                i.manage_device();
+                        }
+                    }
+                }
+                else {
+                    for (Device i : devices) {
+                        if (i instanceof Windows) { //ferme les fenetre et store
+                            if (i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof ShutterWindow) {
+                            if (i.isState())
+                                i.manage_device();
+                        }
+                    }
                 }
                 break;
             case Constants.LIGHT:
-                if(light < environnement.getLight()){
+                if(light < environnement.getLight()){ //Trop lumineux
                     for (Device i : devices) {
-                        if (i instanceof Light) {
-                            i.manage_device();
+                        if (i instanceof Light) { //On ferme les lampe
+                            if (i.isState())
+                                i.manage_device();
                         }
                         if (i instanceof ShutterWindow) {
-                            i.manage_device();
+                            if (i.isState())
+                                i.manage_device();
+                        }
+                    }
+                }
+                else {
+                    for (Device i : devices) {
+                        if (i instanceof Light) { //On ferme les lampe
+                            if (!i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof ShutterWindow) {
+                            if (!i.isState())
+                                i.manage_device();
                         }
                     }
                 }
                 break;
             case Constants.WIND:
-                if(wind < environnement.getWind()){
+                if(wind < environnement.getWind()){ //Trop de vent
                     for (Device i : devices) {
                         if (i instanceof Windows) { //On
-                            i.manage_device();
+                            if (i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof Ventillation) { //on
+                            if (i.isState())
+                                i.manage_device();
                         }
                     }
                 }
-                else {
+                else { //Pas assez de vent
                     for (Device i : devices) {
-                        if (i instanceof Ventillation) { //Off
-                            i.manage_device();
+                        if (i instanceof Windows) { //On
+                            if (!i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof Ventillation) { //off
+                            if (!i.isState())
+                                i.manage_device();
                         }
                     }
                 }
                 break;
             case Constants.POLLUTION:
-                if(pollution < environnement.getPollution()){
+                if(pollution < environnement.getPollution()){ //Trop pollution
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            i.manage_device();
+                            if (i.isState())
+                                i.manage_device();
                         }
                     }
                 }
                 else {
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            i.manage_device();
+                            if (!i.isState())
+                                i.manage_device();
                         }
                     }
                 }
@@ -116,14 +178,24 @@ public class Room {
                 if(dbel < environnement.getDbel()){
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
-                            i.manage_device();
+                            if (i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof Windows) {
+                            if (i.isState())
+                                i.manage_device();
                         }
                     }
                 }
                 else {
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
-                            i.manage_device();
+                            if (!i.isState())
+                                i.manage_device();
+                        }
+                        if (i instanceof Windows) {
+                            if (!i.isState())
+                                i.manage_device();
                         }
                     }
                 }

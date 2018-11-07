@@ -63,6 +63,7 @@ public class Simulation {
                 "the air conditioning lights up\"\n");
 
         list2.get(1).manage_device();//Start devices for the 1st time
+        list2.get(4).manage_device();
 
         System.out.println("****** " + ground_floor.get(2).getName() + " ******");
 
