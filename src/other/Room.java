@@ -3,7 +3,6 @@ package other;
 import device.*;
 import sensor.Sensor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,14 +51,14 @@ public class Room {
                if(temp < environnement.getTemp()) {
                    for (Device i : devices) {
                        if (i instanceof AirConditioning) {
-                           i.start();
+                           i.manage_device();
                        }
                    }
                }
                else {
                    for (Device i : devices) {
                        if (i instanceof Heating) {
-                           i.start();
+                           i.manage_device();
                        }
                    }
                }
@@ -73,10 +72,10 @@ public class Room {
                 if(light < environnement.getLight()){
                     for (Device i : devices) {
                         if (i instanceof Light) {
-                            i.start();
+                            i.manage_device();
                         }
                         if (i instanceof ShutterWindow) {
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
@@ -85,14 +84,14 @@ public class Room {
                 if(wind < environnement.getWind()){
                     for (Device i : devices) {
                         if (i instanceof Windows) { //On
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
                 else {
                     for (Device i : devices) {
                         if (i instanceof Ventillation) { //Off
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
@@ -101,14 +100,14 @@ public class Room {
                 if(pollution < environnement.getPollution()){
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
                 else {
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
@@ -117,14 +116,14 @@ public class Room {
                 if(dbel < environnement.getDbel()){
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
                 else {
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }
@@ -133,10 +132,10 @@ public class Room {
                 if(movement != environnement.isMovement()){
                     for (Device i : devices){
                         if (i instanceof Light){
-                            i.start();
+                            i.manage_device();
                         }
                         if (i instanceof Tv){
-                            i.start();
+                            i.manage_device();
                         }
                     }
                 }

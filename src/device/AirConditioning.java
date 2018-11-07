@@ -9,17 +9,27 @@ public class AirConditioning extends Device {
     }
 
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Air conditioning off");
-            state = false;
-            return  false;
+            return stop();
         }
         else {
-            System.out.println("Air conditioning on");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+
+    public boolean stop(){
+        System.out.println("Air conditioning off");
+        state = false;
+        return  false;
+    }
+
+
+    public boolean start(){
+        System.out.println("Air conditioning on");
+        state = true;
+        return true;
     }
 
 }

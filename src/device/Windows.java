@@ -13,16 +13,25 @@ public class Windows extends Device {
     }
 
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Windows down");
-            state = false;
-            return false;
+            return stop();
         }
         else {
-            System.out.println("Windows up");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+    public boolean stop(){
+        System.out.println("Windows down");
+        state = false;
+        return false;
+    }
+
+
+    public boolean start(){
+        System.out.println("Windows up");
+        state = true;
+        return true;
     }
 }

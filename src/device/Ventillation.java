@@ -9,16 +9,25 @@ public class Ventillation extends Device {
     }
 
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Ventillation off");
-            state = false;
-            return false;
+            return stop();
         }
         else {
-            System.out.println("Ventillation on");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+    public boolean stop(){
+        System.out.println("Ventillation off");
+        state = false;
+        return false;
+    }
+
+
+    public boolean start(){
+        System.out.println("Ventillation on");
+        state = true;
+        return true;
     }
 }

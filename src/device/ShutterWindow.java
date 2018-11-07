@@ -8,16 +8,25 @@ public class ShutterWindow extends Device {
         super(x,y,z,room);
     }
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Shutters down");
-            state = false;
-            return false;
+            return stop();
         }
         else {
-            System.out.println("Shutters up");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+    public boolean stop(){
+        System.out.println("Shutters down");
+        state = false;
+        return false;
+    }
+
+
+    public boolean start() {
+        System.out.println("Shutters up");
+        state = true;
+        return true;
     }
 }

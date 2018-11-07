@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class House {
     private List<Room> ground_floor;
@@ -26,11 +27,28 @@ public class House {
         create_house();
     }
 
+
     public House(String json){
         environnements = new ArrayList<Environnement>();
         ground_floor = new ArrayList<Room>();
         first_floor = new ArrayList<Room>();
         decode_json(json);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        House house = (House) o;
+        return Objects.equals(ground_floor, house.ground_floor) &&
+                Objects.equals(first_floor, house.first_floor) &&
+                Objects.equals(garden, house.garden) &&
+                Objects.equals(environnements, house.environnements);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ground_floor, first_floor, garden, environnements);
     }
 
     @Override
@@ -145,7 +163,7 @@ public class House {
         }
     }
 
-    private void create_house(){
+    public void create_house(){
         /*
          * GROUND FLOOR
          */

@@ -9,16 +9,25 @@ public class  Light  extends Device{
     }
 
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Light off");
-            state = false;
-            return false;
+            return stop();
         }
         else {
-            System.out.println("Light on");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+    public boolean stop(){
+        System.out.println("Light off");
+        state = false;
+        return false;
+    }
+
+
+    public boolean start(){
+        System.out.println("Light on");
+        state = true;
+        return true;
     }
 }

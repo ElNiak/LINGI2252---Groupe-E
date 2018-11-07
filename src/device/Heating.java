@@ -9,17 +9,26 @@ public class Heating extends Device {
     }
 
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Heating off");
-            state = false;
-            return false;
+            return stop();
         }
         else {
-            System.out.println("Heating on");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+    public boolean stop(){
+        System.out.println("Heating off");
+        state = false;
+        return false;
+    }
+
+
+    public boolean start(){
+        System.out.println("Heating on");
+        state = true;
+        return true;
     }
 
 }

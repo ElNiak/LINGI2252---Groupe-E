@@ -9,16 +9,25 @@ public class Humidifier extends Device {
     }
 
     @Override
-    public boolean start() {
+    public boolean manage_device() {
         if (state) {
-            System.out.println("Humidifier off");
-            state = false;
-            return false;
+            return stop();
         }
         else {
-            System.out.println("Humidifier on");
-            state = true;
-            return true;
+            return start();
         }
+    }
+
+    public boolean stop(){
+        System.out.println("Humidifier off");
+        state = false;
+        return false;
+    }
+
+
+    public boolean start(){
+        System.out.println("Humidifier on");
+        state = true;
+        return true;
     }
 }

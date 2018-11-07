@@ -19,8 +19,16 @@ public abstract class Device {
      * @pre
      * @post
      */
-    public boolean start(){
+    public boolean manage_device(){
         return false;
+    }
+
+    public boolean stop(){
+        return true;
+    }
+
+    public boolean start(){
+        return true;
     }
 
     public boolean isState() {
