@@ -53,11 +53,11 @@ public class House {
 
     @Override
     public String toString() {
-        return "House{" +
-                "ground_floor=" + Arrays.toString(ground_floor.toArray()) +
-                ", first_floor=" + Arrays.toString(first_floor.toArray()) +
-                ", garden=" + garden +
-                ", environnements=" + Arrays.toString(environnements.toArray()) +
+        return "House{" + "\n" +
+                "ground_floor=" + Arrays.toString(ground_floor.toArray()) + "\n" +
+                ", first_floor=" + Arrays.toString(first_floor.toArray()) + "\n" +
+                ", garden=" + garden + "\n" +
+                ", environnements=" + Arrays.toString(environnements.toArray()) + "\n" +
                 '}';
     }
 
