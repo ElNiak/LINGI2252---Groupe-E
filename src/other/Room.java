@@ -217,20 +217,20 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "name='" + name + '\'' +
-                ", devices=" + devices +
-                ", sensors=" + sensors +
-                ", hauteur=" + hauteur +
-                ", longueur=" + longueur +
+                "name='" + name + '\'' + "\n" +
+                ", devices=" + devices + "\n" +
+                ", sensors=" + sensors + "\n" +
+                ", hauteur=" + hauteur + "\n" +
+                ", longueur=" + longueur + "\n" +
                 ", largeur=" + largeur +
-                ", neightbor=" + Arrays.toString(neightbor) +
-                ", temp=" + temp +
-                ", hum=" + hum +
-                ", light=" + light +
-                ", wind=" + wind +
-                ", pollution=" + pollution +
-                ", dbel=" + dbel +
-                ", movement=" + movement +
+                ", neightbor=" + Arrays.toString(neightbor) + "\n" +
+                ", temp=" + temp + "\n" +
+                ", hum=" + hum + "\n" +
+                ", light=" + light + "\n" +
+                ", wind=" + wind + "\n" +
+                ", pollution=" + pollution + "\n" +
+                ", dbel=" + dbel + "\n" +
+                ", movement=" + movement + "\n" +
                 ", environnement=" + environnement +
                 '}';
     }
