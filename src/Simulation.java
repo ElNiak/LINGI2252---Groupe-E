@@ -1,20 +1,26 @@
 import device.Device;
+import other.Environnement;
 import other.House;
 import other.Room;
 
+import java.io.FileReader;
 import java.util.List;
+import java.util.Scanner;
 
 public class Simulation {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println("\n ============ SCENARIO 1 ============ \n");
         scenario1();
         System.out.println("\n ============ SCENARIO 2 ============ \n");
         scenario2();
         System.out.println("\n ============ SCENARIO 3 ============ \n");
         scenario3();
+        System.out.println("\n ============ SCENARIO 3 ============ \n");
+        console(new House(System.getProperty("user.dir") + "/src/res/p1.json"));
+
     }
 
-    public static void scenario1(){
+    public static void scenario1() {
         System.out.println("\n\"Jean is watching TV during the night when suddenly he needs to go to the toilet,\n" +
                 " during this time, the movement sensor detect that he leaves the room and then switch off the\n " +
                 "TV and the lamp.\"\n");
@@ -37,7 +43,7 @@ public class Simulation {
         ground_floor.get(1).getSensors().get(3).detect();
     }
 
-    public static void scenario2(){
+    public static void scenario2() {
         House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
@@ -72,7 +78,59 @@ public class Simulation {
 
     }
 
-    public static void scenario3(){
+    public static void scenario3() {
 
+    }
+
+    public static void console(House house) {
+        Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
+            List<Environnement> environnement = house.getEnvironnements();
+            System.out.println("=> What do you want to do ? (x = value, POS = index of the room in the json)");
+            System.out.println("    - temp(x) POS ");
+            System.out.println("    - hum(x) POS ");
+            System.out.println("    - light(x) POS ");
+            System.out.println("    - wind(x) POS ");
+            System.out.println("    - db(x) POS ");
+            System.out.println("    - move(x) POS ");
+            System.out.println("    - EXIT ");
+            try {
+                // retourne true s’il y a un autre élément dans l’entrée
+                if(scan.hasNext()){
+                    String res = scan.nextLine(); //retourne la prochaine ligne complète
+                    System.out.println(res);
+                    if (res.contains("temp")) {
+                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                        environnement.get(i).setTemp(environnement.get(i).getTemp() + add);
+                    } else if (res.contains("hum")) {
+                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                        environnement.get(i).setHum(environnement.get(i).getHum() + add);
+                    } else if (res.contains("light")) {
+                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                        environnement.get(i).setLight(environnement.get(i).getLight() + add);
+                    } else if (res.contains("wind")) {
+                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                        environnement.get(i).setWind(environnement.get(i).getWind() + add);
+                    } else if (res.contains("db")) {
+                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                        environnement.get(i).setDbel(environnement.get(i).getDbel() + add);
+                    } else if (res.contains("move")) {
+                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                        environnement.get(i).setMovement(true);
+                    } else if (res.contains("EXIT")) {
+                    } else {
+                        System.out.println("Error, retry please.");
+                    }
+                }
+
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
+            scan.close();
     }
 }
