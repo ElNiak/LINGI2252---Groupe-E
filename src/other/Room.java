@@ -1,7 +1,7 @@
 package other;
 
 import device.*;
-import sensor.Sensor;
+import sensor.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -137,7 +137,7 @@ public class Room {
                             if (i.isState())
                                 i.manage_device();
                         }
-                        if (i instanceof Ventillation) { //on
+                        if (i instanceof Ventilation) { //on
                             if (i.isState())
                                 i.manage_device();
                         }
@@ -149,7 +149,7 @@ public class Room {
                             if (!i.isState())
                                 i.manage_device();
                         }
-                        if (i instanceof Ventillation) { //off
+                        if (i instanceof Ventilation) { //off
                             if (!i.isState())
                                 i.manage_device();
                         }
@@ -297,6 +297,11 @@ public class Room {
 
     public void setTemp(double temp) {
         this.temp = temp;
+        for(Sensor s : sensors){
+            if(s instanceof TemperatureSensor){
+                s.detect();
+            }
+        }
     }
 
     public double getHum() {
@@ -305,6 +310,11 @@ public class Room {
 
     public void setHum(double hum) {
         this.hum = hum;
+        for(Sensor s : sensors){
+            if(s instanceof HumiditySensor){
+                s.detect();
+            }
+        }
     }
 
     public double getLight() {
@@ -313,6 +323,11 @@ public class Room {
 
     public void setLight(double light) {
         this.light = light;
+        for(Sensor s : sensors){
+            if(s instanceof LightSensor){
+                s.detect();
+            }
+        }
     }
 
     public double getWind() {
@@ -321,6 +336,11 @@ public class Room {
 
     public void setWind(double wind) {
         this.wind = wind;
+        for(Sensor s : sensors){
+            if(s instanceof WindSensor){
+                s.detect();
+            }
+        }
     }
 
     public double getPollution() {
@@ -329,6 +349,11 @@ public class Room {
 
     public void setPollution(double pollution) {
         this.pollution = pollution;
+        for(Sensor s : sensors){
+            if(s instanceof PollutionSensor){
+                s.detect();
+            }
+        }
     }
 
     public double getDbel() {
@@ -337,6 +362,11 @@ public class Room {
 
     public void setDbel(double dbel) {
         this.dbel = dbel;
+        for(Sensor s : sensors){
+            if(s instanceof SoundSensor){
+                s.detect();
+            }
+        }
     }
 
     public boolean isMovement() {
@@ -345,6 +375,11 @@ public class Room {
 
     public void setMovement(boolean movement) {
         this.movement = movement;
+        for(Sensor s : sensors){
+            if(s instanceof MovementSensor){
+                s.detect();
+            }
+        }
     }
 
     public void setEnvironnement(Environnement environnement) {

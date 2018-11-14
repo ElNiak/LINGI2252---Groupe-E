@@ -7,14 +7,16 @@ public class SoundSensor extends Sensor {
 
     public SoundSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
+        this.curr = room.getDbel();
+        this.curr = room.getDbel();
     }
     @Override
     public void detect() {
-        curr = Math.random()*1000 % 20;
-        if(Math.abs(curr-prev) > lambda){
-            notifY(curr);
+        this.curr = room.getDbel();
+        if(Math.abs(this.curr-this.prev) > this.lambda){
+            notifY(this.curr);
         }
-        prev = curr;
+        this.prev = this.curr;
     }
 
     @Override

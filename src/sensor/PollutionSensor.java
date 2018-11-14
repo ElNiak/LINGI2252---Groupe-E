@@ -7,15 +7,17 @@ public class PollutionSensor extends Sensor {
 
     public PollutionSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
+        this.curr = room.getPollution();
+        this.prev = room.getPollution();
     }
 
     @Override
     public void detect() {
-        curr = Math.random()*1000 % 20;
-        if(Math.abs(curr-prev) > lambda){
-            notifY(curr);
+        this.curr = room.getPollution();
+        if(Math.abs(this.curr-this.prev) > this.lambda){
+            notifY(this.curr);
         }
-        prev = curr;
+        this.prev = this.curr;
     }
 
     @Override

@@ -10,8 +10,8 @@ public abstract class Sensor {
 
     public Sensor(double x, double y, double z, Room room) {
         this.x = x; this.y = y; this.z = z;
-        prev = 0.0;
-        curr = 0.0;
+        this.prev = 0.0;
+        this.curr = 0.0;
         this.room = room;
     }
 

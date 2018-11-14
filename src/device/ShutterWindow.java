@@ -6,27 +6,12 @@ public class ShutterWindow extends Device {
 
     public ShutterWindow(double x, double y, double z, Room room) {
         super(x,y,z,room);
-    }
-    @Override
-    public boolean manage_device() {
-        if (state) {
-            return stop();
-        }
-        else {
-            return start();
-        }
+        this.name = "Shutter window";
     }
 
-    public boolean stop(){
-        System.out.println("Shutters down");
-        state = false;
-        return false;
-    }
-
-
-    public boolean start() {
-        System.out.println("Shutters up");
-        state = true;
-        return true;
+    public ShutterWindow(String name, double x, double y, double z, Room room) {
+        super(name, x,y,z,room);
+        this.on = "up";
+        this.off = "down";
     }
 }

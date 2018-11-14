@@ -6,29 +6,12 @@ public class Hifi extends Device {
 
     public Hifi(double x, double y, double z, Room room) {
         super(x,y,z,room);
+        this.name = "Hifi";
     }
 
-    @Override
-    public boolean manage_device() {
-        if (state) {
-            return stop();
-        }
-        else {
-            return start();
-        }
+    public Hifi(String name, double x, double y, double z, Room room) {
+        super(name,x,y,z,room);
     }
 
-    public boolean stop(){
-        System.out.println("Hifi off");
-        state = false;
-        return false;
-    }
-
-
-    public boolean start(){
-        System.out.println("Hifi on");
-        state = true;
-        return true;
-    }
 
 }

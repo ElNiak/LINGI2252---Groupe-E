@@ -3,16 +3,16 @@ package sensor;
 import other.Constants;
 import other.Room;
 
-public class TemperatureSensor  extends Sensor {
+public class WindSensor extends Sensor {
 
-    public TemperatureSensor(double x, double y, double z, Room room) {
+    public WindSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.prev = room.getTemp();
-        this.curr = room.getTemp();
+        this.curr = room.getWind();
+        this.prev = room.getWind();
     }
     @Override
     public void detect() {
-        this.curr = room.getTemp();
+        this.curr = room.getWind();
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }
@@ -21,7 +21,6 @@ public class TemperatureSensor  extends Sensor {
 
     @Override
     public void notifY(double curr) {
-        this.room.getEnvironnement().update(Constants.TEMP, curr);
+        this.room.getEnvironnement().update(Constants.WIND, curr);
     }
-
 }

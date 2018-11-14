@@ -155,7 +155,7 @@ public class House {
             case "Tv":
                 return new Tv(x, y, z, room);
             case "Ventilation":
-                return new Ventillation(x, y, z, room);
+                return new Ventilation(x, y, z, room);
             case "Window":
                 return new Windows(x, y, z, room);
             default:
@@ -202,7 +202,7 @@ public class House {
         living_room_devices.add(new Windows(350, 700, 350, living_room));
         living_room_devices.add(new Light(350, 700, 350, living_room));
         living_room_devices.add(new Light(350, 700, 350, living_room));
-        living_room_devices.add(new Ventillation(350, 700, 350, living_room));
+        living_room_devices.add(new Ventilation(350, 700, 350, living_room));
         living_room_devices.add(new Hifi(350, 700, 350, living_room));
         living_room_devices.add(new Tv(350, 700, 350, living_room));
         living_room_devices.add(new Heating(350, 700, 350, living_room));
@@ -224,7 +224,7 @@ public class House {
         kitchen_devices.add(new Windows(350, 700, 350, kitchen));
         kitchen_devices.add(new Light(350, 700, 350, kitchen));
         kitchen_devices.add(new Humidifier(350, 700, 350, kitchen));
-        kitchen_devices.add(new Ventillation(350, 700, 350, kitchen));
+        kitchen_devices.add(new Ventilation(350, 700, 350, kitchen));
 
 
         //dinning room
@@ -245,7 +245,7 @@ public class House {
         dinning_room_devices.add(new Windows(350, 700, 350, dinning_room));
         dinning_room_devices.add(new Light(350, 700, 350, dinning_room));
         dinning_room_devices.add(new Humidifier(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new Ventillation(350, 700, 350, dinning_room));
+        dinning_room_devices.add(new Ventilation(350, 700, 350, dinning_room));
 
         ground_floor.add(entry);
         ground_floor.add(living_room);
@@ -291,7 +291,7 @@ public class House {
         bathroom_devices.add(new ShutterWindow(350, 700, 350, bathroom));
         bathroom_devices.add(new Windows(350, 700, 350, bathroom));
         bathroom_devices.add(new Light(350, 700, 350, bathroom));
-        bathroom_devices.add(new Ventillation(350, 700, 350, bathroom));
+        bathroom_devices.add(new Ventilation(350, 700, 350, bathroom));
         bathroom_devices.add(new Heating(350, 700, 350, bathroom));
 
         //game room

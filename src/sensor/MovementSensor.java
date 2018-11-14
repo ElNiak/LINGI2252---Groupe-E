@@ -5,19 +5,21 @@ import other.Room;
 
 public class MovementSensor extends Sensor {
 
+    private boolean curr;
+
     public MovementSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
+        this.curr = room.isMovement();
     }
     @Override
     public void detect() {
-        curr = Math.random()*1000 % 20;
-        if(Math.abs(curr-prev) > lambda){
+        this.curr = room.isMovement();
+        if(curr){
             notifY(1.0);
         }
         else{
             notifY(0.0);
         }
-        prev = curr;
     }
 
     @Override

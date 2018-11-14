@@ -7,6 +7,20 @@ public abstract class Device {
     protected boolean state;
     protected double x,y,z; //cm
     protected Room room;
+    protected String name;
+    protected String on;
+    protected String off;
+
+
+    public Device(String name, double x, double y, double z, Room room) {
+        this.state = false; // false = off
+        this.x = x; this.y = y; this.z = z;
+        this.room = room;
+        this.name = name;
+        this.on = "on";
+        this.off = "off";
+    }
+
 
     public Device(double x, double y, double z, Room room) {
         this.state = false; // false = off
@@ -20,14 +34,23 @@ public abstract class Device {
      * @post
      */
     public boolean manage_device(){
-        return false;
+        if (state) {
+            return stop();
+        }
+        else {
+            return start();
+        }
     }
 
     public boolean stop(){
+        System.out.println(this.name + " " + this.on);
+        state = false;
         return true;
     }
 
     public boolean start(){
+        System.out.println(this.name + " " + this.off);
+        state = true;
         return true;
     }
 
@@ -69,6 +92,14 @@ public abstract class Device {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

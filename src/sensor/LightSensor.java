@@ -7,14 +7,16 @@ public class LightSensor extends Sensor {
 
     public LightSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
+        this.curr = room.getLight();
+        this.prev = room.getLight();
     }
     @Override
     public void detect() {
-        curr = Math.random()*1000 % 20;
-        if(Math.abs(curr-prev) > lambda){
-            notifY(curr);
+        this.curr = room.getLight();
+        if(Math.abs(this.curr-this.prev) > this.lambda){
+            notifY(this.curr);
         }
-        prev = curr;
+        this.prev = this.curr;
     }
 
     @Override

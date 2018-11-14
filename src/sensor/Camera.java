@@ -5,20 +5,22 @@ import other.Room;
 
 public class Camera extends Sensor {
 
+    private boolean curr;
+
     public Camera(double x, double y, double z,  Room room) {
         super(x,y,z,room);
+        this.curr = room.isMovement();
     }
 
     @Override
     public void detect() {
-        curr = Math.random()*1000 % 20; //Still random now
-        if(Math.abs(curr-prev) > lambda){
+        this.curr = room.isMovement();
+        if(curr){
             notifY(1.0);
         }
         else{
             notifY(0.0);
         }
-        prev = curr;
     }
 
     @Override
