@@ -223,7 +223,7 @@ public class Room {
                 ", hauteur=" + hauteur + "\n" +
                 ", longueur=" + longueur + "\n" +
                 ", largeur=" + largeur +
-                ", neightbor=" + Arrays.toString(neightbor) + "\n" +
+                //", neightbor=" + Arrays.toString(neightbor) + "\n" +
                 ", temp=" + temp + "\n" +
                 ", hum=" + hum + "\n" +
                 ", light=" + light + "\n" +

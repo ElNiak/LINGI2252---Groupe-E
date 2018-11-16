@@ -16,7 +16,8 @@ public class Simulation {
         System.out.println("\n ============ SCENARIO 3 ============ \n");
         scenario3();
         System.out.println("\n ============ SCENARIO 3 ============ \n");
-        console(new House(System.getProperty("user.dir") + "/src/res/p1.json"));
+        Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
+        console(new House(System.getProperty("user.dir") + "/src/res/p1.json"),scan);
 
     }
 
@@ -82,55 +83,67 @@ public class Simulation {
 
     }
 
-    public static void console(House house) {
-        Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
-            List<Environnement> environnement = house.getEnvironnements();
-            System.out.println("=> What do you want to do ? (x = value, POS = index of the room in the json)");
-            System.out.println("    - temp(x) POS ");
-            System.out.println("    - hum(x) POS ");
-            System.out.println("    - light(x) POS ");
-            System.out.println("    - wind(x) POS ");
-            System.out.println("    - db(x) POS ");
-            System.out.println("    - move(x) POS ");
-            System.out.println("    - EXIT ");
-            try {
-                // retourne true s’il y a un autre élément dans l’entrée
-                if(scan.hasNext()){
-                    String res = scan.nextLine(); //retourne la prochaine ligne complète
-                    System.out.println(res);
-                    if (res.contains("temp")) {
-                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
-                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                        environnement.get(i).setTemp(environnement.get(i).getTemp() + add);
-                    } else if (res.contains("hum")) {
-                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
-                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                        environnement.get(i).setHum(environnement.get(i).getHum() + add);
-                    } else if (res.contains("light")) {
-                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
-                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                        environnement.get(i).setLight(environnement.get(i).getLight() + add);
-                    } else if (res.contains("wind")) {
-                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
-                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                        environnement.get(i).setWind(environnement.get(i).getWind() + add);
-                    } else if (res.contains("db")) {
-                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
-                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                        environnement.get(i).setDbel(environnement.get(i).getDbel() + add);
-                    } else if (res.contains("move")) {
-                        int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
-                        int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                        environnement.get(i).setMovement(true);
-                    } else if (res.contains("EXIT")) {
-                    } else {
-                        System.out.println("Error, retry please.");
-                    }
+    public static void console(House house, Scanner scan) {
+        List<Environnement> environnement = house.getEnvironnements();
+        System.out.println("=> What do you want to do ? (x = value, POS = index of the room in the json)");
+        System.out.println("    - temp(x) POS ");
+        System.out.println("    - hum(x) POS ");
+        System.out.println("    - light(x) POS ");
+        System.out.println("    - wind(x) POS ");
+        System.out.println("    - db(x) POS ");
+        System.out.println("    - move(x) POS ");
+        System.out.println("    - EXIT ");
+        try {
+            // retourne true s’il y a un autre élément dans l’entrée
+            if(scan.hasNext()){
+                String res = scan.nextLine(); //retourne la prochaine ligne complète
+                System.out.println(res);
+                int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.length()));
+                int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                System.out.println(environnement.get(i).getTemp());
+                if (res.contains("temp")) {
+                    environnement.get(i).setTemp(environnement.get(i).getTemp() + add);
+                } else if (res.contains("hum")) {
+                    environnement.get(i).setHum(environnement.get(i).getHum() + add);
+                } else if (res.contains("light")) {
+                    environnement.get(i).setLight(environnement.get(i).getLight() + add);
+                } else if (res.contains("wind")) {
+                    environnement.get(i).setWind(environnement.get(i).getWind() + add);
+                } else if (res.contains("db")) {
+                    environnement.get(i).setDbel(environnement.get(i).getDbel() + add);
+                } else if (res.contains("move")) {
+                    environnement.get(i).setMovement(true);
+                } else if (res.contains("EXIT")) {
+                } else {
+                    System.out.println("Error, retry please.");
                 }
-
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
+                System.out.println(environnement.get(i).getTemp());
             }
-            scan.close();
+
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+        //scan.close();
+        retry(house, scan);
+    }
+
+    public static void retry(House house, Scanner scan){
+        System.out.println("\n Would you like to modify anything else ? (Y/N)");
+        scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
+        try {
+            // retourne true s’il y a un autre élément dans l’entrée
+            if(scan.hasNext()){
+                String res = scan.nextLine(); //retourne la prochaine ligne complète
+                if(res.equals("Y")){
+                    console(house, scan);
+                }
+                else {
+                    scan.close();
+                }
+            }
+
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 }
