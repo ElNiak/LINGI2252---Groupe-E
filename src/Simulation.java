@@ -108,13 +108,14 @@ public class Simulation {
                 int stage = Integer.parseInt(res.substring(res.indexOf(":") + 1,res.length()));
 
                 if (stage == 1) {
-                    System.out.println("\n(1)");
+                    System.out.println("\nBefore :");
                     System.out.println("temp = " +ground_floor.get(i).getTemp());
                     System.out.println("hum = " +ground_floor.get(i).getHum());
                     System.out.println("light = " +ground_floor.get(i).getLight());
                     System.out.println("wind = " +ground_floor.get(i).getWind());
                     System.out.println("db = " +ground_floor.get(i).getDbel());
                     System.out.println("move = " +ground_floor.get(i).isMovement()+"\n");
+
                     if (res.contains("temp")) {
                         ground_floor.get(i).setTemp(ground_floor.get(i).getTemp() + add);
                     } else if (res.contains("hum")) {
@@ -131,7 +132,8 @@ public class Simulation {
                     } else {
                         System.out.println("Error, retry please.");
                     }
-                    System.out.println("\n(2)");
+
+                    System.out.println("\nAfter :");
                     System.out.println("temp = " +ground_floor.get(i).getTemp());
                     System.out.println("hum = " +ground_floor.get(i).getHum());
                     System.out.println("light = " +ground_floor.get(i).getLight());
@@ -139,14 +141,15 @@ public class Simulation {
                     System.out.println("db = " +ground_floor.get(i).getDbel());
                     System.out.println("move = " +ground_floor.get(i).isMovement()+"\n");
                 }
-                else {
-                    System.out.println("\n(1)");
+                else if (stage == 2){
+                    System.out.println("\nBefore :");
                     System.out.println("temp = " +first_floor.get(i).getTemp());
                     System.out.println("hum = " +first_floor.get(i).getHum());
                     System.out.println("light = " +first_floor.get(i).getLight());
                     System.out.println("wind = " +first_floor.get(i).getWind());
                     System.out.println("db = " +first_floor.get(i).getDbel()+"\n");
                     System.out.println("move = " +first_floor.get(i).isMovement());
+
                     if (res.contains("temp")) {
                         first_floor.get(i).setTemp(first_floor.get(i).getTemp() + add);
                     } else if (res.contains("hum")) {
@@ -163,7 +166,8 @@ public class Simulation {
                     } else {
                         System.out.println("Error, retry please.");
                     }
-                    System.out.println("\n(2)");
+
+                    System.out.println("\nAfter :");
                     System.out.println("temp = " +first_floor.get(i).getTemp());
                     System.out.println("hum = " +first_floor.get(i).getHum());
                     System.out.println("light = " +first_floor.get(i).getLight());
@@ -171,12 +175,17 @@ public class Simulation {
                     System.out.println("db = " +first_floor.get(i).getDbel());
                     System.out.println("move = " +first_floor.get(i).isMovement()+"\n");
                 }
+                else {
+                    System.out.println("Invalide number of stage");
+                }
             }
 
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
             System.out.println("Retry with a valid number");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Retry with a valid command");
         }
         //scan.close();
         retry(house, scan);
