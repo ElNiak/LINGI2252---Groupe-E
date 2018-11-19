@@ -7,8 +7,8 @@ public class TemperatureSensor  extends Sensor {
 
     public TemperatureSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.prev = room.getTemp();
-        this.curr = room.getTemp();
+        this.prev = 18.0;
+        this.curr = 18.0;
     }
     @Override
     public void detect() {

@@ -7,8 +7,8 @@ public class PollutionSensor extends Sensor {
 
     public PollutionSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.curr = room.getPollution();
-        this.prev = room.getPollution();
+        this.curr = 0.0;
+        this.prev = 0.0;
     }
 
     @Override

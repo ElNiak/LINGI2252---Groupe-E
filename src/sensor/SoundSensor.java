@@ -7,8 +7,8 @@ public class SoundSensor extends Sensor {
 
     public SoundSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.curr = room.getDbel();
-        this.curr = room.getDbel();
+        this.curr = 0.0;
+        this.curr = 0.0;
     }
     @Override
     public void detect() {

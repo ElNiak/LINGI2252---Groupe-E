@@ -27,7 +27,7 @@ public class Simulation {
                 "TV and the lamp.\"\n");
 
         House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
-        List<Room> first_floor = house.getFirst_floor();
+        /**List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
 
         System.out.println("****** " + ground_floor.get(1).getName() + " ******");
@@ -41,7 +41,10 @@ public class Simulation {
         ground_floor.get(1).getSensors().get(3).detect();
 
         System.out.println("\n\"He comes back in the room\"\n");
-        ground_floor.get(1).getSensors().get(3).detect();
+        ground_floor.get(1).getSensors().get(3).detect();*/
+
+        house.getGround_floor().get(1).setMovement(true);
+        house.getGround_floor().get(1).setMovement(false);
     }
 
     public static void scenario2() {

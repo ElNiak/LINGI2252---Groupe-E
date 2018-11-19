@@ -7,8 +7,8 @@ public class HumiditySensor extends Sensor {
 
     public HumiditySensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.prev = room.getHum();
-        this.curr = room.getHum();
+        this.prev = 0.0;
+        this.curr = 0.0;
     }
 
     @Override

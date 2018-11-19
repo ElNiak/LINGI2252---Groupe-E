@@ -7,8 +7,8 @@ public class LightSensor extends Sensor {
 
     public LightSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.curr = room.getLight();
-        this.prev = room.getLight();
+        this.curr = 0.0;
+        this.prev = 0.0;
     }
     @Override
     public void detect() {

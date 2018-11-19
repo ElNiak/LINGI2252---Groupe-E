@@ -7,8 +7,8 @@ public class WindSensor extends Sensor {
 
     public WindSensor(double x, double y, double z, Room room) {
         super(x,y,z,room);
-        this.curr = room.getWind();
-        this.prev = room.getWind();
+        this.curr = 0.0;
+        this.prev = 0.0;
     }
     @Override
     public void detect() {

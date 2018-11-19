@@ -9,7 +9,7 @@ public class Camera extends Sensor {
 
     public Camera(double x, double y, double z,  Room room) {
         super(x,y,z,room);
-        this.curr = room.isMovement();
+        this.curr = false;
     }
 
     @Override
