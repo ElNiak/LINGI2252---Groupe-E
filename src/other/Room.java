@@ -84,8 +84,8 @@ public class Room {
                            if (i.isState())
                                i.manage_device();
                        }
-                       if (i instanceof Windows) { //Stop radia si allumer
-                           if (i.isState())
+                       if (i instanceof Windows) { //Start clim
+                           if (!i.isState())
                                i.manage_device();
                        }
                    }
@@ -101,7 +101,7 @@ public class Room {
                                i.manage_device();
                        }
                        if (i instanceof Windows) {
-                           if (!i.isState())
+                           if (i.isState())
                                i.manage_device();
                        }
                    }
@@ -231,6 +231,16 @@ public class Room {
                 break;
             case Constants.MOVEMENT:
                 if(oldmovement != val){
+                    for (Device i : devices){
+                        if (i instanceof Light){
+                            i.manage_device();
+                        }
+                        if (i instanceof Tv){
+                            i.manage_device();
+                        }
+                    }
+                }
+                else{
                     for (Device i : devices){
                         if (i instanceof Light){
                             i.manage_device();

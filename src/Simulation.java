@@ -15,7 +15,7 @@ public class Simulation {
         scenario2();
         System.out.println("\n ============ SCENARIO 3 ============ \n");
         scenario3();
-        System.out.println("\n ============ SCENARIO 3 ============ \n");
+        System.out.println("\n ============  CONSOLE   ============ \n");
         Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
         console(new House(System.getProperty("user.dir") + "/src/res/p1.json"),scan);
 
@@ -72,7 +72,7 @@ public class Simulation {
                 "the air conditioning lights up\"\n");
 
 
-        ground_floor.get(2).getDevices().get(1).manage_device(); //hardcode pour dire que c'etait deja ouvert
+        ground_floor.get(2).getDevices().get(2).manage_device(); //hardcode pour dire que c'etait deja ouvert
 
 
 
