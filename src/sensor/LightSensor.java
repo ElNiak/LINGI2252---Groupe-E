@@ -13,6 +13,7 @@ public class LightSensor extends Sensor {
     @Override
     public void detect() {
         this.curr = room.getLight();
+        this.prev = room.getOldlight();
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }

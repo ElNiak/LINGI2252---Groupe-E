@@ -12,7 +12,9 @@ public class WindSensor extends Sensor {
     }
     @Override
     public void detect() {
+
         this.curr = room.getWind();
+        this.prev = room.getOldwind();
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }

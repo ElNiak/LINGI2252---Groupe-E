@@ -13,13 +13,24 @@ public class Room {
     private List<Sensor> sensors;
     private double hauteur,longueur,largeur; //cm
     private Room[] neightbor;
+
+
     private double temp;//Here perfect mesure according to the preference
     private double hum;
     private double light;
     private double wind;
     private double pollution;
     private double dbel;
-    private boolean movement;
+    private double movement;
+    private double oldtemp;//Here perfect mesure according to the preference
+    private double oldhum;
+    private double oldlight;
+    private double oldwind;
+    private double oldpollution;
+    private double olddbel;
+    private double oldmovement;
+
+
     private Environnement environnement;
 
 
@@ -32,6 +43,7 @@ public class Room {
         neightbor = new Room[4];
         this.devices = devices;
         this.sensors = sensors;
+
         this.temp = environnement.getTemp();
         this.hum = environnement.getHum();
         this.light = environnement.getLight();
@@ -39,6 +51,14 @@ public class Room {
         this.pollution = environnement.getPollution();
         this.dbel = environnement.getDbel();
         this.movement = environnement.isMovement();
+
+        this.oldtemp = environnement.getTemp();
+        this.oldhum = environnement.getHum();
+        this.oldlight = environnement.getLight();
+        this.oldwind = environnement.getWind();
+        this.oldpollution = environnement.getPollution();
+        this.olddbel = environnement.getDbel();
+        this.oldmovement = environnement.isMovement();
     }
 
     public Environnement getEnvironnement(){
@@ -50,16 +70,21 @@ public class Room {
      * Possible case
      * @param type
      */
-    public void manage(String type){
+    public void manage(String type, double val){
         switch(type){
             case Constants.TEMP: //For the temperature
-               if(temp < environnement.getTemp()) { //Trop chaud
+                //System.out.println("(3) oldtemp = " + oldtemp + " + temp = " + val);
+                if(oldtemp < val) { //Trop chaud
                    for (Device i : devices) {
                        if (i instanceof AirConditioning) { //Start la clim
                            if (!i.isState())
                                i.manage_device();
                        }
                        if (i instanceof Heating) { //Stop radia si allumer
+                           if (i.isState())
+                               i.manage_device();
+                       }
+                       if (i instanceof Windows) { //Stop radia si allumer
                            if (i.isState())
                                i.manage_device();
                        }
@@ -75,11 +100,15 @@ public class Room {
                            if (i.isState())
                                i.manage_device();
                        }
+                       if (i instanceof Windows) {
+                           if (!i.isState())
+                               i.manage_device();
+                       }
                    }
                }
                 break;
             case Constants.HUM:
-                if(hum < environnement.getHum()){ //Trop humide
+                if(oldhum < val){ //Trop humide
                     for (Device i : devices) {
                         if (i instanceof Windows) { //Ouvre les fenetre et store
                             if (!i.isState())
@@ -105,7 +134,7 @@ public class Room {
                 }
                 break;
             case Constants.LIGHT:
-                if(light < environnement.getLight()){ //Trop lumineux
+                if(oldlight < val){ //Trop lumineux
                     for (Device i : devices) {
                         if (i instanceof Light) { //On ferme les lampe
                             if (i.isState())
@@ -131,7 +160,7 @@ public class Room {
                 }
                 break;
             case Constants.WIND:
-                if(wind < environnement.getWind()){ //Trop de vent
+                if(oldwind < val){ //Trop de vent
                     for (Device i : devices) {
                         if (i instanceof Windows) { //On
                             if (i.isState())
@@ -157,15 +186,7 @@ public class Room {
                 }
                 break;
             case Constants.POLLUTION:
-                if(pollution < environnement.getPollution()){ //Trop pollution
-                    for (Device i : devices) {
-                        if (i instanceof Windows) {
-                            if (i.isState())
-                                i.manage_device();
-                        }
-                    }
-                }
-                else {
+                if(oldpollution < val){ //Trop pollution
                     for (Device i : devices) {
                         if (i instanceof Windows) {
                             if (!i.isState())
@@ -173,9 +194,17 @@ public class Room {
                         }
                     }
                 }
+                else {
+                    for (Device i : devices) {
+                        if (i instanceof Windows) {
+                            if (i.isState())
+                                i.manage_device();
+                        }
+                    }
+                }
                 break;
             case Constants.DBEL:
-                if(dbel < environnement.getDbel()){
+                if(dbel < val){
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
                             if (i.isState())
@@ -201,7 +230,7 @@ public class Room {
                 }
                 break;
             case Constants.MOVEMENT:
-                if(movement != environnement.isMovement()){
+                if(oldmovement != val){
                     for (Device i : devices){
                         if (i instanceof Light){
                             i.manage_device();
@@ -295,8 +324,66 @@ public class Room {
         return temp;
     }
 
+    public double getOldtemp() {
+        return oldtemp;
+    }
+
+    public void setOldtemp(double oldtemp) {
+        this.oldtemp = oldtemp;
+    }
+
+    public double getOldhum() {
+        return oldhum;
+    }
+
+    public void setOldhum(double oldhum) {
+        this.oldhum = oldhum;
+    }
+
+    public double getOldlight() {
+        return oldlight;
+    }
+
+    public void setOldlight(double oldlight) {
+        this.oldlight = oldlight;
+    }
+
+    public double getOldwind() {
+        return oldwind;
+    }
+
+    public void setOldwind(double oldwind) {
+        this.oldwind = oldwind;
+    }
+
+    public double getOldpollution() {
+        return oldpollution;
+    }
+
+    public void setOldpollution(double oldpollution) {
+        this.oldpollution = oldpollution;
+    }
+
+    public double getOlddbel() {
+        return olddbel;
+    }
+
+    public void setOlddbel(double olddbel) {
+        this.olddbel = olddbel;
+    }
+
+    public double isOldmovement() {
+        return oldmovement;
+    }
+
+    public void setOldmovement(double oldmovement) {
+        this.oldmovement = oldmovement;
+    }
+
     public void setTemp(double temp) {
+        this.oldtemp = this.temp;
         this.temp = temp;
+        //System.out.println("(0) oldtemp = " + oldtemp + " + temp = " + temp);
         for(Sensor s : sensors){
             if(s instanceof TemperatureSensor){
                 s.detect();
@@ -309,6 +396,7 @@ public class Room {
     }
 
     public void setHum(double hum) {
+        this.oldhum = this.hum;
         this.hum = hum;
         for(Sensor s : sensors){
             if(s instanceof HumiditySensor){
@@ -322,6 +410,7 @@ public class Room {
     }
 
     public void setLight(double light) {
+        this.oldlight = this.light;
         this.light = light;
         for(Sensor s : sensors){
             if(s instanceof LightSensor){
@@ -335,6 +424,7 @@ public class Room {
     }
 
     public void setWind(double wind) {
+        this.oldwind = this.wind;
         this.wind = wind;
         for(Sensor s : sensors){
             if(s instanceof WindSensor){
@@ -369,11 +459,12 @@ public class Room {
         }
     }
 
-    public boolean isMovement() {
+    public double isMovement() {
         return movement;
     }
 
-    public void setMovement(boolean movement) {
+    public void setMovement(double movement) {
+        this.oldmovement = this.movement;
         this.movement = movement;
         for(Sensor s : sensors){
             if(s instanceof MovementSensor){

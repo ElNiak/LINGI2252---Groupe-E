@@ -14,6 +14,7 @@ public class HumiditySensor extends Sensor {
     @Override
     public void detect() {
         this.curr = room.getHum();
+        this.prev = room.getOldhum();
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }

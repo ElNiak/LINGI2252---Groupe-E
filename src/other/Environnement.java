@@ -8,7 +8,7 @@ public class Environnement {
     private double wind; // en km/h
     private double pollution;
     private double dbel; // en décibel
-    private boolean movement;
+    private double movement;
     private Room room;
 
     public Environnement() {
@@ -18,7 +18,7 @@ public class Environnement {
         this.wind = 30.0;
         this.pollution = 10.0;
         this.dbel = 10.0;
-        this.movement = false;
+        this.movement = 0.0;
     }
 
     public Environnement(Room room) {
@@ -28,10 +28,10 @@ public class Environnement {
         this.wind = 30.0;
         this.pollution = 10.0;
         this.dbel = 10.0;
-        this.movement = false;
+        this.movement = 0.0;
     }
 
-    public Environnement(double temp, double hum, double light, double wind, double pollution, double db, boolean movement, Room room) {
+    public Environnement(double temp, double hum, double light, double wind, double pollution, double db, double movement, Room room) {
         this.temp = temp;
         this.hum = hum;
         this.light = light;
@@ -47,7 +47,7 @@ public class Environnement {
      * @post /
      */
     public void update(String type, double val) {
-        room.manage(type);
+        room.manage(type, val);
         switch (type) {
             case Constants.TEMP:
                 this.temp = val;
@@ -69,9 +69,9 @@ public class Environnement {
                 break;
             case Constants.MOVEMENT:
                 if (val == 1.0) {
-                    this.movement = true;
+                    this.movement = 1.0;
                 } else {
-                    this.movement = false;
+                    this.movement = 0.0;
                 }
         }
         //room.manage(type);
@@ -125,11 +125,11 @@ public class Environnement {
         this.dbel = dbel;
     }
 
-    public boolean isMovement() {
+    public double isMovement() {
         return movement;
     }
 
-    public void setMovement(boolean movement) {
+    public void setMovement(double movement) {
         this.movement = movement;
     }
 

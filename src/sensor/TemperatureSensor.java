@@ -13,6 +13,8 @@ public class TemperatureSensor  extends Sensor {
     @Override
     public void detect() {
         this.curr = room.getTemp();
+        this.prev = room.getOldtemp();
+        //System.out.println("(1) oldtemp = " + prev + " + temp = " + curr);
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }

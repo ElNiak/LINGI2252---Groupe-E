@@ -13,6 +13,7 @@ public class SoundSensor extends Sensor {
     @Override
     public void detect() {
         this.curr = room.getDbel();
+        this.prev = room.getOlddbel();
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }

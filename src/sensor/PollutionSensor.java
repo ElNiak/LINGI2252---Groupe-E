@@ -14,6 +14,7 @@ public class PollutionSensor extends Sensor {
     @Override
     public void detect() {
         this.curr = room.getPollution();
+        this.prev = room.getOldpollution();
         if(Math.abs(this.curr-this.prev) > this.lambda){
             notifY(this.curr);
         }

@@ -32,48 +32,62 @@ public class Simulation {
 
         System.out.println("****** " + ground_floor.get(1).getName() + " ******");
         List<Device> list = ground_floor.get(1).getDevices();
-        house.getGround_floor().get(1).setMovement(true); //he is in the room
+        house.getGround_floor().get(1).setMovement(1.0); //he is in the room
 
         System.out.println("\n\"He needs to go to the toilet\n");
-        house.getGround_floor().get(1).setMovement(false); //leave the room
+        house.getGround_floor().get(1).setMovement(0.0); //leave the room
 
         System.out.println("\n\"He comes back in the room\"\n");
 
-        house.getGround_floor().get(1).setMovement(true); //come back in the room
+        house.getGround_floor().get(1).setMovement(1.0); //come back in the room
     }
 
     public static void scenario2() {
         House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
+
         List<Device> list = first_floor.get(0).getDevices();
         List<Device> list2 = ground_floor.get(2).getDevices();
 
         System.out.println("\n\"It’s a Sunday in summer. At 8 a.m. when Jean wake up, the movement sensors detects his activity and\n" +
                 "the all shutters windows of the house open.\"\n");
 
-        list.get(1).manage_device();//Start devices for the 1st time
-        list.get(3).manage_device();
+
+        first_floor.get(0).setLight(first_floor.get(0).getLight() + 10);
+
+        //list.get(1).manage_device();//Start devices for the 1st time
+        //list.get(3).manage_device();
 
 
-        System.out.println("****** " + first_floor.get(0).getName() + " ******");
+        System.out.println("\n****** " + first_floor.get(0).getName() + " ******");
 
-        first_floor.get(0).getSensors().get(3).detect();
+        //first_floor.get(0).getSensors().get(3).detect();
 
         System.out.println("\n\"Because sun shine all the light sensors of the house detects that\n" +
                 "lamps should not be switched on. Later that day, Jean decides to open the window of the kitchen to enjoy\n" +
                 "this beautiful day when he prepare the dinner. But the heating sensor detects that the temperature of the\n" +
                 "kitchen become too high because of his dinner preparation and the exterior temperature that enter by the\n" +
-                "window.The pollution sensor also detects a too high level of fine particle outdoors. So the window closes and\n" +
+                "window. The pollution sensor also detects a too high level of fine particle outdoors. So the window closes and\n" +
                 "the air conditioning lights up\"\n");
 
-        list2.get(1).manage_device();//Start devices for the 1st time
-        list2.get(4).manage_device();
 
-        System.out.println("****** " + ground_floor.get(2).getName() + " ******");
+        ground_floor.get(2).getDevices().get(1).manage_device(); //hardcode pour dire que c'etait deja ouvert
 
-        ground_floor.get(2).getSensors().get(0).detect();
-        ground_floor.get(2).getSensors().get(1).detect();
+
+
+        //list2.get(1).manage_device();//Start devices for the 1st time
+        //list2.get(4).manage_device();
+
+        System.out.println("\n****** " + ground_floor.get(2).getName() + " ******\n");
+
+        ground_floor.get(2).setLight(ground_floor.get(2).getLight() + 10);
+        ground_floor.get(2).setTemp(ground_floor.get(2).getTemp() + 10);
+        ground_floor.get(2).setPollution(ground_floor.get(2).getPollution() + 10);
+
+
+        //ground_floor.get(2).getSensors().get(0).detect();
+        //ground_floor.get(2).getSensors().get(1).detect();
 
     }
 
@@ -110,7 +124,7 @@ public class Simulation {
                 } else if (res.contains("db")) {
                     environnement.get(i).setDbel(environnement.get(i).getDbel() + add);
                 } else if (res.contains("move")) {
-                    environnement.get(i).setMovement(true);
+                    environnement.get(i).setMovement(1.0);
                 } else if (res.contains("EXIT")) {
                 } else {
                     System.out.println("Error, retry please.");
