@@ -27,24 +27,19 @@ public class Simulation {
                 "TV and the lamp.\"\n");
 
         House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
-        /**List<Room> first_floor = house.getFirst_floor();
+        List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
 
         System.out.println("****** " + ground_floor.get(1).getName() + " ******");
         List<Device> list = ground_floor.get(1).getDevices();
-        list.get(6).manage_device(); //Start devices for the 1st time
-        list.get(7).manage_device();
-        list.get(11).manage_device();
+        house.getGround_floor().get(1).setMovement(true); //he is in the room
 
         System.out.println("\n\"He needs to go to the toilet\n");
-        System.out.println("Jean leaves the room\"\n");
-        ground_floor.get(1).getSensors().get(3).detect();
+        house.getGround_floor().get(1).setMovement(false); //leave the room
 
         System.out.println("\n\"He comes back in the room\"\n");
-        ground_floor.get(1).getSensors().get(3).detect();*/
 
-        house.getGround_floor().get(1).setMovement(true);
-        house.getGround_floor().get(1).setMovement(false);
+        house.getGround_floor().get(1).setMovement(true); //come back in the room
     }
 
     public static void scenario2() {

@@ -47,6 +47,7 @@ public class Environnement {
      * @post /
      */
     public void update(String type, double val) {
+        room.manage(type);
         switch (type) {
             case Constants.TEMP:
                 this.temp = val;
@@ -73,7 +74,7 @@ public class Environnement {
                     this.movement = false;
                 }
         }
-        room.manage(type);
+        //room.manage(type);
     }
 
     public double getTemp() {

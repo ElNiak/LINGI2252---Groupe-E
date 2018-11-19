@@ -43,13 +43,13 @@ public abstract class Device {
     }
 
     public boolean stop(){
-        System.out.println(this.name + " " + this.on);
+        System.out.println(this.name + " " + this.off);
         state = false;
         return true;
     }
 
     public boolean start(){
-        System.out.println(this.name + " " + this.off);
+        System.out.println(this.name + " " + this.on);
         state = true;
         return true;
     }
