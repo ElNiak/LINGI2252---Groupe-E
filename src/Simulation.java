@@ -60,9 +60,7 @@ public class Simulation {
         //list.get(1).manage_device();//Start devices for the 1st time
         //list.get(3).manage_device();
 
-
-
-
+        
         //first_floor.get(0).getSensors().get(3).detect();
 
         System.out.println("\n\"Because sun shine all the light sensors of the house detects that\n" +
@@ -106,14 +104,14 @@ public class Simulation {
     public static void console(House house, Scanner scan) {
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
-        System.out.println("=> What do you want to do ? (x = value (double, not integer), POS = index of the room in the json, STAGE = 1 || 2)");
+        System.out.println("\n=> What do you want to do ? (x = value (double, not integer), POS = index of the room in the json, STAGE = 1 || 2)");
         System.out.println("    - temp(x) POS:STAGE");
         System.out.println("    - hum(x) POS:STAGE");
         System.out.println("    - light(x) POS:STAGE");
         System.out.println("    - wind(x) POS:STAGE");
         System.out.println("    - db(x) POS:STAGE");
         System.out.println("    - move(x) POS:STAGE(x = 1.0 || 0.0)");
-        System.out.println("    - EXIT ");
+        System.out.println("    - EXIT\n");
         try {
             // retourne true s’il y a un autre élément dans l’entrée
             if(scan.hasNext()){
@@ -124,13 +122,8 @@ public class Simulation {
                 int stage = Integer.parseInt(res.substring(res.indexOf(":") + 1,res.length()));
 
                 if (stage == 1) {
-                    System.out.println("\nBefore :");
-                    System.out.println("temp = " +ground_floor.get(i).getTemp());
-                    System.out.println("hum = " +ground_floor.get(i).getHum());
-                    System.out.println("light = " +ground_floor.get(i).getLight());
-                    System.out.println("wind = " +ground_floor.get(i).getWind());
-                    System.out.println("db = " +ground_floor.get(i).getDbel());
-                    System.out.println("move = " +ground_floor.get(i).isMovement()+"\n");
+                    System.out.println("\n- Before :");
+                    System.out.println("Environnement = " +ground_floor.get(i).getEnvironnement().toString() + "\n");
 
                     if (res.contains("temp")) {
                         ground_floor.get(i).setTemp(ground_floor.get(i).getTemp() + add);
@@ -145,26 +138,18 @@ public class Simulation {
                     } else if (res.contains("move")) {
                         ground_floor.get(i).setMovement(add);
                     } else if (res.contains("EXIT")) {
+                        scan.close();
+                        return;
                     } else {
-                        System.out.println("Error, retry please.");
+                        System.out.println("Error, retry please.\n");
                     }
 
-                    System.out.println("\nAfter :");
-                    System.out.println("temp = " +ground_floor.get(i).getTemp());
-                    System.out.println("hum = " +ground_floor.get(i).getHum());
-                    System.out.println("light = " +ground_floor.get(i).getLight());
-                    System.out.println("wind = " +ground_floor.get(i).getWind());
-                    System.out.println("db = " +ground_floor.get(i).getDbel());
-                    System.out.println("move = " +ground_floor.get(i).isMovement()+"\n");
+                    System.out.println("\n- After :");
+                    System.out.println("Environnement = " +ground_floor.get(i).getEnvironnement().toString() + "\n");
                 }
                 else if (stage == 2){
-                    System.out.println("\nBefore :");
-                    System.out.println("temp = " +first_floor.get(i).getTemp());
-                    System.out.println("hum = " +first_floor.get(i).getHum());
-                    System.out.println("light = " +first_floor.get(i).getLight());
-                    System.out.println("wind = " +first_floor.get(i).getWind());
-                    System.out.println("db = " +first_floor.get(i).getDbel()+"\n");
-                    System.out.println("move = " +first_floor.get(i).isMovement());
+                    System.out.println("\n- Before :");
+                    System.out.println("Environnement = " +first_floor.get(i).getEnvironnement().toString() + "\n");
 
                     if (res.contains("temp")) {
                         first_floor.get(i).setTemp(first_floor.get(i).getTemp() + add);
@@ -179,20 +164,17 @@ public class Simulation {
                     } else if (res.contains("move")) {
                         first_floor.get(i).setMovement(add);
                     } else if (res.contains("EXIT")) {
+                        scan.close();
+                        return;
                     } else {
                         System.out.println("Error, retry please.");
                     }
 
-                    System.out.println("\nAfter :");
-                    System.out.println("temp = " +first_floor.get(i).getTemp());
-                    System.out.println("hum = " +first_floor.get(i).getHum());
-                    System.out.println("light = " +first_floor.get(i).getLight());
-                    System.out.println("wind = " +first_floor.get(i).getWind());
-                    System.out.println("db = " +first_floor.get(i).getDbel());
-                    System.out.println("move = " +first_floor.get(i).isMovement()+"\n");
-                }
+                    System.out.println("\n- After :");
+                    System.out.println("Environnement = " +first_floor.get(i).getEnvironnement().toString() + "\n");
+                    }
                 else {
-                    System.out.println("Invalide number of stage");
+                    System.out.println("Invalid number of stage");
                 }
             }
 
@@ -203,13 +185,13 @@ public class Simulation {
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Retry with a valid command");
         }
-        //scan.close();
         retry(house, scan);
     }
 
     public static void retry(House house, Scanner scan){
+
         System.out.println("\n Would you like to modify anything else ? (Y/N)");
-        scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
+        //scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
         try {
             if(scan.hasNext()){
                 String res = scan.nextLine(); //retourne la prochaine ligne complète

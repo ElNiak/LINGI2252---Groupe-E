@@ -50,28 +50,28 @@ public class Environnement {
         room.manage(type, val);
         switch (type) {
             case Constants.TEMP:
-                this.temp = val;
+                this.setTemp(val);
                 break;
             case Constants.HUM:
-                this.hum = val;
+                this.setHum(val);
                 break;
             case Constants.LIGHT:
-                this.light = val;
+                this.setLight(val);
                 break;
             case Constants.WIND:
-                this.wind = val;
+                this.setWind(val);
                 break;
             case Constants.POLLUTION:
-                this.pollution = val;
+                this.setPollution(val);
                 break;
             case Constants.DBEL:
-                this.dbel = val;
+                this.setDbel(val);
                 break;
             case Constants.MOVEMENT:
                 if (val == 1.0) {
-                    this.movement = 1.0;
+                    this.setMovement(1.0);
                 } else {
-                    this.movement = 0.0;
+                    this.setMovement(0.0);
                 }
         }
         //room.manage(type);
@@ -151,7 +151,7 @@ public class Environnement {
                 ", pollution=" + pollution +
                 ", dbel=" + dbel +
                 ", movement=" + movement +
-                ", room=" + room +
+                ", room=" + room.getName() +
                 '}';
     }
 }
