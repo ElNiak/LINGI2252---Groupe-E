@@ -53,6 +53,7 @@ public class Simulation {
         System.out.println("\n\"It’s a Sunday in summer. At 8 a.m. when Jean wake up, the movement sensors detects his activity and\n" +
                 "the all shutters windows of the house open.\"\n");
 
+        System.out.println("****** " + first_floor.get(0).getName() + " ******\n");
 
         first_floor.get(0).setLight(first_floor.get(0).getLight() + 10);
 
@@ -60,7 +61,7 @@ public class Simulation {
         //list.get(3).manage_device();
 
 
-        System.out.println("\n****** " + first_floor.get(0).getName() + " ******");
+
 
         //first_floor.get(0).getSensors().get(3).detect();
 
@@ -72,7 +73,7 @@ public class Simulation {
                 "the air conditioning lights up\"\n");
 
 
-        ground_floor.get(2).getDevices().get(2).manage_device(); //hardcode pour dire que c'etait deja ouvert
+       // ground_floor.get(2).getDevices().get(2).manage_device(); //hardcode pour dire que c'etait deja ouvert
 
 
         System.out.println("\n****** " + ground_floor.get(2).getName() + " ******\n");
@@ -84,13 +85,28 @@ public class Simulation {
     }
 
     public static void scenario3() {
+        House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
+        List<Room> first_floor = house.getFirst_floor();
+        List<Room> ground_floor = house.getGround_floor();
 
+        System.out.println("During a cold night, Jean Martin decides to take a shower so the humidity goes up and the light turns on.\n");
+        first_floor.get(1).setTemp(first_floor.get(1).getTemp() - 10);
+        first_floor.get(1).setHum(first_floor.get(1).getHum() + 10);
+        first_floor.get(1).setMovement(1.0);
+
+        System.out.println("\nWhen he finished he leaves the room and the light switch off");
+        first_floor.get(1).setMovement(0.0);
+        //first_floor.get(1).setTemp(first_floor.get(1).getTemp() + 10);
+
+        System.out.println("\nThen he go to his bedroom in order to dress up.");
+        first_floor.get(0).setMovement(1.0);
+        first_floor.get(0).setTemp(first_floor.get(0).getTemp() - 10);
     }
 
     public static void console(House house, Scanner scan) {
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
-        System.out.println("=> What do you want to do ? (x = value, POS = index of the room in the json, STAGE = 1 || 2)");
+        System.out.println("=> What do you want to do ? (x = value (double, not integer), POS = index of the room in the json, STAGE = 1 || 2)");
         System.out.println("    - temp(x) POS:STAGE");
         System.out.println("    - hum(x) POS:STAGE");
         System.out.println("    - light(x) POS:STAGE");
@@ -104,7 +120,7 @@ public class Simulation {
                 String res = scan.nextLine(); //retourne la prochaine ligne complète
                 System.out.println(res);
                 int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.indexOf(":")));
-                int add = Integer.parseInt(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
+                double add = Double.parseDouble(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
                 int stage = Integer.parseInt(res.substring(res.indexOf(":") + 1,res.length()));
 
                 if (stage == 1) {

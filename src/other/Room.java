@@ -110,11 +110,7 @@ public class Room {
             case Constants.HUM:
                 if(oldhum < val){ //Trop humide
                     for (Device i : devices) {
-                        if (i instanceof Windows) { //Ouvre les fenetre et store
-                            if (!i.isState())
-                                i.manage_device();
-                        }
-                        if (i instanceof ShutterWindow) {
+                        if (i instanceof Ventilation) {
                             if (!i.isState())
                                 i.manage_device();
                         }
@@ -122,11 +118,7 @@ public class Room {
                 }
                 else {
                     for (Device i : devices) {
-                        if (i instanceof Windows) { //ferme les fenetre et store
-                            if (i.isState())
-                                i.manage_device();
-                        }
-                        if (i instanceof ShutterWindow) {
+                        if (i instanceof Ventilation) {
                             if (i.isState())
                                 i.manage_device();
                         }
@@ -141,7 +133,7 @@ public class Room {
                                 i.manage_device();
                         }
                         if (i instanceof ShutterWindow) {
-                            if (i.isState())
+                            if (!i.isState())
                                 i.manage_device();
                         }
                     }
@@ -153,7 +145,7 @@ public class Room {
                                 i.manage_device();
                         }
                         if (i instanceof ShutterWindow) {
-                            if (!i.isState())
+                            if (i.isState())
                                 i.manage_device();
                         }
                     }
@@ -189,7 +181,7 @@ public class Room {
                 if(oldpollution < val){ //Trop pollution
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            if (!i.isState())
+                            if (i.isState())
                                 i.manage_device();
                         }
                     }
@@ -197,7 +189,7 @@ public class Room {
                 else {
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            if (i.isState())
+                            if (!i.isState())
                                 i.manage_device();
                         }
                     }
