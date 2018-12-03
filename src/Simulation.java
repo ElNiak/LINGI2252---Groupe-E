@@ -17,7 +17,7 @@ public class Simulation {
         scenario3();
         System.out.println("\n ============  CONSOLE   ============ \n");
         Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
-        console(new House(System.getProperty("user.dir") + "/src/res/p1.json"),scan);
+        console(House.getInstance(),scan);
 
     }
 
@@ -26,7 +26,7 @@ public class Simulation {
                 " during this time, the movement sensor detect that he leaves the room and then switch off the\n " +
                 "TV and the lamp.\"\n");
 
-        House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
+        House house = House.getInstance();
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
 
@@ -43,7 +43,7 @@ public class Simulation {
     }
 
     public static void scenario2() {
-        House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
+        House house = House.getInstance();
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
 
@@ -83,7 +83,7 @@ public class Simulation {
     }
 
     public static void scenario3() {
-        House house = new House(System.getProperty("user.dir") + "/src/res/p1.json");
+        House house = House.getInstance();
         List<Room> first_floor = house.getFirst_floor();
         List<Room> ground_floor = house.getGround_floor();
 
