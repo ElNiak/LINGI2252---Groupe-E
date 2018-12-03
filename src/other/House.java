@@ -20,14 +20,6 @@ public class House {
     private Room garden;
     private List<Environnement> environnements;
 
-    public House(){
-        environnements = new ArrayList<Environnement>();
-        ground_floor = new ArrayList<Room>();
-        first_floor = new ArrayList<Room>();
-        create_house();
-    }
-
-
     public House(String json){
         environnements = new ArrayList<Environnement>();
         ground_floor = new ArrayList<Room>();
@@ -106,246 +98,63 @@ public class House {
     private void decode_sensors(JSONArray sensors, List<Sensor> ls, Room room){
         for(int i = 0; i<sensors.size(); i++){
             JSONObject sensor = (JSONObject) sensors.get(i);
-            ls.add(create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room));
+            ls.add(create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
         }
     }
 
-    private Sensor create_sensor(String sensor_name, double x, double y, double z, Room room){
+    private Sensor create_sensor(String sensor_name, double x, double y, double z, Room room, boolean activated){
         switch (sensor_name){
             case "Camera":
-                return new Camera(x, y ,z, room);
+                return new Camera(x, y ,z, room,activated);
             case "LightSensor":
-                return new LightSensor(x, y, z, room);
+                return new LightSensor(x, y, z, room,activated);
             case "PollutionSensor":
-                return new PollutionSensor(x, y, z, room);
+                return new PollutionSensor(x, y, z, room,activated);
             case "MovementSensor":
-                return new MovementSensor(x, y, z, room);
+                return new MovementSensor(x, y, z, room,activated);
             case "TemperatureSensor":
-                return new TemperatureSensor(x, y, z, room);
+                return new TemperatureSensor(x, y, z, room,activated);
             case "HumiditySensor":
-                return new HumiditySensor(x, y, z, room);
+                return new HumiditySensor(x, y, z, room,activated);
             case "SoundSensor":
-                return new SoundSensor(x, y, z, room);
+                return new SoundSensor(x, y, z, room,activated);
             default:
-                return new LightSensor(x, y, z, room);
+                return new LightSensor(x, y, z, room,activated);
         }
     }
 
     private void decode_devices(JSONArray devices, List<Device> ld, Room room){
         for(int i = 0; i<devices.size(); i++){
             JSONObject device = (JSONObject) devices.get(i);
-            ld.add(create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room));
+            ld.add(create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
         }
     }
 
-    private Device create_device(String device_name, double x, double y, double z, Room room){
+    private Device create_device(String device_name, double x, double y, double z, Room room, boolean activated){
         switch (device_name){
             case "AirConditioning":
-                return new AirConditioning(x, y, z, room);
+                return new AirConditioning(x, y, z, room,activated);
             case "Heating":
-                return new Heating(x, y, z, room);
+                return new Heating(x, y, z, room,activated);
             case "Hifi":
-                return new Hifi(x, y, z, room);
+                return new Hifi(x, y, z, room,activated);
             case "Humidifier":
-                return new Humidifier(x, y, z, room);
+                return new Humidifier(x, y, z, room,activated);
             case "Light":
-                return new Light(x, y, z, room);
+                return new Light(x, y, z, room,activated);
             case "ShutterWindow":
-                return new ShutterWindow(x, y, z, room);
+                return new ShutterWindow(x, y, z, room,activated);
             case "Tv":
-                return new Tv(x, y, z, room);
+                return new Tv(x, y, z, room,activated);
             case "Ventilation":
-                return new Ventilation(x, y, z, room);
+                return new Ventilation(x, y, z, room,activated);
             case "Window":
-                return new Windows(x, y, z, room);
+                return new Windows(x, y, z, room,activated);
             default:
-                return new Light(x, y, z, room);
+                return new Light(x, y, z, room,activated);
         }
     }
 
-    public void create_house(){
-        /*
-         * GROUND FLOOR
-         */
-
-        //Entry
-        Environnement entry_env = new Environnement();
-        environnements.add(entry_env);
-        List<Sensor> entry_sensors = new ArrayList<Sensor>();
-        List<Device> entry_devices = new ArrayList<Device>();
-        Room entry = new Room("Entry", 300, 700, 700, entry_env, entry_sensors, entry_devices);
-        entry_env.setRoom(entry);
-        entry_sensors.add(new Camera(350, 700, 300, entry));
-        entry_sensors.add(new LightSensor(350, 700, 350, entry));
-        entry_sensors.add(new PollutionSensor(350, 700, 450, entry));
-        entry_sensors.add(new MovementSensor(350, 700, 450, entry));
-
-        entry_devices.add(new Light(350, 700, 350, entry));
-
-        //living room
-        Environnement living_room_env = new Environnement();
-        environnements.add(living_room_env);
-        List<Sensor> living_room_sensors = new ArrayList<Sensor>();
-        List<Device> living_room_devices = new ArrayList<Device>();
-        Room living_room = new Room("Living Room", 300, 700, 700, living_room_env, living_room_sensors, living_room_devices);
-        living_room_env.setRoom(living_room);
-        living_room_sensors.add(new LightSensor(350, 700, 350, living_room));
-        living_room_sensors.add(new MovementSensor(350, 700, 350, living_room));
-        living_room_sensors.add(new TemperatureSensor(350, 700, 350, living_room));
-        living_room_sensors.add(new HumiditySensor(350, 700, 350, living_room));
-
-        living_room_devices.add(new ShutterWindow(350, 700, 350, living_room));
-        living_room_devices.add(new ShutterWindow(350, 700, 350, living_room));
-        living_room_devices.add(new ShutterWindow(350, 700, 350, living_room));
-        living_room_devices.add(new Windows(350, 700, 350, living_room));
-        living_room_devices.add(new Windows(350, 700, 350, living_room));
-        living_room_devices.add(new Windows(350, 700, 350, living_room));
-        living_room_devices.add(new Light(350, 700, 350, living_room));
-        living_room_devices.add(new Light(350, 700, 350, living_room));
-        living_room_devices.add(new Ventilation(350, 700, 350, living_room));
-        living_room_devices.add(new Hifi(350, 700, 350, living_room));
-        living_room_devices.add(new Tv(350, 700, 350, living_room));
-        living_room_devices.add(new Heating(350, 700, 350, living_room));
-
-
-        //kitchen
-        Environnement kitchen_env = new Environnement();
-        environnements.add(kitchen_env);
-        List<Sensor> kitchen_sensors = new ArrayList<Sensor>();
-        List<Device> kitchen_devices = new ArrayList<Device>();
-        Room kitchen = new Room("Kitchen", 300, 700, 700, kitchen_env, kitchen_sensors, kitchen_devices);
-        kitchen_env.setRoom(kitchen);
-        kitchen_sensors.add(new LightSensor(350, 700, 350, kitchen));
-        kitchen_sensors.add(new MovementSensor(350, 700, 350, kitchen));
-        kitchen_sensors.add(new TemperatureSensor(350, 700, 350, kitchen));
-        kitchen_sensors.add(new HumiditySensor(350, 700, 350, kitchen));
-
-        kitchen_devices.add(new ShutterWindow(350, 700, 350, kitchen));
-        kitchen_devices.add(new Windows(350, 700, 350, kitchen));
-        kitchen_devices.add(new Light(350, 700, 350, kitchen));
-        kitchen_devices.add(new Humidifier(350, 700, 350, kitchen));
-        kitchen_devices.add(new Ventilation(350, 700, 350, kitchen));
-
-
-        //dinning room
-        Environnement dinning_room_env = new Environnement();
-        environnements.add(dinning_room_env);
-        List<Sensor> dinning_room_sensors = new ArrayList<Sensor>();
-        List<Device> dinning_room_devices = new ArrayList<Device>();
-        Room dinning_room = new Room("Dinning Room", 300, 700, 700, dinning_room_env, dinning_room_sensors, dinning_room_devices);
-        dinning_room_env.setRoom(dinning_room);
-        dinning_room_sensors.add(new LightSensor(350, 700, 350, dinning_room));
-        dinning_room_sensors.add(new MovementSensor(350, 700, 350, dinning_room));
-        dinning_room_sensors.add(new TemperatureSensor(350, 700, 350, dinning_room));
-        dinning_room_sensors.add(new HumiditySensor(350, 700, 350, dinning_room));
-
-        dinning_room_devices.add(new ShutterWindow(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new Windows(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new ShutterWindow(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new Windows(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new Light(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new Humidifier(350, 700, 350, dinning_room));
-        dinning_room_devices.add(new Ventilation(350, 700, 350, dinning_room));
-
-        ground_floor.add(entry);
-        ground_floor.add(living_room);
-        ground_floor.add(kitchen);
-        ground_floor.add(dinning_room);
-
-        /*
-         * FIRST FLOOR
-         */
-
-        //bedroom
-        Environnement bedroom_env = new Environnement();
-        environnements.add(bedroom_env);
-        List<Sensor> bedroom_sensors = new ArrayList<Sensor>();
-        List<Device> bedroom_devices = new ArrayList<Device>();
-        Room bedroom = new Room("Bedroom", 300, 700, 700, bedroom_env, bedroom_sensors, bedroom_devices);
-        bedroom_env.setRoom(bedroom);
-        bedroom_sensors.add(new MovementSensor(0, 0, 300, bedroom));
-        bedroom_sensors.add(new TemperatureSensor(350, 700, 350, bedroom));
-        bedroom_sensors.add(new HumiditySensor(350, 700, 350, bedroom));
-        bedroom_sensors.add(new LightSensor(350, 700, 350, bedroom));
-
-        bedroom_devices.add(new AirConditioning(350, 0, 300, bedroom));
-        bedroom_devices.add(new Heating(350, 0, 0, bedroom));
-        bedroom_devices.add(new Light(350, 350, 300, bedroom));
-        bedroom_devices.add(new Windows(0, 0, 150, bedroom));
-        bedroom_devices.add(new ShutterWindow(0, 0, 150, bedroom));
-
-
-
-        //bathroom
-        Environnement bathroom_env = new Environnement();
-        environnements.add(bathroom_env);
-        List<Sensor> bathroom_sensors = new ArrayList<Sensor>();
-        List<Device> bathroom_devices = new ArrayList<Device>();
-        Room bathroom = new Room("Bathroom", 300, 700, 700, bathroom_env, bathroom_sensors, bathroom_devices);
-        bathroom_env.setRoom(bathroom);
-        bathroom_sensors.add(new LightSensor(350, 700, 350, bathroom));
-        bathroom_sensors.add(new MovementSensor(350, 700, 350, bathroom));
-        bathroom_sensors.add(new TemperatureSensor(350, 700, 350, bathroom));
-        bathroom_sensors.add(new HumiditySensor(350, 700, 350, bathroom));
-
-        bathroom_devices.add(new ShutterWindow(350, 700, 350, bathroom));
-        bathroom_devices.add(new Windows(350, 700, 350, bathroom));
-        bathroom_devices.add(new Light(350, 700, 350, bathroom));
-        bathroom_devices.add(new Ventilation(350, 700, 350, bathroom));
-        bathroom_devices.add(new Heating(350, 700, 350, bathroom));
-
-        //game room
-        Environnement game_room_env = new Environnement();
-        environnements.add(game_room_env);
-        List<Sensor> game_room_sensors = new ArrayList<Sensor>();
-        List<Device> game_room_devices = new ArrayList<Device>();
-        Room game_room = new Room("Game Room", 300, 700, 700, game_room_env, game_room_sensors, game_room_devices);
-        game_room_env.setRoom(game_room);
-        game_room_sensors.add(new MovementSensor(0, 0, 300, game_room));
-        game_room_sensors.add(new TemperatureSensor(350, 700, 350, game_room));
-        game_room_sensors.add(new HumiditySensor(350, 700, 350, game_room));
-
-        game_room_devices.add(new AirConditioning(350, 0, 300, game_room));
-        game_room_devices.add(new Heating(350, 0, 0, game_room));
-        game_room_devices.add(new Light(350, 350, 300, game_room));
-        game_room_devices.add(new Windows(0, 0, 150, game_room));
-        game_room_devices.add(new ShutterWindow(0, 0, 150, game_room));
-
-        //laundry room
-        Environnement laundry_room_env = new Environnement();
-        environnements.add(laundry_room_env);
-        List<Sensor> laundry_room_sensors = new ArrayList<Sensor>();
-        List<Device> laundry_room_devices = new ArrayList<Device>();
-        Room laundry_room = new Room("Laundry Room", 300, 700, 700, laundry_room_env, laundry_room_sensors, laundry_room_devices);
-        laundry_room_env.setRoom(laundry_room);
-        laundry_room_sensors.add(new MovementSensor(0, 0, 300, laundry_room));
-
-        laundry_room_devices.add(new Light(350, 350, 300, laundry_room));
-        laundry_room_devices.add(new Windows(0, 0, 150, laundry_room));
-        laundry_room_devices.add(new ShutterWindow(0, 0, 150, laundry_room));
-
-        first_floor.add(bedroom);
-        first_floor.add(bathroom);
-        first_floor.add(game_room);
-        first_floor.add(game_room);
-
-        /*
-         * GARDEN
-         */
-
-        Environnement garden_env = new Environnement();
-        environnements.add(garden_env);
-        List<Sensor> garden_sensors = new ArrayList<Sensor>();
-        List<Device> garden_devices = new ArrayList<Device>();
-        garden = new Room("Garden", 100000, 1500, 1500, garden_env, garden_sensors, garden_devices);
-        garden_env.setRoom(garden);
-        garden_sensors.add(new LightSensor(350, 700, 350, garden));
-        garden_sensors.add(new SoundSensor(350, 700, 350, garden));
-        garden_sensors.add(new TemperatureSensor(350, 700, 350, garden));
-        garden_sensors.add(new HumiditySensor(350, 700, 350, garden));
-        garden_sensors.add(new PollutionSensor(350, 700, 350, garden));
-
-    }
 
     public List<Room> getGround_floor() {
         return ground_floor;

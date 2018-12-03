@@ -5,8 +5,8 @@ import other.Room;
 
 public class TemperatureSensor  extends Sensor {
 
-    public TemperatureSensor(double x, double y, double z, Room room) {
-        super(x,y,z,room);
+    public TemperatureSensor(double x, double y, double z, Room room, boolean activated) {
+        super(x,y,z,room, activated);
         this.prev = 18.0;
         this.curr = 18.0;
     }

@@ -60,7 +60,7 @@ public class Simulation {
         //list.get(1).manage_device();//Start devices for the 1st time
         //list.get(3).manage_device();
 
-        
+
         //first_floor.get(0).getSensors().get(3).detect();
 
         System.out.println("\n\"Because sun shine all the light sensors of the house detects that\n" +
@@ -190,7 +190,7 @@ public class Simulation {
 
     public static void retry(House house, Scanner scan){
 
-        System.out.println("\n Would you like to modify anything else ? (Y/N)");
+        System.out.println("\n Would you like to modify anything else ? (Y/N)\n");
         //scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
         try {
             if(scan.hasNext()){
@@ -202,7 +202,6 @@ public class Simulation {
                     scan.close();
                 }
             }
-
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }

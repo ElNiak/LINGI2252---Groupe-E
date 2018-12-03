@@ -5,8 +5,8 @@ import other.Room;
 
 public class SoundSensor extends Sensor {
 
-    public SoundSensor(double x, double y, double z, Room room) {
-        super(x,y,z,room);
+    public SoundSensor(double x, double y, double z, Room room, boolean activated) {
+        super(x,y,z,room, activated);
         this.curr = 0.0;
         this.curr = 0.0;
     }

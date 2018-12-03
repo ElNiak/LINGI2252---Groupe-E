@@ -10,22 +10,25 @@ public abstract class Device {
     protected String name;
     protected String on;
     protected String off;
+    protected boolean activated;
 
 
-    public Device(String name, double x, double y, double z, Room room) {
+    public Device(String name, double x, double y, double z, Room room, boolean activated) {
         this.state = false; // false = off
         this.x = x; this.y = y; this.z = z;
         this.room = room;
         this.name = name;
         this.on = "on";
         this.off = "off";
+        this.activated = activated;
     }
 
 
-    public Device(double x, double y, double z, Room room) {
+    public Device(double x, double y, double z, Room room, boolean activated) {
         this.state = false; // false = off
         this.x = x; this.y = y; this.z = z;
         this.room = room;
+        this.activated = activated;
     }
 
 
@@ -102,4 +105,11 @@ public abstract class Device {
         this.name = name;
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
 }

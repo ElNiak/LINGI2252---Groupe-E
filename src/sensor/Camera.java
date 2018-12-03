@@ -6,8 +6,8 @@ import other.Room;
 public class Camera extends Sensor {
 
 
-    public Camera(double x, double y, double z,  Room room) {
-        super(x,y,z,room);
+    public Camera(double x, double y, double z,  Room room, boolean activated) {
+        super(x,y,z,room, activated);
         this.curr = 0.0;
     }
 

@@ -5,8 +5,8 @@ import other.Room;
 
 public class WindSensor extends Sensor {
 
-    public WindSensor(double x, double y, double z, Room room) {
-        super(x,y,z,room);
+    public WindSensor(double x, double y, double z, Room room, boolean activated) {
+        super(x,y,z,room, activated);
         this.curr = 0.0;
         this.prev = 0.0;
     }
