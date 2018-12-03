@@ -17,28 +17,28 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "PollutionSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -47,7 +47,7 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         },
@@ -61,28 +61,29 @@
               "name": "TemperatureSensor",
               "x": "350",
               "y": "700",
-              "z": "300"
+              "z": "300",
+              "activated":"false"
             },
             {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -91,91 +92,91 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "ShutterWindow",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "ShutterWindow",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Humidifier",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Ventilation",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Hifi",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Tv",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Heating",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         },
@@ -190,35 +191,35 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "PollutionSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -227,42 +228,42 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Humidifier",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Ventilation",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "AirConditioning",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         },
@@ -277,28 +278,28 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -307,56 +308,56 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "ShutterWindow",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Humidifier",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Ventilation",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         }
@@ -377,28 +378,28 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -407,35 +408,35 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "ShutterWindow",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Heating",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         },
@@ -450,28 +451,28 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -480,35 +481,35 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Ventilation",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Heating",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         },
@@ -523,21 +524,21 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "MovementSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -546,35 +547,35 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Heating",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "AirConditioning",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         },
@@ -589,7 +590,7 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[
@@ -598,21 +599,21 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Window",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "Light",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ]
         }
@@ -633,35 +634,35 @@
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "SoundSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "TemperatureSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "HumiditySensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             },
             {
               "name": "PollutionSensor",
               "x": "350",
               "y": "700",
               "z": "300",
-              "activated":true
+              "activated":"false"
             }
           ],
           "devices":[]

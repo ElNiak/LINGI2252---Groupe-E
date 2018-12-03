@@ -17,6 +17,14 @@ public abstract class Sensor {
         this.activated = activated;
     }
 
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
     /**
      * @pre
      * @post

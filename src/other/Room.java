@@ -77,15 +77,15 @@ public class Room {
                 if(oldtemp < val) { //Trop chaud
                    for (Device i : devices) {
                        if (i instanceof AirConditioning) { //Start la clim
-                           if (!i.isState())
+                           if (!i.isState() && i.isActivated())
                                i.manage_device();
                        }
                        if (i instanceof Heating) { //Stop radia si allumer
-                           if (i.isState())
+                           if (i.isState() && i.isActivated())
                                i.manage_device();
                        }
                        if (i instanceof Windows) { //Start clim
-                           if (!i.isState())
+                           if (!i.isState() && i.isActivated())
                                i.manage_device();
                        }
                    }
@@ -93,15 +93,15 @@ public class Room {
                else { //Trop froid
                    for (Device i : devices) {
                        if (i instanceof Heating) {
-                           if (!i.isState())
+                           if (!i.isState() && i.isActivated())
                                i.manage_device(); //Start le radiateur
                        }
                        if (i instanceof AirConditioning) { //Stop la clim
-                           if (i.isState())
+                           if (i.isState() && i.isActivated())
                                i.manage_device();
                        }
                        if (i instanceof Windows) {
-                           if (i.isState())
+                           if (i.isState() && i.isActivated())
                                i.manage_device();
                        }
                    }
@@ -111,7 +111,7 @@ public class Room {
                 if(oldhum < val){ //Trop humide
                     for (Device i : devices) {
                         if (i instanceof Ventilation) {
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -119,7 +119,7 @@ public class Room {
                 else {
                     for (Device i : devices) {
                         if (i instanceof Ventilation) {
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -129,11 +129,11 @@ public class Room {
                 if(oldlight < val){ //Trop lumineux
                     for (Device i : devices) {
                         if (i instanceof Light) { //On ferme les lampe
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                         if (i instanceof ShutterWindow) {
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -141,11 +141,11 @@ public class Room {
                 else {
                     for (Device i : devices) {
                         if (i instanceof Light) { //On ferme les lampe
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                         if (i instanceof ShutterWindow) {
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -155,11 +155,11 @@ public class Room {
                 if(oldwind < val){ //Trop de vent
                     for (Device i : devices) {
                         if (i instanceof Windows) { //On
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                         if (i instanceof Ventilation) { //on
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -167,11 +167,11 @@ public class Room {
                 else { //Pas assez de vent
                     for (Device i : devices) {
                         if (i instanceof Windows) { //On
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                         if (i instanceof Ventilation) { //off
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -181,7 +181,7 @@ public class Room {
                 if(oldpollution < val){ //Trop pollution
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -189,7 +189,7 @@ public class Room {
                 else {
                     for (Device i : devices) {
                         if (i instanceof Windows) {
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -199,11 +199,11 @@ public class Room {
                 if(dbel < val){
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                         if (i instanceof Windows) {
-                            if (i.isState())
+                            if (i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -211,11 +211,11 @@ public class Room {
                 else {
                     for (Device i : devices) {
                         if (i instanceof Hifi) {
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                         if (i instanceof Windows) {
-                            if (!i.isState())
+                            if (!i.isState() && i.isActivated())
                                 i.manage_device();
                         }
                     }
@@ -224,20 +224,20 @@ public class Room {
             case Constants.MOVEMENT:
                 if(oldmovement != val){
                     for (Device i : devices){
-                        if (i instanceof Light){
+                        if (i instanceof Light && i.isActivated()){
                             i.manage_device();
                         }
-                        if (i instanceof Tv){
+                        if (i instanceof Tv && i.isActivated()){
                             i.manage_device();
                         }
                     }
                 }
                 else{
                     for (Device i : devices){
-                        if (i instanceof Light){
+                        if (i instanceof Light && i.isActivated()){
                             i.manage_device();
                         }
-                        if (i instanceof Tv){
+                        if (i instanceof Tv && i.isActivated()){
                             i.manage_device();
                         }
                     }
@@ -388,7 +388,8 @@ public class Room {
         //System.out.println("(0) oldtemp = " + oldtemp + " + temp = " + temp);
         for(Sensor s : sensors){
             if(s instanceof TemperatureSensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
@@ -402,7 +403,8 @@ public class Room {
         this.hum = hum;
         for(Sensor s : sensors){
             if(s instanceof HumiditySensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
@@ -416,7 +418,8 @@ public class Room {
         this.light = light;
         for(Sensor s : sensors){
             if(s instanceof LightSensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
@@ -430,7 +433,8 @@ public class Room {
         this.wind = wind;
         for(Sensor s : sensors){
             if(s instanceof WindSensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
@@ -443,7 +447,8 @@ public class Room {
         this.pollution = pollution;
         for(Sensor s : sensors){
             if(s instanceof PollutionSensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
@@ -456,7 +461,8 @@ public class Room {
         this.dbel = dbel;
         for(Sensor s : sensors){
             if(s instanceof SoundSensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
@@ -470,7 +476,8 @@ public class Room {
         this.movement = movement;
         for(Sensor s : sensors){
             if(s instanceof MovementSensor){
-                s.detect();
+                if(s.isActivated())
+                    s.detect();
             }
         }
     }
