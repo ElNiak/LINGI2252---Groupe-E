@@ -488,33 +488,25 @@ public class Room {
     public void activationD(double i){
         if(!this.devices.get((int)i).isActivated())
             this.devices.get((int)i).setActivated(true);
-        else
-            System.out.println("Fefrefer 1 ");
-        System.out.println(this.devices.get((int)i).getName()+ " in room " + this.getName()  + " is " + this.devices.get((int)i).isActivated());
+        System.out.println(this.devices.get((int)i).getName()+ " in room " + this.getName()  + " is activated");
     }
 
     public void activationS(double i){
         if(!this.sensors.get((int)i).isActivated())
             this.sensors.get((int)i).setActivated(true);
-        else
-            System.out.println("Fefrefer 2 ");
-        System.out.println(this.sensors.get((int)i).getClass()+ " in room " + this.getName()  + " is " + this.sensors.get((int)i).isActivated());
+        System.out.println(this.sensors.get((int)i).getClass()+ " in room " + this.getName()  + " is activated");
     }
 
     public void desactivationD(double i){
         if(this.devices.get((int)i).isActivated())
             this.devices.get((int)i).setActivated(false);
-        else
-            System.out.println("Fefrefer 3 " + this.devices.get((int)i).isActivated());
-        System.out.println(this.devices.get((int)i).getName()+ " in room " + this.getName()  + " is " + this.devices.get((int)i).isActivated());
+        System.out.println(this.devices.get((int)i).getName()+ " in room " + this.getName()  + " is desactivated");
     }
 
     public void desactivationS(double i){
         if(this.sensors.get((int)i).isActivated())
             this.sensors.get((int)i).setActivated(false);
-        else
-            System.out.println("Fefrefer 4 ");
-        System.out.println(this.sensors.get((int)i).getClass()+ " in room " + this.getName()  + " is " + this.sensors.get((int)i).isActivated());
+        System.out.println(this.sensors.get((int)i).getClass()+ " in room " + this.getName()  + " is desactivated");
     }
 
 
