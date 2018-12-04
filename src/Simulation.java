@@ -17,7 +17,10 @@ public class Simulation {
         scenario3();
         System.out.println("\n ============  CONSOLE   ============ \n");
         Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
-        console(House.getInstance(),scan);
+        if(Parametrisation.check_feature_model(House.getInstance()))
+            console(House.getInstance(),scan);
+        else
+            System.out.println("Error in feature model");
 
     }
 
@@ -205,7 +208,7 @@ public class Simulation {
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Retry with a valid command");
         }
-        if(House.check_feature_model(house))
+        if(Parametrisation.check_feature_model(house))
             retry(house, scan);
         else
             System.out.println("Feature models not respected");
