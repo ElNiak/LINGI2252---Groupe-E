@@ -12,13 +12,7 @@ public class MovementSensor extends Sensor {
     @Override
     public void detect() {
         this.curr = room.isMovement();
-        this.prev = room.isOldmovement();
-        if(curr == prev){
-            notifY(1.0);
-        }
-        else{
-            notifY(0.0);
-        }
+        notifY(curr);
     }
 
     @Override

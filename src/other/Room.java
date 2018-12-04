@@ -1,5 +1,6 @@
 package other;
 
+import Behavior.*;
 import device.*;
 import sensor.*;
 
@@ -71,178 +72,39 @@ public class Room {
      * @param type
      */
     public void manage(String type, double val){
+        BehaviorStrategy behaviorStrategy = new BehaviorStrategy();
+        double oldVal = 0.0;
         switch(type){
-            case Constants.TEMP: //For the temperature
-                //System.out.println("(3) oldtemp = " + oldtemp + " + temp = " + val);
-                if(oldtemp < val) { //Trop chaud
-                   for (Device i : devices) {
-                       if (i instanceof AirConditioning) { //Start la clim
-                           if (!i.isState() && i.isActivated())
-                               i.manage_device();
-                       }
-                       if (i instanceof Heating) { //Stop radia si allumer
-                           if (i.isState() && i.isActivated())
-                               i.manage_device();
-                       }
-                       if (i instanceof Windows) { //Start clim
-                           if (!i.isState() && i.isActivated())
-                               i.manage_device();
-                       }
-                   }
-               }
-               else { //Trop froid
-                   for (Device i : devices) {
-                       if (i instanceof Heating) {
-                           if (!i.isState() && i.isActivated())
-                               i.manage_device(); //Start le radiateur
-                       }
-                       if (i instanceof AirConditioning) { //Stop la clim
-                           if (i.isState() && i.isActivated())
-                               i.manage_device();
-                       }
-                       if (i instanceof Windows) {
-                           if (i.isState() && i.isActivated())
-                               i.manage_device();
-                       }
-                   }
-               }
+            case Constants.TEMP:
+                behaviorStrategy.setBehavior(new TemperatureStrategy());
+                oldVal = this.oldtemp;
                 break;
             case Constants.HUM:
-                if(oldhum < val){ //Trop humide
-                    for (Device i : devices) {
-                        if (i instanceof Ventilation) {
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
-                else {
-                    for (Device i : devices) {
-                        if (i instanceof Ventilation) {
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
+                behaviorStrategy.setBehavior(new HumidityStrategy());
+                oldVal = this.oldhum;
                 break;
             case Constants.LIGHT:
-                if(oldlight < val){ //Trop lumineux
-                    for (Device i : devices) {
-                        if (i instanceof Light) { //On ferme les lampe
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                        if (i instanceof ShutterWindow) {
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
-                else {
-                    for (Device i : devices) {
-                        if (i instanceof Light) { //On ferme les lampe
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                        if (i instanceof ShutterWindow) {
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
+                behaviorStrategy.setBehavior(new LightStrategy());
+                oldVal = this.oldlight;
                 break;
             case Constants.WIND:
-                if(oldwind < val){ //Trop de vent
-                    for (Device i : devices) {
-                        if (i instanceof Windows) { //On
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                        if (i instanceof Ventilation) { //on
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
-                else { //Pas assez de vent
-                    for (Device i : devices) {
-                        if (i instanceof Windows) { //On
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                        if (i instanceof Ventilation) { //off
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
+                behaviorStrategy .setBehavior(new WindStrategy());
+                oldVal = this.oldwind;
                 break;
             case Constants.POLLUTION:
-                if(oldpollution < val){ //Trop pollution
-                    for (Device i : devices) {
-                        if (i instanceof Windows) {
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
-                else {
-                    for (Device i : devices) {
-                        if (i instanceof Windows) {
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
+                behaviorStrategy.setBehavior(new PollutionStrategy());
+                oldVal = this.oldpollution;
                 break;
             case Constants.DBEL:
-                if(dbel < val){
-                    for (Device i : devices) {
-                        if (i instanceof Hifi) {
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                        if (i instanceof Windows) {
-                            if (i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
-                else {
-                    for (Device i : devices) {
-                        if (i instanceof Hifi) {
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                        if (i instanceof Windows) {
-                            if (!i.isState() && i.isActivated())
-                                i.manage_device();
-                        }
-                    }
-                }
+                behaviorStrategy.setBehavior(new SoundStrategy());
+                oldVal = this.olddbel;
                 break;
             case Constants.MOVEMENT:
-                if(oldmovement != val){
-                    for (Device i : devices){
-                        if (i instanceof Light && i.isActivated()){
-                            i.manage_device();
-                        }
-                        if (i instanceof Tv && i.isActivated()){
-                            i.manage_device();
-                        }
-                    }
-                }
-                else{
-                    for (Device i : devices){
-                        if (i instanceof Light && i.isActivated()){
-                            i.manage_device();
-                        }
-                        if (i instanceof Tv && i.isActivated()){
-                            i.manage_device();
-                        }
-                    }
-                }
+                behaviorStrategy.setBehavior(new MovementStrategy());
+                oldVal = this.oldmovement;
+                break;
         }
+        behaviorStrategy.manage(val, oldVal, devices);
     }
 
     @Override
@@ -443,6 +305,7 @@ public class Room {
     }
 
     public void setPollution(double pollution) {
+        this.oldpollution = this.pollution;
         this.pollution = pollution;
         for(Sensor s : sensors){
             if(s instanceof PollutionSensor){
@@ -457,6 +320,7 @@ public class Room {
     }
 
     public void setDbel(double dbel) {
+        this.olddbel = this.dbel;
         this.dbel = dbel;
         for(Sensor s : sensors){
             if(s instanceof SoundSensor){
