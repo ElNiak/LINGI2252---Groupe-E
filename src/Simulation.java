@@ -110,7 +110,11 @@ public class Simulation {
         System.out.println("    - light(x) POS:STAGE");
         System.out.println("    - wind(x) POS:STAGE");
         System.out.println("    - db(x) POS:STAGE");
-        System.out.println("    - move(x) POS:STAGE(x = 1.0 || 0.0)");
+        System.out.println("    - move(x) POS:STAGE (x = 1.0 || 0.0)");
+        System.out.println("    - activationD(x) POS:STAGE (x = pos of device)");
+        System.out.println("    - activationS(x) POS:STAGE (x = pos of sensor)");
+        System.out.println("    - desactivationD(x) POS:STAGE (x = pos of device)");
+        System.out.println("    - desactivationS(x) POS:STAGE (x = pos of sensor)");
         System.out.println("    - EXIT\n");
         try {
             // retourne true s’il y a un autre élément dans l’entrée
@@ -137,6 +141,14 @@ public class Simulation {
                         ground_floor.get(i).setDbel(ground_floor.get(i).getDbel() + add);
                     } else if (res.contains("move")) {
                         ground_floor.get(i).setMovement(add);
+                    } else if (res.contains("desactivationD")) {
+                        ground_floor.get(i).desactivationD(add);
+                    } else if (res.contains("desactivationS")) {
+                        ground_floor.get(i).desactivationS(add);
+                    } else if (res.contains("activationD")) {
+                        ground_floor.get(i).activationD(add);
+                    } else if (res.contains("activationS")) {
+                        ground_floor.get(i).activationS(add);
                     } else if (res.contains("EXIT")) {
                         scan.close();
                         return;
@@ -163,6 +175,14 @@ public class Simulation {
                         first_floor.get(i).setDbel(first_floor.get(i).getDbel() + add);
                     } else if (res.contains("move")) {
                         first_floor.get(i).setMovement(add);
+                    } else if (res.contains("desactivationD")) {
+                        ground_floor.get(i).desactivationD(add);
+                    } else if (res.contains("desactivationS")) {
+                        ground_floor.get(i).desactivationS(add);
+                    } else if (res.contains("activationD")) {
+                        ground_floor.get(i).activationD(add);
+                    } else if (res.contains("activationS")) {
+                        ground_floor.get(i).activationS(add);
                     } else if (res.contains("EXIT")) {
                         scan.close();
                         return;
