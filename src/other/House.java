@@ -21,7 +21,7 @@ public class House {
     private Room garden;
     private List<Environnement> environnements;
 
-    private House(String json){
+    public House(String json){
         environnements = new ArrayList<Environnement>();
         ground_floor = new ArrayList<Room>();
         first_floor = new ArrayList<Room>();
