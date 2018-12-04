@@ -205,7 +205,10 @@ public class Simulation {
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Retry with a valid command");
         }
-        retry(house, scan);
+        if(House.check_feature_model(house))
+            retry(house, scan);
+        else
+            System.out.println("Feature models not respected");
     }
 
     public static void retry(House house, Scanner scan){
