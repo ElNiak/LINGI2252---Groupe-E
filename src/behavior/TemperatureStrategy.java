@@ -1,4 +1,4 @@
-package Behavior;
+package behavior;
 
 import device.AirConditioning;
 import device.Device;

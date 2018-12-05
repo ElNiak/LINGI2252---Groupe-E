@@ -1,20 +1,15 @@
-package Behavior;
+package behavior;
 
 import device.Device;
-import device.Hifi;
 import device.Windows;
 
 import java.util.List;
 
-public class SoundStrategy implements IBehavior {
+public class PollutionStrategy implements IBehavior {
     @Override
     public void manage(double val, double oldVal, List<Device> devices) {
-        if(oldVal < val){
+        if(oldVal < val){ //Trop pollution
             for (Device i : devices) {
-                if (i instanceof Hifi) {
-                    if (i.isState() && i.isActivated())
-                        i.manage_device();
-                }
                 if (i instanceof Windows) {
                     if (i.isState() && i.isActivated())
                         i.manage_device();
@@ -23,10 +18,6 @@ public class SoundStrategy implements IBehavior {
         }
         else {
             for (Device i : devices) {
-                if (i instanceof Hifi) {
-                    if (!i.isState() && i.isActivated())
-                        i.manage_device();
-                }
                 if (i instanceof Windows) {
                     if (!i.isState() && i.isActivated())
                         i.manage_device();
@@ -34,4 +25,5 @@ public class SoundStrategy implements IBehavior {
             }
         }
     }
+
 }

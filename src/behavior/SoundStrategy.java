@@ -1,33 +1,33 @@
-package Behavior;
+package behavior;
 
 import device.Device;
-import device.Ventilation;
+import device.Hifi;
 import device.Windows;
 
 import java.util.List;
 
-public class WindStrategy implements IBehavior {
+public class SoundStrategy implements IBehavior {
     @Override
     public void manage(double val, double oldVal, List<Device> devices) {
-        if(oldVal < val){ //Trop de vent
+        if(oldVal < val){
             for (Device i : devices) {
-                if (i instanceof Windows) { //On
+                if (i instanceof Hifi) {
                     if (i.isState() && i.isActivated())
                         i.manage_device();
                 }
-                if (i instanceof Ventilation) { //on
+                if (i instanceof Windows) {
                     if (i.isState() && i.isActivated())
                         i.manage_device();
                 }
             }
         }
-        else { //Pas assez de vent
+        else {
             for (Device i : devices) {
-                if (i instanceof Windows) { //On
+                if (i instanceof Hifi) {
                     if (!i.isState() && i.isActivated())
                         i.manage_device();
                 }
-                if (i instanceof Ventilation) { //off
+                if (i instanceof Windows) {
                     if (!i.isState() && i.isActivated())
                         i.manage_device();
                 }
