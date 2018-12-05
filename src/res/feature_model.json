@@ -1,0 +1,116 @@
+{
+  "house_automation":
+  {
+    "value": false,
+    "software":
+    {
+      "value": false,
+      "management_heating":
+      {
+        "value": false,
+        "constraint": ["temperature"]
+      },
+      "management_air_conditioning":
+      {
+        "value": false,
+        "constraint": ["temperature"]
+      },
+      "management_light":
+      {
+        "value": false,
+        "constraint": ["light"]
+      },
+      "management_humidity":
+      {
+        "value": false,
+        "constraint": ["humidity"]
+      },
+      "management_windows":
+      {
+        "value": false,
+        "constraint": ["humidity", "pollution", "sonore", "temperature", "wind"]
+      },
+      "management_hifi":
+      {
+        "value": false,
+        "constraint": ["movement", "camera"]
+      },
+      "management_tv":
+      {
+        "value": false,
+        "constraint": ["movement", "camera"]
+      },
+      "management_ventilation":
+      {
+        "value": false,
+        "constraint": ["pollution", "humidity"]
+      },
+      "management_shutter_window":
+      {
+        "value": false,
+        "constraint": ["management_windows"]
+      }
+    },
+    "sensors":
+    {
+      "value": false,
+      "humidity": false,
+      "light": false,
+      "temperature": false,
+      "pollution": false,
+      "wind": false,
+      "sonore": false,
+      "movement": false,
+      "camera": false
+    },
+    "rooms":
+    {
+      "value": false,
+      "garden":
+      {
+        "mandatory": false,
+        "value": false
+      },
+      "kitchen":
+      {
+        "mandatory": true,
+        "value": false
+      },
+      "living_room":
+      {
+        "mandatory": true,
+        "value": false
+      },
+      "bedroom":
+      {
+        "mandatory": true,
+        "value": false
+      },
+      "bathroom":
+      {
+        "mandatory": true,
+        "value": false
+      },
+      "laundry_room":
+      {
+        "mandatory": false,
+        "value": true
+      },
+      "entry":
+      {
+        "mandatory": false,
+        "value": false
+      },
+      "dinning_room":
+      {
+        "mandatory": false,
+        "value": false
+      },
+      "game_room":
+      {
+        "mandatory": false,
+        "value": false
+      }
+    }
+  }
+}
