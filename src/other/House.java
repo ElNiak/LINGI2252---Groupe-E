@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class House {
-    private static House instance = new House(System.getProperty("user.dir") + "/src/res/p1.json");
+    private static House instance = new House(System.getProperty("user.dir") + "/src/res/configuration.json");
     private List<Room> ground_floor;
     private List<Room> first_floor;
     private Room garden;

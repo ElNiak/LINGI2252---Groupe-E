@@ -1,10 +1,9 @@
 package other;
 
-import Behavior.*;
+import behavior.*;
 import device.*;
 import sensor.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Room {

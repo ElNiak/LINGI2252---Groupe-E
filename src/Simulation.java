@@ -16,11 +16,8 @@ public class Simulation {
         System.out.println("\n ============ SCENARIO 3 ============ \n");
         scenario3();
         System.out.println("\n ============  CONSOLE   ============ \n");
-        Scanner scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
-        if(Parametrisation.check_feature_model(House.getInstance()))
-            console(House.getInstance(),scan);
-        else
-            System.out.println("Error in feature model");
+        Parametrisation parametrisation = new SpecificParametrisation(new Scanner(System.in));
+        parametrisation.console();
 
     }
 
@@ -102,134 +99,5 @@ public class Simulation {
         System.out.println("\nThen he go to his bedroom in order to dress up.");
         first_floor.get(0).setMovement(1.0);
         first_floor.get(0).setTemp(first_floor.get(0).getTemp() - 10);
-    }
-
-    public static void console(House house, Scanner scan) {
-        List<Room> first_floor = house.getFirst_floor();
-        List<Room> ground_floor = house.getGround_floor();
-        System.out.println("\n=> What do you want to do ? (x = value (double, not integer), POS = index of the room in the json, STAGE = 1 || 2)");
-        System.out.println("    - temp(x) POS:STAGE");
-        System.out.println("    - hum(x) POS:STAGE");
-        System.out.println("    - light(x) POS:STAGE");
-        System.out.println("    - wind(x) POS:STAGE");
-        System.out.println("    - db(x) POS:STAGE");
-        System.out.println("    - move(x) POS:STAGE (x = 1.0 || 0.0)");
-        System.out.println("    - activationD(x) POS:STAGE (x = pos of device)");
-        System.out.println("    - activationS(x) POS:STAGE (x = pos of sensor)");
-        System.out.println("    - desactivationD(x) POS:STAGE (x = pos of device)");
-        System.out.println("    - desactivationS(x) POS:STAGE (x = pos of sensor)");
-        System.out.println("    - EXIT\n");
-        try {
-            // retourne true s’il y a un autre élément dans l’entrée
-            if(scan.hasNext()){
-                String res = scan.nextLine(); //retourne la prochaine ligne complète
-                System.out.println(res);
-                int i = Integer.parseInt(res.substring(res.indexOf(")") + 2, res.indexOf(":")));
-                double add = Double.parseDouble(res.substring(res.indexOf("(") + 1, res.indexOf(")")));
-                int stage = Integer.parseInt(res.substring(res.indexOf(":") + 1,res.length()));
-
-                if (stage == 1) {
-                    System.out.println("\n- Before :");
-                    System.out.println("Environnement = " +ground_floor.get(i).getEnvironnement().toString() + "\n");
-
-                    if (res.contains("temp")) {
-                        ground_floor.get(i).setTemp(ground_floor.get(i).getTemp() + add);
-                    } else if (res.contains("hum")) {
-                        ground_floor.get(i).setHum(ground_floor.get(i).getHum() + add);
-                    } else if (res.contains("light")) {
-                        ground_floor.get(i).setLight(ground_floor.get(i).getLight() + add);
-                    } else if (res.contains("wind")) {
-                        ground_floor.get(i).setWind(ground_floor.get(i).getWind() + add);
-                    } else if (res.contains("db")) {
-                        ground_floor.get(i).setDbel(ground_floor.get(i).getDbel() + add);
-                    } else if (res.contains("move")) {
-                        ground_floor.get(i).setMovement(add);
-                    } else if (res.contains("desactivationD")) {
-                        ground_floor.get(i).desactivationD(add);
-                    } else if (res.contains("desactivationS")) {
-                        ground_floor.get(i).desactivationS(add);
-                    } else if (res.contains("activationD")) {
-                        ground_floor.get(i).activationD(add);
-                    } else if (res.contains("activationS")) {
-                        ground_floor.get(i).activationS(add);
-                    } else if (res.contains("EXIT")) {
-                        scan.close();
-                        return;
-                    } else {
-                        System.out.println("Error, retry please.\n");
-                    }
-
-                    System.out.println("\n- After :");
-                    System.out.println("Environnement = " +ground_floor.get(i).getEnvironnement().toString() + "\n");
-                }
-                else if (stage == 2){
-                    System.out.println("\n- Before :");
-                    System.out.println("Environnement = " +first_floor.get(i).getEnvironnement().toString() + "\n");
-
-                    if (res.contains("temp")) {
-                        first_floor.get(i).setTemp(first_floor.get(i).getTemp() + add);
-                    } else if (res.contains("hum")) {
-                        first_floor.get(i).setHum(first_floor.get(i).getHum() + add);
-                    } else if (res.contains("light")) {
-                        first_floor.get(i).setLight(first_floor.get(i).getLight() + add);
-                    } else if (res.contains("wind")) {
-                        first_floor.get(i).setWind(first_floor.get(i).getWind() + add);
-                    } else if (res.contains("db")) {
-                        first_floor.get(i).setDbel(first_floor.get(i).getDbel() + add);
-                    } else if (res.contains("move")) {
-                        first_floor.get(i).setMovement(add);
-                    } else if (res.contains("desactivationD")) {
-                        ground_floor.get(i).desactivationD(add);
-                    } else if (res.contains("desactivationS")) {
-                        ground_floor.get(i).desactivationS(add);
-                    } else if (res.contains("activationD")) {
-                        ground_floor.get(i).activationD(add);
-                    } else if (res.contains("activationS")) {
-                        ground_floor.get(i).activationS(add);
-                    } else if (res.contains("EXIT")) {
-                        scan.close();
-                        return;
-                    } else {
-                        System.out.println("Error, retry please.");
-                    }
-
-                    System.out.println("\n- After :");
-                    System.out.println("Environnement = " +first_floor.get(i).getEnvironnement().toString() + "\n");
-                    }
-                else {
-                    System.out.println("Invalid number of stage");
-                }
-            }
-
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.out.println("Retry with a valid number");
-        } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("Retry with a valid command");
-        }
-        if(Parametrisation.check_feature_model(house))
-            retry(house, scan);
-        else
-            System.out.println("Feature models not respected");
-    }
-
-    public static void retry(House house, Scanner scan){
-
-        System.out.println("\n Would you like to modify anything else ? (Y/N)\n");
-        //scan = new Scanner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
-        try {
-            if(scan.hasNext()){
-                String res = scan.nextLine(); //retourne la prochaine ligne complète
-                if(res.equals("Y")){
-                    console(house, scan);
-                }
-                else {
-                    scan.close();
-                }
-            }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
     }
 }
