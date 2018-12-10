@@ -1,6 +1,8 @@
 package interpreter.constraint;
 
-public class SensorExpression implements Expression_constraint {
+import java.util.List;
+
+public class SensorExpression extends Expression_constraint {
     private boolean inter;
     private String data;
 
@@ -10,7 +12,26 @@ public class SensorExpression implements Expression_constraint {
     }
 
     @Override
-    public void interpret(String context) {
-
+    public boolean interpret(String context) {
+        switch (context) {
+            case "humidity" :
+                return true;
+            case "light" :
+                return true;
+            case "temperature" :
+                return true;
+            case "pollution" :
+                return true;
+            case "wind" :
+                return true;
+            case "sonore" :
+                return true;
+            case "movement" :
+                return true;
+            case "camera" :
+                return true;
+            default:
+                return true;
+        }
     }
 }

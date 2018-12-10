@@ -1,5 +1,12 @@
 package interpreter.constraint;
 
-public interface Expression_constraint {
-    public void interpret(String context);
+import java.util.List;
+
+public abstract class Expression_constraint {
+    protected boolean inter = false;
+    protected String data = null;
+
+    public boolean interpret(String context){
+        return true;
+    }
 }
