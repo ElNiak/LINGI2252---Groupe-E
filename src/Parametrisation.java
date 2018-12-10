@@ -1,10 +1,7 @@
-import interpreter.Expression_console;
-import interpreter.InterpreterConsole;
+import interpreter.console.InterpreterConsole;
 import other.House;
-import other.Room;
 import sensor.*;
 
-import java.util.List;
 import java.util.Scanner;
 
 public abstract class Parametrisation {

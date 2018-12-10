@@ -1,4 +1,4 @@
-package interpreter;
+package interpreter.console;
 
 import other.House;
 import other.Room;

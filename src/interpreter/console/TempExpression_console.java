@@ -1,18 +1,19 @@
-package interpreter;
+package interpreter.console;
 
 import other.House;
 import other.Room;
 
 import java.util.List;
 
-public class ActivationDeviceExpression_console implements Expression_console {
+public class TempExpression_console implements Expression_console{
+
     private String str;
     int i;
     double add;
     int stage;
     List<Room> rooms;
 
-    public ActivationDeviceExpression_console(String str, House house){
+    public TempExpression_console(String str, House house){
         this.str = str;
         i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
         add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
@@ -26,8 +27,7 @@ public class ActivationDeviceExpression_console implements Expression_console {
     @Override
     public void interpret() {
         System.out.println("\n" + "Before : Environnement = " +rooms.get(i).getEnvironnement().toString());
-        rooms.get(i).activationD(add);
+        rooms.get(i).setTemp(rooms.get(i).getTemp() + add);
         System.out.println("After : Environnement = " +rooms.get(i).getEnvironnement().toString() + "\n");
-
     }
 }
