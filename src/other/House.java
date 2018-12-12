@@ -1,6 +1,7 @@
 package other;
 
 import device.*;
+import interpreter.constraint.JSONConstraint;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,10 +19,14 @@ public class House {
     private static House instance = new House(System.getProperty("user.dir") + "/src/res/configuration.json");
     private List<Room> ground_floor;
     private List<Room> first_floor;
+    private List<Sensor> sensors_l;
+    private List<Device> devices_l;
     private Room garden;
     private List<Environnement> environnements;
 
     public House(String json){
+        sensors_l = new ArrayList<Sensor>();
+        devices_l  = new ArrayList<Device>();
         environnements = new ArrayList<Environnement>();
         ground_floor = new ArrayList<Room>();
         first_floor = new ArrayList<Room>();
@@ -29,7 +34,14 @@ public class House {
     }
 
     public static House getInstance(){
-        return instance;
+        JSONConstraint constraint = new JSONConstraint();
+        if(constraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",instance))
+            return instance;
+        else {
+            System.out.println("Error : feature model not respected");
+            System.exit(-1);
+            return null;
+        }
     }
 
 
@@ -79,6 +91,154 @@ public class House {
         }
     }
 
+    public boolean containS(String sensor){
+        switch (sensor) {
+            case "humidity" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof HumiditySensor)
+                        return true;
+                }
+                return false;
+            case "light" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof LightSensor)
+                        return true;
+                }
+                return false;
+            case "temperature" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof TemperatureSensor)
+                        return true;
+                }
+                return false;
+            case "pollution" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof PollutionSensor)
+                        return true;
+                }
+                return false;
+            case "wind" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof WindSensor)
+                        return true;
+                }
+                return false;
+            case "sonore" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof SoundSensor)
+                        return true;
+                }
+                return false;
+            case "movement" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof MovementSensor)
+                        return true;
+                }
+                return false;
+            case "camera" :
+                for (Sensor s:sensors_l) {
+                    if(s instanceof Camera)
+                        return true;
+                }
+                return false;
+            default:
+                return false;
+        }
+    }
+
+
+    public boolean containR(String room, boolean mandatory){
+        if(mandatory){
+            switch (room) {
+                case "garden" :
+                    return garden == null;
+                case "kitchen" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("Kitchen"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("Kitchen"))
+                            return true;
+                    }
+                    return false;
+                case "living_room" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("LivingRoom"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("LivingRoom"))
+                            return true;
+                    }
+                    return false;
+                case "bedroom" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("BedRoom"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("BedRoom"))
+                            return true;
+                    }
+                    return false;
+                case "bathroom" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("BathRoom"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("BathRoom"))
+                            return true;
+                    }
+                    return false;
+                case "laundry_room" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("LaundryRoom"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("LaundryRoom"))
+                            return true;
+                    }
+                    return false;
+                case "entry" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("Entry"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("Entry"))
+                            return true;
+                    }
+                    return false;
+                case "dinning_room" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("DinningRoom"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("DinningRoom"))
+                            return true;
+                    }
+                    return false;
+                case "game_room" :
+                    for (Room rooms : first_floor) {
+                        if (rooms.getName().equals("GameRoom"))
+                            return true;
+                    }
+                    for (Room rooms : ground_floor) {
+                        if (rooms.getName().equals("GameRoom"))
+                            return true;
+                    }
+                    return false;
+                default:
+                    return true;
+            }
+        }
+       return true;
+    }
+
     private void decode_rooms(JSONArray rooms, String floor){
         for(int i = 0; i<rooms.size(); i++){
             Environnement env = new Environnement();
@@ -105,6 +265,7 @@ public class House {
     private void decode_sensors(JSONArray sensors, List<Sensor> ls, Room room){
         for(int i = 0; i<sensors.size(); i++){
             JSONObject sensor = (JSONObject) sensors.get(i);
+            sensors_l.add(create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
             ls.add(create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
         }
     }
@@ -133,6 +294,7 @@ public class House {
     private void decode_devices(JSONArray devices, List<Device> ld, Room room){
         for(int i = 0; i<devices.size(); i++){
             JSONObject device = (JSONObject) devices.get(i);
+            devices_l.add(create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
             ld.add(create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
         }
     }

@@ -9,8 +9,7 @@ public class AndExpression extends Expression_constraint {
         this.constraint = constraint;
     }
 
-    @Override
-    public boolean interpret(String context) {
+    public boolean interpret() {
         return calculus(constraint);
     }
 

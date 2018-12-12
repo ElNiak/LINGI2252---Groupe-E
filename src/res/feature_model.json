@@ -1,10 +1,10 @@
 {
   "house_automation":
   {
-    "value": false,
+    "value": true,
     "software":
     {
-      "value": false,
+      "value": true,
       "management_heating":
       {
         "value": false,
@@ -53,7 +53,7 @@
     },
     "sensors":
     {
-      "value": false,
+      "value": true,
       "humidity": false,
       "light": false,
       "temperature": false,

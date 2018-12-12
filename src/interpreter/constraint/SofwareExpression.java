@@ -1,5 +1,10 @@
 package interpreter.constraint;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import other.House;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SofwareExpression extends Expression_constraint {
@@ -12,39 +17,127 @@ public class SofwareExpression extends Expression_constraint {
     }
 
     @Override
-    public boolean interpret(String context) {
+    public boolean interpret(String context, JSONObject jsonObject, House house) {
         switch (context) {
             case "management_heating" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_heating");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_air_conditioning" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_air_conditioning");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_light" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_light");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_humidity" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_humidity");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_windows" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_windows");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_hifi" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_hifi");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_tv" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_tv");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_ventilation" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_ventilation");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             case "management_shutter_window" :
-                return interpret_interpret(context);
+                if((boolean) jsonObject.get("value")){
+                    JSONObject object = (JSONObject) jsonObject.get("management_shutter_window");
+                    if((boolean) object.get("value")) {
+                        JSONArray array = (JSONArray) jsonObject.get("constraint");
+                        List<String> res = new ArrayList<>();
+                        for(int i = 0; i < array.size(); i++){
+                            res.add((String) array.get(i));
+                        }
+                        return JSONConstraint.decode_constaint(res,jsonObject,house);
+                    }
+                }
+                return true;
             default:
                 return true;
-        }
-    }
-
-    public boolean interpret_interpret(String context){
-        switch (context) {
-            case "constraint" :
-                return true;
-            case "value" :
-                return true;
-            default:
-                return false;
         }
     }
 }

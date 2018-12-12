@@ -9,7 +9,6 @@ public class OrExpression extends Expression_constraint {
         this.constraint = constraint;
     }
 
-    @Override
     public boolean interpret(String context) {
         return calculus(constraint);
     }

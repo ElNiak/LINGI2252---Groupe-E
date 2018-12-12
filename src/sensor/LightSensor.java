@@ -10,6 +10,7 @@ public class LightSensor extends Sensor {
         this.curr = 0.0;
         this.prev = 0.0;
     }
+
     @Override
     public void detect() {
         this.curr = room.getLight();
