@@ -1,14 +1,14 @@
 {
   "house_automation":
   {
-    "value": true,
+    "value": false, //mettre à true quand software, rooms et sensors sont à true
     "software":
     {
-      "value": true,
+      "value": false, //mettre à true quand au moins un management est true
       "management_heating":
       {
-        "value": false,
-        "constraint": ["temperature"]
+        "value": false, //mettre à true quand présent
+        "constraint": ["temperature"] //vérifier la constrainte, si pas présent envoyer une erreur. Du coup il faut d'abord parcourir les sensors
       },
       "management_air_conditioning":
       {
@@ -53,8 +53,8 @@
     },
     "sensors":
     {
-      "value": true,
-      "humidity": false,
+      "value": false, //mettre à true quand au moins un sensor est à true
+      "humidity": false, //mettre à true quand présent
       "light": false,
       "temperature": false,
       "pollution": false,
@@ -65,11 +65,11 @@
     },
     "rooms":
     {
-      "value": false,
+      "value": false, //mettre à true quand toutes les rooms mandatory sont true
       "garden":
       {
-        "mandatory": false,
-        "value": false
+        "mandatory": false, //ne pas modifier les mandatory
+        "value": false //mettre à true quand présent
       },
       "kitchen":
       {
