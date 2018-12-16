@@ -53,8 +53,6 @@ public abstract class Parametrisation {
             Object o1 = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + "/src/res/feature_model.json"));
             JSONObject j = (JSONObject) o1;
             JSONObject jo = (JSONObject) j.get("house_automation");
-
-
             if((boolean) jo.get("value")) {
                 retry();
             } else {

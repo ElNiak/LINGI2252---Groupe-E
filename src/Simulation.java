@@ -87,11 +87,11 @@ public class Simulation {
             first_floor.get(1).setHum(first_floor.get(1).getHum() + 10);
             first_floor.get(1).setMovement(1.0);
 
-            System.out.println("\nWhen he finished he leaves the room and the light switch off");
+            System.out.println("\nWhen he finished he leaves the room and the light switch off\n");
             first_floor.get(1).setMovement(0.0);
             //first_floor.get(1).setTemp(first_floor.get(1).getTemp() + 10);
 
-            System.out.println("\nThen he go to his bedroom in order to dress up.");
+            System.out.println("\nThen he go to his bedroom in order to dress up.\n");
             first_floor.get(0).setMovement(1.0);
             first_floor.get(0).setTemp(first_floor.get(0).getTemp() - 10);
         }

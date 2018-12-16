@@ -1,6 +1,5 @@
 package other;
 
-import com.sun.org.apache.bcel.internal.generic.JsrInstruction;
 import device.*;
 import interpreter.constraint.JSONConstraint;
 import org.json.simple.JSONArray;
