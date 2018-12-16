@@ -27,18 +27,29 @@ public class JSONConstraint {
             if(res1){
                 rooms.put("value",true);
             }
+            else {
+                rooms.put("value",false);
+            }
             boolean res2 = decode_sensors(sensor,house);
             if(res2){
                 sensor.put("value",true);
             }
-
+            else {
+                sensor.put("value",false);
+            }
             boolean res3 = decode_soft(soft,house);
             if(res3){
-                sensor.put("value",true);
+                soft.put("value",true);
+            }
+            else {
+                soft.put("value",false);
             }
 
             if(res1 && res2 && res3){
                 jo.put("value",true);
+            }
+            else {
+                jo.put("value",false);
             }
 
             try (FileWriter file = new FileWriter(System.getProperty("user.dir") + "/src/res/feature_model.json"))
