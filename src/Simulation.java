@@ -57,22 +57,12 @@ public class Simulation {
 
         first_floor.get(0).setLight(first_floor.get(0).getLight() + 10);
 
-        //list.get(1).manage_device();//Start devices for the 1st time
-        //list.get(3).manage_device();
-
-
-        //first_floor.get(0).getSensors().get(3).detect();
-
         System.out.println("\n\"Because sun shine all the light sensors of the house detects that\n" +
                 "lamps should not be switched on. Later that day, Jean decides to open the window of the kitchen to enjoy\n" +
                 "this beautiful day when he prepare the dinner. But the heating sensor detects that the temperature of the\n" +
                 "kitchen become too high because of his dinner preparation and the exterior temperature that enter by the\n" +
                 "window. The pollution sensor also detects a too high level of fine particle outdoors. So the window closes and\n" +
                 "the air conditioning lights up\"\n");
-
-
-       // ground_floor.get(2).getDevices().get(2).manage_device(); //hardcode pour dire que c'etait deja ouvert
-
 
         System.out.println("\n****** " + ground_floor.get(2).getName() + " ******\n");
 

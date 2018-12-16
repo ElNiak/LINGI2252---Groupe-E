@@ -8,5 +8,4 @@ public class Constants {
     public static final String POLLUTION = "pollution";
     public static final String DBEL = "dbel";
     public static final String MOVEMENT = "movement";
-
 }

@@ -31,7 +31,7 @@ public class JSONConstraint {
         }
     }
 
-    public boolean decode_soft(JSONObject json, House house){
+    private boolean decode_soft(JSONObject json, House house){
         if((boolean) json.get("value")){
             Expression_constraint constraint = new SofwareExpression(true,"cool");
             boolean management_heating = constraint.interpret("management_heating", json,house);
@@ -56,7 +56,7 @@ public class JSONConstraint {
         return res;
     }
 
-    public boolean decode_sensors(JSONObject json, House house){
+    private boolean decode_sensors(JSONObject json, House house){
         Expression_constraint constraint = new SensorExpression(true,"cool");
         boolean value = constraint.interpret("value", json,house);
         boolean humidity = constraint.interpret("humidity", json,house);
@@ -70,7 +70,7 @@ public class JSONConstraint {
         return value && humidity && light && temperature && pollution && wind && sonore && movement && camera;
     }
 
-    public boolean decode_rooms(JSONObject json, House house){
+    private boolean decode_rooms(JSONObject json, House house){
         if((boolean) json.get("value")){
             Expression_constraint constraint = new RoomExpression(true,"cool");
             boolean garden = constraint.interpret("garden", json,house);
