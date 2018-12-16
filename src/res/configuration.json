@@ -20,6 +20,13 @@
               "activated":"true"
             },
             {
+              "name": "WindSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300",
+              "activated":"true"
+            },
+            {
               "name": "LightSensor",
               "x": "350",
               "y": "700",
@@ -188,6 +195,13 @@
           "sensors":[
             {
               "name": "TemperatureSensor",
+              "x": "350",
+              "y": "700",
+              "z": "300",
+              "activated":"true"
+            },
+            {
+              "name": "WindSensor",
               "x": "350",
               "y": "700",
               "z": "300",
@@ -652,6 +666,13 @@
             },
             {
               "name": "HumiditySensor",
+              "x": "350",
+              "y": "700",
+              "z": "300",
+              "activated":"true"
+            },
+            {
+              "name": "WindSensor",
               "x": "350",
               "y": "700",
               "z": "300",

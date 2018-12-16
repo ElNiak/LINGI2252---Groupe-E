@@ -8,8 +8,6 @@ import sensor.Sensor;
 import java.util.List;
 
 public class SensorExpression extends Expression_constraint {
-    private boolean inter;
-    private String data;
 
     public SensorExpression(){
 

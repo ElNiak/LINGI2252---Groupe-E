@@ -134,7 +134,7 @@ public class House {
             case "wind" :
                 for (Sensor s:sensors_l) {
                     if(s instanceof WindSensor)
-                        return true;
+                    return true;
                 }
                 return false;
             case "sonore" :
@@ -297,6 +297,8 @@ public class House {
                 return new HumiditySensor(x, y, z, room,activated);
             case "SoundSensor":
                 return new SoundSensor(x, y, z, room,activated);
+            case "WindSensor":
+                return new WindSensor(x, y, z, room,activated);
             default:
                 return new LightSensor(x, y, z, room,activated);
         }
