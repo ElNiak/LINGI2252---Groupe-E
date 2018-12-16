@@ -35,13 +35,27 @@ public class House {
 
     public static House getInstance(){
         JSONConstraint constraint = new JSONConstraint();
-        if(constraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",instance))
-            return instance;
-        else {
-            System.out.println("Error : feature model not respected");
-            System.exit(-1);
-            return null;
+        constraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",instance);
+        try{
+            Object o1 = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + "/src/res/feature_model.json"));
+            JSONObject j = (JSONObject) o1;
+            JSONObject jo = (JSONObject) j.get("house_automation");
+            JSONObject sensor = (JSONObject) jo.get("sensors");
+            JSONObject rooms = (JSONObject) jo.get("rooms");
+            JSONObject soft = (JSONObject) jo.get("software");
+
+            if((boolean) jo.get("value")) {
+                return instance;
+            } else {
+                System.out.println("Error : feature model not respected");
+                System.exit(-1);
+                return null;
+            }
         }
+        catch(IOException | ParseException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -147,8 +161,7 @@ public class House {
     }
 
 
-    public boolean containR(String room, boolean mandatory){
-        if(mandatory){
+    public boolean containR(String room){
             switch (room) {
                 case "garden" :
                     return garden == null;
@@ -235,8 +248,6 @@ public class House {
                 default:
                     return true;
             }
-        }
-       return true;
     }
 
     private void decode_rooms(JSONArray rooms, String floor){
