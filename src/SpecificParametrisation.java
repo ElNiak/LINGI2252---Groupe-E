@@ -10,11 +10,6 @@ public class SpecificParametrisation extends Parametrisation{
     }
 
     public House create_house(String json){
-        if(check_feature_model())
-            return House.getInstance();
-        else {
-            System.out.println("Feature model not respected");
-            return null;
-        }
+        return House.getInstance();
     }
 }

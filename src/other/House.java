@@ -1,5 +1,6 @@
 package other;
 
+import com.sun.org.apache.bcel.internal.generic.JsrInstruction;
 import device.*;
 import interpreter.constraint.JSONConstraint;
 import org.json.simple.JSONArray;
@@ -34,15 +35,11 @@ public class House {
     }
 
     public static House getInstance(){
-        JSONConstraint constraint = new JSONConstraint();
-        constraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",instance);
+        JSONConstraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",instance);
         try{
             Object o1 = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + "/src/res/feature_model.json"));
             JSONObject j = (JSONObject) o1;
             JSONObject jo = (JSONObject) j.get("house_automation");
-            JSONObject sensor = (JSONObject) jo.get("sensors");
-            JSONObject rooms = (JSONObject) jo.get("rooms");
-            JSONObject soft = (JSONObject) jo.get("software");
 
             if((boolean) jo.get("value")) {
                 return instance;

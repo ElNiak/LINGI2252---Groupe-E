@@ -1,7 +1,13 @@
 import interpreter.console.InterpreterConsole;
+import interpreter.constraint.JSONConstraint;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import other.House;
 import sensor.*;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Parametrisation {
@@ -15,66 +21,6 @@ public abstract class Parametrisation {
         this.scanner = scanner;
         interpreterConsole = new InterpreterConsole(house);
     }
-
-
-    public boolean check_feature_model(){
-        return check_feature_model(house);
-    }
-
-    public boolean check_feature_model(House house){
-        if(house.getGround_floor() == null)
-            return false;
-        if(house.getFirst_floor() == null)
-            return false;
-
-        boolean kitchen=false, living=false, bed=false, bath=false, temp=false, light=false, mvt=false, camera=false;
-        for(int i = 0; i < house.getGround_floor().size(); i++){
-            if(house.getGround_floor().get(i).getName().equals("Kitchen"))
-                kitchen = true;
-            if(house.getGround_floor().get(i).getName().equals("LivingRoom"))
-                living = true;
-            if(house.getGround_floor().get(i).getName().equals("BedRoom"))
-                bed = true;
-            if(house.getGround_floor().get(i).getName().equals("BathRoom"))
-                bath = true;
-
-            for(Sensor s:house.getGround_floor().get(i).getSensors()) {
-                if(s instanceof TemperatureSensor && s.isActivated())
-                    temp = true;
-                if(s instanceof LightSensor && s.isActivated())
-                    light = true;
-                if(s instanceof Camera && s.isActivated())
-                    camera = true;
-                if(s instanceof MovementSensor && s.isActivated())
-                    mvt = true;
-            }
-
-        }
-
-        for(int i = 0; i < house.getFirst_floor().size(); i++){
-            if(house.getFirst_floor().get(i).getName().equals("Kitchen"))
-                kitchen = true;
-            if(house.getFirst_floor().get(i).getName().equals("LivingRoom"))
-                living = true;
-            if(house.getFirst_floor().get(i).getName().equals("BedRoom"))
-                bed = true;
-            if(house.getFirst_floor().get(i).getName().equals("BathRoom"))
-                bath = true;
-
-            for(Sensor s:house.getFirst_floor().get(i).getSensors()) {
-                if(s instanceof TemperatureSensor && s.isActivated())
-                    temp = true;
-                if(s instanceof LightSensor && s.isActivated())
-                    light = true;
-                if(s instanceof Camera && s.isActivated())
-                    camera = true;
-                if(s instanceof MovementSensor && s.isActivated())
-                    mvt = true;
-            }
-        }
-        return kitchen && light && living && bed && bath && temp && mvt && camera;
-    }
-
 
     public  void console() {
         System.out.println("\n=> What do you want to do ? (x = value, POS = index of the room in the json, STAGE = 1 || 2)");
@@ -102,10 +48,23 @@ public abstract class Parametrisation {
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Retry with a valid command");
         }
-        if(check_feature_model(house))
-            retry();
-        else
-            System.out.println("Feature models not respected");
+        JSONConstraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",house);
+        try{
+            Object o1 = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + "/src/res/feature_model.json"));
+            JSONObject j = (JSONObject) o1;
+            JSONObject jo = (JSONObject) j.get("house_automation");
+
+
+            if((boolean) jo.get("value")) {
+                retry();
+            } else {
+                System.out.println("Feature models not respected");
+                System.exit(-1);
+            }
+        }
+        catch(IOException | ParseException e){
+            e.printStackTrace();
+        }
     }
 
     public void retry(){
