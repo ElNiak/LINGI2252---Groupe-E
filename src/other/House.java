@@ -10,10 +10,7 @@ import sensor.*;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class House {
     private static House instance = new House(System.getProperty("user.dir") + "/src/res/configuration.json");
@@ -54,6 +51,19 @@ public class House {
         return null;
     }
 
+
+    public void refresh(){
+        sensors_l = new LinkedList<>();
+        devices_l = new LinkedList<>();
+        for (Room r : ground_floor) {
+            devices_l.addAll(r.getDevices());
+            sensors_l.addAll(r.getSensors());
+        }
+        for (Room r : first_floor) {
+            devices_l.addAll(r.getDevices());
+            sensors_l.addAll(r.getSensors());
+        }
+    }
 
 
     @Override
@@ -102,52 +112,54 @@ public class House {
     }
 
     public boolean containS(String sensor){
+        this.refresh();
         switch (sensor) {
             case "humidity" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof HumiditySensor)
+                    if(s instanceof HumiditySensor && s.isActivated())
                         return true;
                 }
                 return false;
             case "light" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof LightSensor)
+                    if(s instanceof LightSensor && s.isActivated()) {
                         return true;
+                    }
                 }
                 return false;
             case "temperature" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof TemperatureSensor)
+                    if(s instanceof TemperatureSensor && s.isActivated())
                         return true;
                 }
                 return false;
             case "pollution" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof PollutionSensor)
+                    if(s instanceof PollutionSensor && s.isActivated())
                         return true;
                 }
                 return false;
             case "wind" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof WindSensor)
+                    if(s instanceof WindSensor && s.isActivated())
                     return true;
                 }
                 return false;
             case "sonore" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof SoundSensor)
+                    if(s instanceof SoundSensor && s.isActivated())
                         return true;
                 }
                 return false;
             case "movement" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof MovementSensor)
+                    if(s instanceof MovementSensor && s.isActivated())
                         return true;
                 }
                 return false;
             case "camera" :
                 for (Sensor s:sensors_l) {
-                    if(s instanceof Camera)
+                    if(s instanceof Camera && s.isActivated())
                         return true;
                 }
                 return false;
@@ -158,86 +170,87 @@ public class House {
 
 
     public boolean containR(String room){
+        this.refresh();
             switch (room) {
                 case "garden" :
                     return garden == null;
                 case "kitchen" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("Kitchen"))
+                        if (rooms.getName().equals("Kitchen") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("Kitchen"))
+                        if (rooms.getName().equals("Kitchen") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "living_room" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("LivingRoom"))
+                        if (rooms.getName().equals("LivingRoom") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("LivingRoom"))
+                        if (rooms.getName().equals("LivingRoom") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "bedroom" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("BedRoom"))
+                        if (rooms.getName().equals("BedRoom") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("BedRoom"))
+                        if (rooms.getName().equals("BedRoom") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "bathroom" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("BathRoom"))
+                        if (rooms.getName().equals("BathRoom") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("BathRoom"))
+                        if (rooms.getName().equals("BathRoom") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "laundry_room" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("LaundryRoom"))
+                        if (rooms.getName().equals("LaundryRoom") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("LaundryRoom"))
+                        if (rooms.getName().equals("LaundryRoom") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "entry" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("Entry"))
+                        if (rooms.getName().equals("Entry") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("Entry"))
+                        if (rooms.getName().equals("Entry") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "dinning_room" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("DinningRoom"))
+                        if (rooms.getName().equals("DinningRoom") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("DinningRoom"))
+                        if (rooms.getName().equals("DinningRoom") && rooms.isActivated())
                             return true;
                     }
                     return false;
                 case "game_room" :
                     for (Room rooms : first_floor) {
-                        if (rooms.getName().equals("GameRoom"))
+                        if (rooms.getName().equals("GameRoom") && rooms.isActivated())
                             return true;
                     }
                     for (Room rooms : ground_floor) {
-                        if (rooms.getName().equals("GameRoom"))
+                        if (rooms.getName().equals("GameRoom") && rooms.isActivated())
                             return true;
                     }
                     return false;

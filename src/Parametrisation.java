@@ -30,10 +30,14 @@ public abstract class Parametrisation {
         System.out.println("    - wind(x) POS:STAGE");
         System.out.println("    - db(x) POS:STAGE");
         System.out.println("    - move(x) POS:STAGE (x = 1.0 || 0.0)");
-        System.out.println("    - activationDevice(x) POS:STAGE (x = {AirConditioning || Heating || Hifi || Humidifier || Light || ShutterWindow || Tv || Ventilation || Windows}");
-        System.out.println("    - activationSensor(x) POS:STAGE (x = {Camera || HumiditySensor || LightSensor || MovementSensor || PollutionSensor || SoundSensor || TemperatureSensor || WindSensor})");
-        System.out.println("    - desactivationDevice(x) POS:STAGE (x = {AirConditioning || Heating || Hifi || Humidifier || Light || ShutterWindow || Tv || Ventilation || Windows})");
-        System.out.println("    - desactivationSensor(x) POS:STAGE (x = {Camera || HumiditySensor || LightSensor || MovementSensor || PollutionSensor || SoundSensor || TemperatureSensor || WindSensor})");
+
+        System.out.println("    - activationDevice(x) (x = {AirConditioning || Heating || Hifi || Humidifier || Light || ShutterWindow || Tv || Ventilation || Window}");
+        System.out.println("    - activationSensor(x) (x = {Humidity || Light || Temperature || Pollution || Wind || Sonore || Movement || Camera})");
+        System.out.println("    - activationRoom(x)   (x = {Entry || LivingRoom || Kitchen || DinningRoom || BedRoom || BathRoom || GameRoom || LaundryRoom || Garden})");
+
+        System.out.println("    - desactivationDevice(x) (x = {AirConditioning || Heating || Hifi || Humidifier || Light || ShutterWindow || Tv || Ventilation || Window})");
+        System.out.println("    - desactivationSensor(x) (x = {Humidity || Light || Temperature || Pollution || Wind || Sonore || Movement || Camera})");
+        System.out.println("    - desactivationRoom(x)   (x = {Entry || LivingRoom || Kitchen || DinningRoom || BedRoom || BathRoom || GameRoom || LaundryRoom || Garden})");
         System.out.println("    - EXIT\n");
         try {
             // retourne true s’il y a un autre élément dans l’entrée
@@ -43,10 +47,6 @@ public abstract class Parametrisation {
             }
         } catch (IllegalStateException e) {
             e.printStackTrace();
-        }/* catch (NumberFormatException e) {
-            System.out.println("Retry with a valid number");
-        } */catch (StringIndexOutOfBoundsException e) {
-            System.out.println("Retry with a valid command");
         }
         JSONConstraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",house);
         try{
@@ -66,12 +66,12 @@ public abstract class Parametrisation {
     }
 
     public void retry(){
-        System.out.println("\n Would you like to modify anything else ? (Y/N)\n");
+        System.out.println("\nWould you like to modify anything else ? (Y/N)\n");
         //scanner = new scannerner(System.in); //entrée standard,peut aussi prendre un Reader ou un nom de fichier en paramètre
         try {
             if(scanner.hasNext()){
                 String res = scanner.nextLine(); //retourne la prochaine ligne complète
-                if(res.equals("Y")){
+                if(res.contains("y") || res.contains("Y")){
                     console();
                 }
                 else {

@@ -9,6 +9,7 @@ import java.util.List;
 public class Room {
 
     private String name;
+    private boolean activated;
     private List<Device> devices;
     private List<Sensor> sensors;
     private double hauteur,longueur,largeur; //cm
@@ -59,10 +60,34 @@ public class Room {
         this.oldpollution = environnement.getPollution();
         this.olddbel = environnement.getDbel();
         this.oldmovement = environnement.isMovement();
+
+        this.activated = true;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public double getMovement() {
+        return movement;
+    }
+
+    public double getOldmovement() {
+        return oldmovement;
     }
 
     public Environnement getEnvironnement(){
-        return this.environnement;
+        if(activated){
+            return this.environnement;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+            return null;
+        }
     }
 
 
@@ -71,39 +96,44 @@ public class Room {
      * @param type
      */
     public void manage(String type, double val){
-        BehaviorStrategy behaviorStrategy = new BehaviorStrategy();
-        double oldVal = 0.0;
-        switch(type){
-            case Constants.TEMP:
-                behaviorStrategy.setBehavior(new TemperatureStrategy());
-                oldVal = this.oldtemp;
-                break;
-            case Constants.HUM:
-                behaviorStrategy.setBehavior(new HumidityStrategy());
-                oldVal = this.oldhum;
-                break;
-            case Constants.LIGHT:
-                behaviorStrategy.setBehavior(new LightStrategy());
-                oldVal = this.oldlight;
-                break;
-            case Constants.WIND:
-                behaviorStrategy .setBehavior(new WindStrategy());
-                oldVal = this.oldwind;
-                break;
-            case Constants.POLLUTION:
-                behaviorStrategy.setBehavior(new PollutionStrategy());
-                oldVal = this.oldpollution;
-                break;
-            case Constants.DBEL:
-                behaviorStrategy.setBehavior(new SoundStrategy());
-                oldVal = this.olddbel;
-                break;
-            case Constants.MOVEMENT:
-                behaviorStrategy.setBehavior(new MovementStrategy());
-                oldVal = this.oldmovement;
-                break;
+        if(activated){
+            BehaviorStrategy behaviorStrategy = new BehaviorStrategy();
+            double oldVal = 0.0;
+            switch(type){
+                case Constants.TEMP:
+                    behaviorStrategy.setBehavior(new TemperatureStrategy());
+                    oldVal = this.oldtemp;
+                    break;
+                case Constants.HUM:
+                    behaviorStrategy.setBehavior(new HumidityStrategy());
+                    oldVal = this.oldhum;
+                    break;
+                case Constants.LIGHT:
+                    behaviorStrategy.setBehavior(new LightStrategy());
+                    oldVal = this.oldlight;
+                    break;
+                case Constants.WIND:
+                    behaviorStrategy .setBehavior(new WindStrategy());
+                    oldVal = this.oldwind;
+                    break;
+                case Constants.POLLUTION:
+                    behaviorStrategy.setBehavior(new PollutionStrategy());
+                    oldVal = this.oldpollution;
+                    break;
+                case Constants.DBEL:
+                    behaviorStrategy.setBehavior(new SoundStrategy());
+                    oldVal = this.olddbel;
+                    break;
+                case Constants.MOVEMENT:
+                    behaviorStrategy.setBehavior(new MovementStrategy());
+                    oldVal = this.oldmovement;
+                    break;
+            }
+            behaviorStrategy.manage(val, oldVal, devices);
         }
-        behaviorStrategy.manage(val, oldVal, devices);
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     @Override
@@ -192,7 +222,12 @@ public class Room {
     }
 
     public void setOldtemp(double oldtemp) {
-        this.oldtemp = oldtemp;
+        if(activated){
+            this.oldtemp = oldtemp;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public double getOldhum() {
@@ -200,7 +235,12 @@ public class Room {
     }
 
     public void setOldhum(double oldhum) {
-        this.oldhum = oldhum;
+        if(activated){
+            this.oldhum = oldhum;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public double getOldlight() {
@@ -208,7 +248,12 @@ public class Room {
     }
 
     public void setOldlight(double oldlight) {
-        this.oldlight = oldlight;
+        if(activated){
+            this.oldlight = oldlight;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public double getOldwind() {
@@ -216,7 +261,12 @@ public class Room {
     }
 
     public void setOldwind(double oldwind) {
-        this.oldwind = oldwind;
+        if(activated){
+            this.oldwind = oldwind;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public double getOldpollution() {
@@ -224,7 +274,12 @@ public class Room {
     }
 
     public void setOldpollution(double oldpollution) {
-        this.oldpollution = oldpollution;
+        if(activated){
+            this.oldpollution = oldpollution;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public double getOlddbel() {
@@ -232,7 +287,12 @@ public class Room {
     }
 
     public void setOlddbel(double olddbel) {
-        this.olddbel = olddbel;
+        if(activated){
+            this.olddbel = olddbel;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public double isOldmovement() {
@@ -240,17 +300,27 @@ public class Room {
     }
 
     public void setOldmovement(double oldmovement) {
-        this.oldmovement = oldmovement;
+        if(activated){
+            this.oldmovement = oldmovement;
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public void setTemp(double temp) {
-        this.oldtemp = this.temp;
-        this.temp = temp;
-        for(Sensor s : sensors){
-            if(s instanceof TemperatureSensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.oldtemp = this.temp;
+            this.temp = temp;
+            for(Sensor s : sensors){
+                if(s instanceof TemperatureSensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -259,13 +329,18 @@ public class Room {
     }
 
     public void setHum(double hum) {
-        this.oldhum = this.hum;
-        this.hum = hum;
-        for(Sensor s : sensors){
-            if(s instanceof HumiditySensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.oldhum = this.hum;
+            this.hum = hum;
+            for(Sensor s : sensors){
+                if(s instanceof HumiditySensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -274,13 +349,18 @@ public class Room {
     }
 
     public void setLight(double light) {
-        this.oldlight = this.light;
-        this.light = light;
-        for(Sensor s : sensors){
-            if(s instanceof LightSensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.oldlight = this.light;
+            this.light = light;
+            for(Sensor s : sensors){
+                if(s instanceof LightSensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -289,13 +369,18 @@ public class Room {
     }
 
     public void setWind(double wind) {
-        this.oldwind = this.wind;
-        this.wind = wind;
-        for(Sensor s : sensors){
-            if(s instanceof WindSensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.oldwind = this.wind;
+            this.wind = wind;
+            for(Sensor s : sensors){
+                if(s instanceof WindSensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -304,13 +389,18 @@ public class Room {
     }
 
     public void setPollution(double pollution) {
-        this.oldpollution = this.pollution;
-        this.pollution = pollution;
-        for(Sensor s : sensors){
-            if(s instanceof PollutionSensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.oldpollution = this.pollution;
+            this.pollution = pollution;
+            for(Sensor s : sensors){
+                if(s instanceof PollutionSensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -319,13 +409,18 @@ public class Room {
     }
 
     public void setDbel(double dbel) {
-        this.olddbel = this.dbel;
-        this.dbel = dbel;
-        for(Sensor s : sensors){
-            if(s instanceof SoundSensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.olddbel = this.dbel;
+            this.dbel = dbel;
+            for(Sensor s : sensors){
+                if(s instanceof SoundSensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -334,13 +429,18 @@ public class Room {
     }
 
     public void setMovement(double movement) {
-        this.oldmovement = this.movement;
-        this.movement = movement;
-        for(Sensor s : sensors){
-            if(s instanceof MovementSensor){
-                if(s.isActivated())
-                    s.detect();
+        if(activated){
+            this.oldmovement = this.movement;
+            this.movement = movement;
+            for(Sensor s : sensors){
+                if(s instanceof MovementSensor){
+                    if(s.isActivated())
+                        s.detect();
+                }
             }
+        }
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
         }
     }
 
@@ -349,269 +449,290 @@ public class Room {
     }
 
     public void activationD(String i){
-        switch (i){
-            case "AirConditioning":
-                for (Device s : this.devices) {
-                    if( s instanceof  AirConditioning){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+        if(activated){
+            switch (i){
+                case "airconditioning":
+                    for (Device s : this.devices) {
+                        if( s instanceof  AirConditioning){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Heating":
-                for (Device s : this.devices) {
-                    if( s instanceof  Heating){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "heating":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Heating){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Hifi":
-                for (Device s : this.devices) {
-                    if( s instanceof  Hifi){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "hifi":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Hifi){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Humidifier":
-                for (Device s : this.devices) {
-                    if( s instanceof  Humidifier){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "humidifier":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Humidifier){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Light":
-                for (Device s : this.devices) {
-                    if( s instanceof  Light){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "light":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Light){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "ShutterWindow":
-                for (Device s : this.devices) {
-                    if( s instanceof  ShutterWindow){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "shutterwindow":
+                    for (Device s : this.devices) {
+                        if( s instanceof  ShutterWindow){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Tv":
-                for (Device s : this.devices) {
-                    if( s instanceof  Tv){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "tv":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Tv){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Ventilation":
-                for (Device s : this.devices) {
-                    if( s instanceof  Ventilation){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "ventilation":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Ventilation){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "Windows":
-                for (Device s : this.devices) {
-                    if( s instanceof  Windows){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "windows":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Windows){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            default:
+                default:
+            }
+            System.out.println(i + " in room " + this.getName()  + " are activated");
         }
-        System.out.println(i + " in room " + this.getName()  + " is activated");
+        else {
+            System.out.println("The room (" + this.name + ") is activated");
+        }
     }
 
     public void activationS(String i){
-        switch (i){
-            case "Camera":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  Camera){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+        if(activated){
+            switch (i){
+                case "camera":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  Camera){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "LightSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  LightSensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "light":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  LightSensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "PollutionSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  PollutionSensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "pollution":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  PollutionSensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "MovementSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  MovementSensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "movement":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  MovementSensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "TemperatureSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  TemperatureSensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "temperature":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  TemperatureSensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "HumiditySensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  HumiditySensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "humidity":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  HumiditySensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "SoundSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  SoundSensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "sonore":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  SoundSensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            case "WindSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  WindSensor){
-                        if(!s.isActivated())
-                            s.setActivated(true);
+                case "wind":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  WindSensor){
+                            if(!s.isActivated())
+                                s.setActivated(true);
+                        }
                     }
-                }
-            default:
+                default:
+            }
+            System.out.println(i + " in room " + this.getName()  + " are activated");
         }
-        System.out.println(i + " in room " + this.getName()  + " is activated");
+        else {
+            System.out.println("The room (" + this.name + ") is activated");
+        }
     }
 
     public void desactivationD(String i){
-        switch (i){
-            case "AirConditioning":
-                for (Device s : this.devices) {
-                    if( s instanceof  AirConditioning){
-                        if(s.isActivated())
-                            s.setActivated(false);
+        if(activated){
+            switch (i){
+                case "airconditioning":
+                    for (Device s : this.devices) {
+                        if( s instanceof  AirConditioning){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Heating":
-                for (Device s : this.devices) {
-                    if( s instanceof  Heating){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "heating":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Heating){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Hifi":
-                for (Device s : this.devices) {
-                    if( s instanceof  Hifi){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "hifi":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Hifi){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Humidifier":
-                for (Device s : this.devices) {
-                    if( s instanceof  Humidifier){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "humidifier":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Humidifier){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Light":
-                for (Device s : this.devices) {
-                    if( s instanceof  Light){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "light":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Light){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "ShutterWindow":
-                for (Device s : this.devices) {
-                    if( s instanceof  ShutterWindow){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "shutterwindow":
+                    for (Device s : this.devices) {
+                        if( s instanceof  ShutterWindow){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Tv":
-                for (Device s : this.devices) {
-                    if( s instanceof  Tv){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "tv":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Tv){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Ventilation":
-                for (Device s : this.devices) {
-                    if( s instanceof  Ventilation){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "ventilation":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Ventilation){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "Windows":
-                for (Device s : this.devices) {
-                    if( s instanceof  Windows){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "windows":
+                    for (Device s : this.devices) {
+                        if( s instanceof  Windows){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            default:
+                default:
+            }
+            System.out.println(i + " in room " + this.getName()  + " are desactivated");
         }
-        System.out.println(i + " in room " + this.getName()  + " is desactivated");
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
     public void desactivationS(String i){
-        switch (i){
-            case "Camera":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  Camera){
-                        if(s.isActivated())
-                            s.setActivated(false);
+        if(activated){
+            switch (i){
+                case "camera":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  Camera){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "LightSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  LightSensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "light":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  LightSensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "PollutionSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  PollutionSensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "pollution":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  PollutionSensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "MovementSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  MovementSensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "movement":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  MovementSensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "TemperatureSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  TemperatureSensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "temperature":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  TemperatureSensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "HumiditySensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  HumiditySensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "humidity":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  HumiditySensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            case "SoundSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  SoundSensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "sonore":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  SoundSensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+
+                        }
                     }
-                }
-            case "WindSensor":
-                for (Sensor s : this.sensors) {
-                    if( s instanceof  WindSensor){
-                        if(s.isActivated())
-                            s.setActivated(false);
+                case "wind":
+                    for (Sensor s : this.sensors) {
+                        if( s instanceof  WindSensor){
+                            if(s.isActivated())
+                                s.setActivated(false);
+                        }
                     }
-                }
-            default:
+                default:
+            }
+            System.out.println(i + " in room " + this.getName()  + " are desactivated");
         }
-        System.out.println(i + " in room " + this.getName()  + " is desactivated");
+        else {
+            System.out.println("The room (" + this.name + ") is desactivated");
+        }
     }
 
 

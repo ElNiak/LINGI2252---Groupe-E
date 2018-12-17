@@ -12,12 +12,21 @@ public class DbExpression_console implements Expression_console {
     double add;
     int stage;
     List<Room> rooms;
+    House house;
 
     public DbExpression_console(String str, House house){
         this.str = str;
-        i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
-        add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
-        stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+        this.house = house;
+        try {
+            add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
+            stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+            i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
+        }
+        catch (Exception e){
+            add = 0;
+            i = 0;
+            stage = 0;
+        }
         if(stage == 1)
             rooms = house.getGround_floor();
         else

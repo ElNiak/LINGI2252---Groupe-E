@@ -11,17 +11,23 @@ public class InterpreterConsole {
 
     public void interpret(String str) {
         Expression_console expression_console = null;
-        if (str.contains("desactivationDevice")) {
+        if (str.contains("desactivationdevice")) {
             expression_console = new DesactivationDeviceExpression_console(str,house);
             expression_console.interpret();
-        } else if (str.contains("desactivationSensor")) {
+        } else if (str.contains("desactivationsensor")) {
             expression_console = new DesactivationSensorExpression_console(str,house);
             expression_console.interpret();
-        } else if (str.contains("activationDevice")) {
+        } else if (str.contains("desactivationroom")) {
+            expression_console = new DesactivationRoom(str,house);
+            expression_console.interpret();
+        }else if (str.contains("activationdevice")) {
             expression_console = new ActivationDeviceExpression_console(str,house);
             expression_console.interpret();
-        } else if (str.contains("activationSensor")) {
+        } else if (str.contains("activationsensor")) {
             expression_console = new ActivationSensorExpression_console(str,house);
+            expression_console.interpret();
+        } else if (str.contains("activationroom")) {
+            expression_console = new ActivationRoom(str,house);
             expression_console.interpret();
         } else if (str.contains("hum")) {
             expression_console = new HumExpression_console(str,house);
@@ -44,7 +50,7 @@ public class InterpreterConsole {
         } else if (str.contains("exit")) {
             System.exit(0);
         } else {
-            System.out.println("Error, retry please.\n");
+            System.out.println("\nError, retry please.\n");
         }
     }
 }

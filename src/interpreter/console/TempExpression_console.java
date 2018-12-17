@@ -15,13 +15,16 @@ public class TempExpression_console implements Expression_console{
 
     public TempExpression_console(String str, House house){
         this.str = str;
-        i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
         try {
             add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
+            stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+            i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
         }
-        catch (NumberFormatException e){
+        catch (Exception e){
             add = 0;
-        }        stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+            i = 0;
+            stage = 0;
+        }
         if(stage == 1)
             rooms = house.getGround_floor();
         else

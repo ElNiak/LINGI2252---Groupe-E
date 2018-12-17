@@ -12,16 +12,21 @@ public class ActivationDeviceExpression_console implements Expression_console {
     double add;
     int stage;
     List<Room> rooms;
-
+    House house;
     public ActivationDeviceExpression_console(String str, House house){
         this.str = str;
-        i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
+        this.house = house;
         try {
             add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
+            stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+            i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
+
         }
-        catch (NumberFormatException e){
+        catch (Exception e){
             add = 0;
-        }        stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+            i = 0;
+            stage = 0;
+        }
         if(stage == 1)
             rooms = house.getGround_floor();
         else
@@ -30,9 +35,13 @@ public class ActivationDeviceExpression_console implements Expression_console {
 
     @Override
     public void interpret() {
-        System.out.println("\n" + "Before : Environnement = " +rooms.get(i).getEnvironnement().toString());
-        rooms.get(i).activationD(str);
-        System.out.println("After : Environnement = " +rooms.get(i).getEnvironnement().toString() + "\n");
+        rooms = house.getGround_floor();
+        for(int j = 0; j < rooms.size(); j++)
+            rooms.get(j).activationD(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
+        rooms = house.getFirst_floor();
+        for(int j = 0; j < rooms.size(); j++)
+            rooms.get(j).activationD(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
+        System.out.println(str.substring(str.indexOf("(") + 1, str.indexOf(")")) + " are activated");
 
     }
 }

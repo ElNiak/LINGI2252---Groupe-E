@@ -15,6 +15,8 @@ public class SensorExpression extends Expression_constraint {
 
     @Override
     public boolean interpret(String context, JSONObject jsonObject, House house) {
+        if(context.contains("light"))
+            System.out.println("Cool = " + house.containS(context));
         if(house.containS(context)){
             JSONConstraint.modify_json(2,context,true);
             return true;

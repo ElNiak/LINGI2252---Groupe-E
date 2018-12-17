@@ -5,12 +5,14 @@
     "first_floor":
     {
       "name": "Ground Floor",
+      "activated":"true",
       "rooms":[
         {
           "name": "Entry",
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "Camera",
@@ -63,6 +65,7 @@
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "TemperatureSensor",
@@ -192,6 +195,7 @@
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "TemperatureSensor",
@@ -286,6 +290,7 @@
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "TemperatureSensor",
@@ -380,9 +385,11 @@
     "second_floor":
     {
       "name": "First Floor",
+      "activated":"true",
       "rooms":[
         {
           "name": "BedRoom",
+          "activated":"true",
           "length": "700",
           "width": "700",
           "height": "300",
@@ -459,6 +466,7 @@
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "TemperatureSensor",
@@ -532,6 +540,7 @@
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "TemperatureSensor",
@@ -598,6 +607,7 @@
           "length": "700",
           "width": "700",
           "height": "300",
+          "activated":"true",
           "sensors":[
             {
               "name": "MovementSensor",
@@ -642,6 +652,7 @@
           "length": "1500",
           "width": "1500",
           "height": "100000",
+          "activated":"true",
           "sensors":[
             {
               "name": "LightSensor",
