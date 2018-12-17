@@ -25,6 +25,7 @@ public abstract class Parametrisation {
     }
 
     public  void console() {
+        oldHouse = house;
         System.out.println("\n=> What do you want to do ? (x = value, POS = index of the room in the json, STAGE = 1 || 2)");
         System.out.println("    - temp(x) POS:STAGE");
         System.out.println("    - hum(x) POS:STAGE");
