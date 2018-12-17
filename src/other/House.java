@@ -55,6 +55,10 @@ public class House {
     public void refresh(){
         sensors_l = new LinkedList<>();
         devices_l = new LinkedList<>();
+        if(garden != null) {
+            devices_l.addAll(garden.getDevices());
+            sensors_l.addAll(garden.getSensors());
+        }
         for (Room r : ground_floor) {
             devices_l.addAll(r.getDevices());
             sensors_l.addAll(r.getSensors());
