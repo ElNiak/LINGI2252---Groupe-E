@@ -30,10 +30,10 @@ public abstract class Parametrisation {
         System.out.println("    - wind(x) POS:STAGE");
         System.out.println("    - db(x) POS:STAGE");
         System.out.println("    - move(x) POS:STAGE (x = 1.0 || 0.0)");
-        System.out.println("    - activationDevice(x) POS:STAGE (x = pos of device)");
-        System.out.println("    - activationSensor(x) POS:STAGE (x = pos of sensor)");
-        System.out.println("    - desactivationDevice(x) POS:STAGE (x = pos of device)");
-        System.out.println("    - desactivationSensor(x) POS:STAGE (x = pos of sensor)");
+        System.out.println("    - activationDevice(x) POS:STAGE (x = {AirConditioning || Heating || Hifi || Humidifier || Light || ShutterWindow || Tv || Ventilation || Windows}");
+        System.out.println("    - activationSensor(x) POS:STAGE (x = {Camera || HumiditySensor || LightSensor || MovementSensor || PollutionSensor || SoundSensor || TemperatureSensor || WindSensor})");
+        System.out.println("    - desactivationDevice(x) POS:STAGE (x = {AirConditioning || Heating || Hifi || Humidifier || Light || ShutterWindow || Tv || Ventilation || Windows})");
+        System.out.println("    - desactivationSensor(x) POS:STAGE (x = {Camera || HumiditySensor || LightSensor || MovementSensor || PollutionSensor || SoundSensor || TemperatureSensor || WindSensor})");
         System.out.println("    - EXIT\n");
         try {
             // retourne true s’il y a un autre élément dans l’entrée
@@ -43,9 +43,9 @@ public abstract class Parametrisation {
             }
         } catch (IllegalStateException e) {
             e.printStackTrace();
-        } catch (NumberFormatException e) {
+        }/* catch (NumberFormatException e) {
             System.out.println("Retry with a valid number");
-        } catch (StringIndexOutOfBoundsException e) {
+        } */catch (StringIndexOutOfBoundsException e) {
             System.out.println("Retry with a valid command");
         }
         JSONConstraint.decode_constraint(System.getProperty("user.dir") + "/src/res/feature_model.json",house);

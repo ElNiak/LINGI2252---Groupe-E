@@ -15,8 +15,12 @@ public class DesactivationDeviceExpression_console implements Expression_console
     public DesactivationDeviceExpression_console(String str, House house){
         this.str = str;
         i = Integer.parseInt(str.substring(str.indexOf(")") + 2, str.indexOf(":")));
-        add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
-        stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
+        try {
+            add = Double.parseDouble(str.substring(str.indexOf("(") + 1, str.indexOf(")")));
+        }
+        catch (NumberFormatException e){
+            add = 0;
+        }        stage = Integer.parseInt(str.substring(str.indexOf(":") + 1, str.length()));
         if(stage == 1)
             rooms = house.getGround_floor();
         else
@@ -26,7 +30,7 @@ public class DesactivationDeviceExpression_console implements Expression_console
     @Override
     public void interpret() {
         System.out.println("\n" + "Before : Environnement = " +rooms.get(i).getEnvironnement().toString());
-        rooms.get(i).desactivationD(add);
+        rooms.get(i).desactivationD(str);
         System.out.println("After : Environnement = " +rooms.get(i).getEnvironnement().toString() + "\n");
     }
 }
