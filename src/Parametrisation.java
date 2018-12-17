@@ -13,11 +13,13 @@ import java.util.Scanner;
 public abstract class Parametrisation {
 
     private House house;
+    private House oldHouse;
     private Scanner scanner;
     private InterpreterConsole interpreterConsole;
 
     public Parametrisation(Scanner scanner){
         house = House.getInstance();
+        oldHouse = house;
         this.scanner = scanner;
         interpreterConsole = new InterpreterConsole(house);
     }
@@ -54,10 +56,13 @@ public abstract class Parametrisation {
             JSONObject j = (JSONObject) o1;
             JSONObject jo = (JSONObject) j.get("house_automation");
             if((boolean) jo.get("value")) {
+                oldHouse = house;
                 retry();
             } else {
                 System.out.println("Feature models not respected");
-                System.exit(-1);
+                house = oldHouse;
+                retry();
+                //System.exit(-1);
             }
         }
         catch(IOException | ParseException e){
