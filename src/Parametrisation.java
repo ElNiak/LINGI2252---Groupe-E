@@ -61,9 +61,9 @@ public abstract class Parametrisation {
                 retry();
             } else {
                 System.out.println("Feature models not respected");
-                house = oldHouse;
-                retry();
-                //System.exit(-1);
+                //house = oldHouse;
+                //retry();
+                System.exit(-1);
             }
         }
         catch(IOException | ParseException e){
