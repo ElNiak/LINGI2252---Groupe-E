@@ -6,10 +6,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.reflections.Reflections;
 import sensor.*;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class House {
@@ -289,64 +291,16 @@ public class House {
     private void decode_sensors(JSONArray sensors, List<Sensor> ls, Room room){
         for(int i = 0; i<sensors.size(); i++){
             JSONObject sensor = (JSONObject) sensors.get(i);
-            sensors_l.add(create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
-            ls.add(create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
-        }
-    }
-
-    private Sensor create_sensor(String sensor_name, double x, double y, double z, Room room, boolean activated){
-        switch (sensor_name){
-            case "Camera":
-                return new Camera(x, y ,z, room,activated);
-            case "LightSensor":
-                return new LightSensor(x, y, z, room,activated);
-            case "PollutionSensor":
-                return new PollutionSensor(x, y, z, room,activated);
-            case "MovementSensor":
-                return new MovementSensor(x, y, z, room,activated);
-            case "TemperatureSensor":
-                return new TemperatureSensor(x, y, z, room,activated);
-            case "HumiditySensor":
-                return new HumiditySensor(x, y, z, room,activated);
-            case "SoundSensor":
-                return new SoundSensor(x, y, z, room,activated);
-            case "WindSensor":
-                return new WindSensor(x, y, z, room,activated);
-            default:
-                return new LightSensor(x, y, z, room,activated);
+            sensors_l.add(room.create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
+            ls.add(room.create_sensor((String) sensor.get("name"), Double.parseDouble((String) sensor.get("x")), Double.parseDouble((String)  sensor.get("y")), Double.parseDouble((String) sensor.get("z")), room, Boolean.parseBoolean((String) sensor.get("activated"))));
         }
     }
 
     private void decode_devices(JSONArray devices, List<Device> ld, Room room){
         for(int i = 0; i<devices.size(); i++){
             JSONObject device = (JSONObject) devices.get(i);
-            devices_l.add(create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
-            ld.add(create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
-        }
-    }
-
-    private Device create_device(String device_name, double x, double y, double z, Room room, boolean activated){
-        switch (device_name){
-            case "AirConditioning":
-                return new AirConditioning(x, y, z, room,activated);
-            case "Heating":
-                return new Heating(x, y, z, room,activated);
-            case "Hifi":
-                return new Hifi(x, y, z, room,activated);
-            case "Humidifier":
-                return new Humidifier(x, y, z, room,activated);
-            case "Light":
-                return new Light(x, y, z, room,activated);
-            case "ShutterWindow":
-                return new ShutterWindow(x, y, z, room,activated);
-            case "Tv":
-                return new Tv(x, y, z, room,activated);
-            case "Ventilation":
-                return new Ventilation(x, y, z, room,activated);
-            case "Window":
-                return new Windows(x, y, z, room,activated);
-            default:
-                return new Light(x, y, z, room,activated);
+            devices_l.add(room.create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
+            ld.add(room.create_device((String) device.get("name"), Double.parseDouble((String) device.get("x")), Double.parseDouble((String) device.get("y")), Double.parseDouble((String) device.get("y")), room, Boolean.parseBoolean((String) device.get("activated"))));
         }
     }
 

@@ -42,41 +42,6 @@ public class Environnement {
         this.room = room;
     }
 
-    /**
-     * @pre /
-     * @post /
-     */
-    public void update(String type, double val) {
-        room.manage(type, val);
-        switch (type) {
-            case Constants.TEMP:
-                this.setTemp(val);
-                break;
-            case Constants.HUM:
-                this.setHum(val);
-                break;
-            case Constants.LIGHT:
-                this.setLight(val);
-                break;
-            case Constants.WIND:
-                this.setWind(val);
-                break;
-            case Constants.POLLUTION:
-                this.setPollution(val);
-                break;
-            case Constants.DBEL:
-                this.setDbel(val);
-                break;
-            case Constants.MOVEMENT:
-                if (val == 1.0) {
-                    this.setMovement(1.0);
-                } else {
-                    this.setMovement(0.0);
-                }
-        }
-        //room.manage(type);
-    }
-
     public double getTemp() {
         return temp;
     }

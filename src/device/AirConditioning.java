@@ -4,6 +4,8 @@ import other.Room;
 
 public class AirConditioning extends Device {
 
+    public AirConditioning(){}
+
     public AirConditioning(double x, double y, double z, Room room, boolean activated) {
         super(x,y,z,room, activated);
         this.name = "Air Conditioning";

@@ -31,6 +31,16 @@ public abstract class Device {
         this.activated = activated;
     }
 
+    public Device(){
+        this.state = false;
+        this.x = 0; this.y = 0; this. z = 0;
+        this.room = null;
+        this.name = "device";
+        this.on = "on";
+        this.off = "off";
+        this.activated = true;
+    }
+
 
     /**
      * @pre

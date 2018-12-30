@@ -4,6 +4,9 @@ import other.Room;
 
 public class ShutterWindow extends Device {
 
+    public ShutterWindow() {
+    }
+
     public ShutterWindow(double x, double y, double z, Room room, boolean activated) {
         super(x,y,z,room, activated);
         this.name = "Shutter window";

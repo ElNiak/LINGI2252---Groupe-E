@@ -4,6 +4,9 @@ import other.Room;
 
 public class Tv extends Device {
 
+    public Tv() {
+    }
+
     public Tv(double x, double y, double z, Room room, boolean activated) {
         super(x,y,z,room, activated);
         this.name = "Tv";

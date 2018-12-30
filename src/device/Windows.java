@@ -4,6 +4,9 @@ import other.Room;
 
 public class Windows extends Device {
 
+    public Windows() {
+    }
+
     public Windows(double x, double y, double z, Room room, boolean activated) {
         super(x,y,z,room, activated);
         this.on = "up";

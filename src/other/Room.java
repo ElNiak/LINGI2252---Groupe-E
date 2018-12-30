@@ -2,9 +2,13 @@ package other;
 
 import behavior.*;
 import device.*;
+import org.reflections.Reflections;
 import sensor.*;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Set;
 
 public class Room {
 
@@ -90,50 +94,65 @@ public class Room {
         }
     }
 
-
-    /**
-     * Possible case
-     * @param type
-     */
-    public void manage(String type, double val){
-        if(activated){
-            BehaviorStrategy behaviorStrategy = new BehaviorStrategy();
-            double oldVal = 0.0;
-            switch(type){
-                case Constants.TEMP:
-                    behaviorStrategy.setBehavior(new TemperatureStrategy());
-                    oldVal = this.oldtemp;
-                    break;
-                case Constants.HUM:
-                    behaviorStrategy.setBehavior(new HumidityStrategy());
-                    oldVal = this.oldhum;
-                    break;
-                case Constants.LIGHT:
-                    behaviorStrategy.setBehavior(new LightStrategy());
-                    oldVal = this.oldlight;
-                    break;
-                case Constants.WIND:
-                    behaviorStrategy .setBehavior(new WindStrategy());
-                    oldVal = this.oldwind;
-                    break;
-                case Constants.POLLUTION:
-                    behaviorStrategy.setBehavior(new PollutionStrategy());
-                    oldVal = this.oldpollution;
-                    break;
-                case Constants.DBEL:
-                    behaviorStrategy.setBehavior(new SoundStrategy());
-                    oldVal = this.olddbel;
-                    break;
-                case Constants.MOVEMENT:
-                    behaviorStrategy.setBehavior(new MovementStrategy());
-                    oldVal = this.oldmovement;
-                    break;
+    public Sensor create_sensor(String sensor_name, double x, double y, double z, Room room, boolean activated) {
+        Reflections reflections = new Reflections("sensor");
+        Set<Class<? extends Sensor>> classes = reflections.getSubTypesOf(Sensor.class);
+        for (Class<? extends Sensor> cl : classes) {
+            if (cl.getName().contains(sensor_name)) {
+                try {
+                    Sensor sensor = (Sensor) getConstructor(cl).newInstance();
+                    sensor.setActivated(activated);
+                    sensor.setX(x);
+                    sensor.setY(y);
+                    sensor.setZ(z);
+                    sensor.setRoom(room);
+                    return sensor;
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
             }
-            behaviorStrategy.manage(val, oldVal, devices);
         }
-        else {
-            System.out.println("The room (" + this.name + ") is desactivated");
+        return null;
+    }
+
+    public Device create_device(String device_name, double x, double y, double z, Room room, boolean activated){
+        Reflections reflections = new Reflections("device");
+        Set<Class<? extends Device>> classes = reflections.getSubTypesOf(Device.class);
+        for (Class<? extends Device> cl : classes) {
+            if (cl.getName().contains(device_name)) {
+                try {
+                    Device device = (Device) getConstructor(cl).newInstance();
+                    device.setX(x);
+                    device.setY(y);
+                    device.setZ(z);
+                    device.setActivated(activated);
+                    device.setRoom(room);
+                    device.setName(device_name);
+                    return device;
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        return null;
+    }
+
+    private Constructor<?> getConstructor(Class cl){
+        Constructor<?> constructor = null;
+        for(int i = 0; i<cl.getDeclaredConstructors().length; i++){
+            if (cl.getDeclaredConstructors()[i].getParameterCount() == 0){
+                constructor = cl.getDeclaredConstructors()[i];
+            }
+        }
+        return constructor;
     }
 
     @Override

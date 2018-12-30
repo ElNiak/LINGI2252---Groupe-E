@@ -3,18 +3,19 @@ package behavior;
 import device.Device;
 import device.Light;
 import device.Tv;
+import other.Room;
 
 import java.util.List;
 
 public class MovementStrategy implements IBehavior {
     @Override
-    public void manage(double val, double oldVal, List<Device> devices) {
+    public void manage(double val, double oldVal, Room room) {
         if(oldVal != val){
-            for (Device i : devices){
-                if (i instanceof Light && i.isActivated()){
+            for (Device i : room.getDevices()){
+                if (i.getName().compareTo("Light") == 0 && i.isActivated()){
                     i.manage_device();
                 }
-                if (i instanceof Tv && i.isActivated()){
+                if (i.getName().compareTo("Tv") == 0 && i.isActivated()){
                     i.manage_device();
                 }
             }

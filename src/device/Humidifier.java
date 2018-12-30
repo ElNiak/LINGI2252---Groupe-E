@@ -4,6 +4,9 @@ import other.Room;
 
 public class Humidifier extends Device {
 
+    public Humidifier() {
+    }
+
     public Humidifier(double x, double y, double z, Room room, boolean activated) {
         super(x,y,z,room, activated);
         this.name = "Humidifier";

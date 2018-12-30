@@ -4,6 +4,10 @@ import other.Room;
 
 public class Ventilation extends Device {
 
+
+    public Ventilation() {
+    }
+
     public Ventilation(double x, double y, double z, Room room, boolean activated) {
         super(x,y,z,room, activated);
         this.name = "Ventilation";

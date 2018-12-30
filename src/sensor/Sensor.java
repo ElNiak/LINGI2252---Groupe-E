@@ -17,6 +17,14 @@ public abstract class Sensor {
         this.activated = activated;
     }
 
+    public Sensor(){
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        this.room = null;
+        this.activated = true;
+    }
+
     public boolean isActivated() {
         return activated;
     }
@@ -41,4 +49,59 @@ public abstract class Sensor {
 
     }
 
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+    public void setZ(double z) {
+        this.z = z;
+    }
+
+    public double getPrev() {
+        return prev;
+    }
+
+    public void setPrev(double prev) {
+        this.prev = prev;
+    }
+
+    public double getCurr() {
+        return curr;
+    }
+
+    public void setCurr(double curr) {
+        this.curr = curr;
+    }
+
+    public double getLambda() {
+        return lambda;
+    }
+
+    public void setLambda(double lambda) {
+        this.lambda = lambda;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
 }
