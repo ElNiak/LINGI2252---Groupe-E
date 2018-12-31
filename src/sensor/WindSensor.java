@@ -2,7 +2,6 @@ package sensor;
 
 import behavior.BehaviorStrategy;
 import behavior.WindStrategy;
-import other.Constants;
 import other.Room;
 
 public class WindSensor extends Sensor {
@@ -26,12 +25,12 @@ public class WindSensor extends Sensor {
         this.curr = room.getWind();
         this.prev = room.getOldwind();
         if(Math.abs(this.curr-this.prev) > this.lambda){
-            notifY(this.curr);
+            update(this.curr);
         }
     }
 
     @Override
-    public void notifY(double curr) {
+    public void update(double curr) {
         if (this.room.isActivated()){
             behaviorStrategy.manage(this.curr, this.prev, this.room);
         }

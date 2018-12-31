@@ -20,14 +20,14 @@ public class Room {
     private Room[] neightbor;
 
 
-    private double temp;//Here perfect mesure according to the preference
+    private double temp;//Here perfect measure according to the preference
     private double hum;
     private double light;
     private double wind;
     private double pollution;
     private double dbel;
     private double movement;
-    private double oldtemp;//Here perfect mesure according to the preference
+    private double oldtemp;//Here perfect measure according to the preference
     private double oldhum;
     private double oldlight;
     private double oldwind;

@@ -1,9 +1,7 @@
 package sensor;
 
 import behavior.BehaviorStrategy;
-import behavior.MovementStrategy;
 import behavior.PollutionStrategy;
-import other.Constants;
 import other.Room;
 
 public class PollutionSensor extends Sensor {
@@ -26,12 +24,12 @@ public class PollutionSensor extends Sensor {
         this.curr = room.getPollution();
         this.prev = room.getOldpollution();
         if(Math.abs(this.curr-this.prev) > this.lambda){
-            notifY(this.curr);
+            update(this.curr);
         }
     }
 
     @Override
-    public void notifY(double curr) {
+    public void update(double curr) {
         if (this.room.isActivated()){
             behaviorStrategy.manage(this.curr, this.prev, this.room);
         }

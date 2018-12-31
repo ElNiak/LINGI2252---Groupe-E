@@ -1,9 +1,7 @@
 package sensor;
 
 import behavior.BehaviorStrategy;
-import behavior.SoundStrategy;
 import behavior.TemperatureStrategy;
-import other.Constants;
 import other.Room;
 
 public class TemperatureSensor  extends Sensor {
@@ -26,12 +24,12 @@ public class TemperatureSensor  extends Sensor {
         this.curr = room.getTemp();
         this.prev = room.getOldtemp();
         if(Math.abs(this.curr-this.prev) > this.lambda){
-            notifY(this.curr);
+            update(this.curr);
         }
     }
 
     @Override
-    public void notifY(double curr) {
+    public void update(double curr) {
         if (this.room.isActivated()){
             behaviorStrategy.manage(this.curr, this.prev, this.room);
         }

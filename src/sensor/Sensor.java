@@ -45,7 +45,7 @@ public abstract class Sensor {
      * @pre
      * @post
      */
-    public void notifY(double current){
+    public void update(double current){
 
     }
 

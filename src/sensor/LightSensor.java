@@ -2,7 +2,6 @@ package sensor;
 
 import behavior.BehaviorStrategy;
 import behavior.LightStrategy;
-import other.Constants;
 import other.Room;
 
 public class LightSensor extends Sensor {
@@ -25,12 +24,12 @@ public class LightSensor extends Sensor {
         this.curr = room.getLight();
         this.prev = room.getOldlight();
         if(Math.abs(this.curr-this.prev) > this.lambda){
-            notifY(this.curr);
+            update(this.curr);
         }
     }
 
     @Override
-    public void notifY(double curr) {
+    public void update(double curr) {
         if (this.room.isActivated()){
             behaviorStrategy.manage(this.curr, this.prev, this.room);
         }

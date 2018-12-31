@@ -8,9 +8,7 @@ import java.util.List;
 public class BehaviorStrategy {
     IBehavior behavior;
 
-    public BehaviorStrategy(){
-
-    }
+    public BehaviorStrategy(){}
 
     public BehaviorStrategy(IBehavior behavior){
         this.behavior = behavior;

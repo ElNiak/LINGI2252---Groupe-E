@@ -2,7 +2,6 @@ package sensor;
 
 import behavior.BehaviorStrategy;
 import behavior.MovementStrategy;
-import other.Constants;
 import other.Room;
 
 public class MovementSensor extends Sensor {
@@ -23,11 +22,11 @@ public class MovementSensor extends Sensor {
     public void detect() {
         this.curr = room.isMovement();
         this.prev = room.isOldmovement();
-        notifY(curr);
+        update(curr);
     }
 
     @Override
-    public void notifY(double curr) {
+    public void update(double curr) {
         if (this.room.isActivated()){
             behaviorStrategy.manage(this.curr, this.prev, this.room);
         }
